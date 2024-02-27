@@ -1,6 +1,6 @@
 {
-  "commit": "6233d4fd24e3645b73fa3eac9253290c89bd8cb6",
-  "generated": "2024-02-27T05:39:37.213Z",
+  "commit": "4125c919a7dc827c851d042892ad425ee833f296",
+  "generated": "2024-02-27T05:46:46.403Z",
   "metadata": [
     {
       "__outstatic": {
@@ -90,29 +90,6 @@
     },
     {
       "__outstatic": {
-        "commit": "c80bc141205c656a67fc985549da1ad912410813",
-        "hash": "1652555320",
-        "path": "outstatic/content/posts/how-to-create-an-outstatic-blog.md"
-      },
-      "author": {
-        "name": "Daisy Isibor"
-      },
-      "collection": "posts",
-      "coverImage": "/images/img_2135-E3NT.jpg",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
-      "publishedAt": "2022-07-14T02:34:02.322Z",
-      "slug": "how-to-create-an-outstatic-blog",
-      "status": "published",
-      "tags": [
-        {
-          "label": "Daisy",
-          "value": "daisy"
-        }
-      ],
-      "title": "Learn how to create your blog with Outstatic"
-    },
-    {
-      "__outstatic": {
         "commit": "213df0938e1c792b5fdb9271267228f83cdfb611",
         "hash": "487851131",
         "path": "outstatic/content/pages/about.md"
@@ -146,6 +123,29 @@
       "slug": "home",
       "status": "published",
       "title": "Welcome to Blog"
+    },
+    {
+      "__outstatic": {
+        "commit": "4125c919a7dc827c851d042892ad425ee833f296",
+        "hash": "2517171701",
+        "path": "outstatic/content/posts/how-to-create-an-outstatic-blog.md"
+      },
+      "author": {
+        "name": "Daisy Isibor"
+      },
+      "collection": "posts",
+      "coverImage": "",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+      "publishedAt": "2022-07-14T02:34:02.322Z",
+      "slug": "how-to-create-an-outstatic-blog",
+      "status": "published",
+      "tags": [
+        {
+          "label": "Daisy",
+          "value": "daisy"
+        }
+      ],
+      "title": "Learn how to create your blog with Outstatic"
     }
   ]
 }

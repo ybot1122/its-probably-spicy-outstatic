@@ -2,7 +2,7 @@
 title: 'Learn how to create your blog with Outstatic'
 status: 'published'
 description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.'
-coverImage: '/images/img_2135-E3NT.jpg'
+coverImage: ''
 tags: [{"label":"Daisy","value":"daisy"}]
 author:
   name: 'Daisy Isibor'
@@ -19,7 +19,7 @@ Another list
 
 - This is a list
 - With bullets
-- Instead of 
+- Instead of
 - Numbers
 
 ## Lorem Ipsum
