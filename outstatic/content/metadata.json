@@ -1,38 +1,7 @@
 {
-  "commit": "f1d49d79a01c1d85981f368c71944529e6583183",
-  "generated": "2024-02-27T04:47:33.166Z",
+  "commit": "c80bc141205c656a67fc985549da1ad912410813",
+  "generated": "2024-02-27T04:55:39.591Z",
   "metadata": [
-    {
-      "__outstatic": {
-        "commit": "bf4993b965319da4cb9de4a3810fb4af12bdebd6",
-        "hash": "2596208214",
-        "path": "/outstatic/content/posts/how-to-create-an-outstatic-blog.md"
-      },
-      "author": {
-        "name": "Andre Vitorio"
-      },
-      "collection": "posts",
-      "coverImage": "/images/jupiter-spaceship.png",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
-      "publishedAt": "2022-07-14T02:34:02.322Z",
-      "slug": "how-to-create-an-outstatic-blog",
-      "status": "published",
-      "tags": [
-        {
-          "label": "NextJs",
-          "value": "nextJs"
-        },
-        {
-          "label": "GitHub",
-          "value": "gitHub"
-        },
-        {
-          "label": "Outstatic",
-          "value": "outstatic"
-        }
-      ],
-      "title": "Learn how to create your blog with Outstatic"
-    },
     {
       "__outstatic": {
         "commit": "998b7f74af83e46bbdb4ab5302c8e4c39963278f",
@@ -136,6 +105,29 @@
       "slug": "home",
       "status": "published",
       "title": "Home"
+    },
+    {
+      "__outstatic": {
+        "commit": "c80bc141205c656a67fc985549da1ad912410813",
+        "hash": "2615696424",
+        "path": "outstatic/content/posts/how-to-create-an-outstatic-blog.md"
+      },
+      "author": {
+        "name": "Daisy Isibor"
+      },
+      "collection": "posts",
+      "coverImage": "/images/img_2135-gxOT.jpg",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+      "publishedAt": "2022-07-14T02:34:02.322Z",
+      "slug": "how-to-create-an-outstatic-blog",
+      "status": "published",
+      "tags": [
+        {
+          "label": "Daisy",
+          "value": "daisy"
+        }
+      ],
+      "title": "Learn how to create your blog with Outstatic"
     }
   ]
 }

@@ -20,6 +20,10 @@
         {
           "value": "outstatic",
           "label": "Outstatic"
+        },
+        {
+          "value": "daisy",
+          "label": "Daisy"
         }
       ]
     }
