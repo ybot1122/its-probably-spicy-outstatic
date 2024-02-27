@@ -1,6 +1,6 @@
 {
-  "commit": "653cf832bee41ab48033eec03e19d3c8456d9ad6",
-  "generated": "2024-02-27T05:50:15.293Z",
+  "commit": "8b31b743f7749910a6e984ba36d660aaef54b855",
+  "generated": "2024-02-27T05:53:27.287Z",
   "metadata": [
     {
       "__outstatic": {
@@ -94,6 +94,24 @@
         }
       ],
       "title": "Learn how to create your blog with Outstatic"
+    },
+    {
+      "__outstatic": {
+        "commit": "8b31b743f7749910a6e984ba36d660aaef54b855",
+        "hash": "3090093014",
+        "path": "outstatic/content/recipes/first-recipe.md"
+      },
+      "author": {
+        "name": "Toby Liu",
+        "picture": "https://avatars.githubusercontent.com/u/3688288?v=4"
+      },
+      "collection": "recipes",
+      "coverImage": "",
+      "description": "",
+      "publishedAt": "2024-02-27T05:05:16.157Z",
+      "slug": "first-recipe",
+      "status": "published",
+      "title": "First Recipe"
     }
   ]
 }
