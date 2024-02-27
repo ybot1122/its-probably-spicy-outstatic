@@ -4,7 +4,7 @@ import ContentGrid from '../components/ContentGrid'
 import markdownToHtml from '../lib/markdownToHtml'
 
 export default async function Index() {
-  const { content, allPosts, allProjects } = await getData()
+  const { content, allPosts, allRecipes } = await getData()
 
   return (
     <Layout>
@@ -23,11 +23,11 @@ export default async function Index() {
             priority
           />
         )}
-        {allProjects.length > 0 && (
+        {allRecipes.length > 0 && (
           <ContentGrid
-            title="Projects"
-            items={allProjects}
-            collection="projects"
+            title="Recipes"
+            items={allRecipes}
+            collection="recipes"
           />
         )}
       </div>
@@ -56,14 +56,14 @@ async function getData() {
     .sort({ publishedAt: -1 })
     .toArray()
 
-  const allProjects = await db
-    .find({ collection: 'projects' }, ['title', 'slug', 'coverImage'])
+  const allRecipes = await db
+    .find({ collection: 'recipes' }, ['title', 'slug', 'coverImage'])
     .sort({ publishedAt: -1 })
     .toArray()
 
   return {
     content,
     allPosts,
-    allProjects
+    allRecipes
   }
 }

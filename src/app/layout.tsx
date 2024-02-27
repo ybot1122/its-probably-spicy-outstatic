@@ -5,8 +5,8 @@ import '../styles/index.css'
 export const metadata: Metadata = {
   metadataBase: new URL('https://outstatic.com'),
   title: {
-    default: 'Outstatic',
-    template: '%s | Outstatic'
+    default: 'It\'s Probably Spicy',
+    template: '%s | It\'s Probably Spicy'
   },
   description: 'A blog starter built with Outstatic.',
   openGraph: {

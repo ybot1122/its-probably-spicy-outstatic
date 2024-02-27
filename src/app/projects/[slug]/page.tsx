@@ -3,7 +3,6 @@ import markdownToHtml from '@/lib/markdownToHtml'
 import { getDocumentSlugs, load } from 'outstatic/server'
 import DateFormatter from '@/components/DateFormatter'
 import Image from 'next/image'
-import ContentGrid from '@/components/ContentGrid'
 import { OstDocument } from 'outstatic'
 import { Metadata } from 'next'
 import { absoluteUrl } from '@/lib/utils'
@@ -52,7 +51,7 @@ export async function generateMetadata(params: Params): Promise<Metadata> {
 }
 
 export default async function Project(params: Params) {
-  const { project, moreProjects, content } = await getData(params)
+  const { project, content } = await getData(params)
 
   return (
     <Layout>
@@ -88,15 +87,6 @@ export default async function Project(params: Params) {
             </div>
           </div>
         </article>
-        <div className="mb-16">
-          {moreProjects.length > 0 && (
-            <ContentGrid
-              title="Other Projects"
-              items={moreProjects}
-              collection="projects"
-            />
-          )}
-        </div>
       </div>
     </Layout>
   )
