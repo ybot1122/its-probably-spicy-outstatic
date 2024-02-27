@@ -1,6 +1,6 @@
 {
-  "commit": "d7dea6685b936f7328e2633ae768b803c9f0ac71",
-  "generated": "2024-02-27T05:38:31.713Z",
+  "commit": "6233d4fd24e3645b73fa3eac9253290c89bd8cb6",
+  "generated": "2024-02-27T05:39:37.213Z",
   "metadata": [
     {
       "__outstatic": {
@@ -128,6 +128,24 @@
       "slug": "about",
       "status": "published",
       "title": "About"
+    },
+    {
+      "__outstatic": {
+        "commit": "6233d4fd24e3645b73fa3eac9253290c89bd8cb6",
+        "hash": "3537661822",
+        "path": "outstatic/content/pages/home.md"
+      },
+      "author": {
+        "name": "Toby Liu",
+        "picture": "https://avatars.githubusercontent.com/u/3688288?v=4"
+      },
+      "collection": "pages",
+      "coverImage": "",
+      "description": "",
+      "publishedAt": "2024-02-27T04:51:16.638Z",
+      "slug": "home",
+      "status": "published",
+      "title": "Welcome to Blog"
     }
   ]
 }
