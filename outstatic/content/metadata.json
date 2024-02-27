@@ -1,6 +1,6 @@
 {
-  "commit": "213df0938e1c792b5fdb9271267228f83cdfb611",
-  "generated": "2024-02-27T05:09:32.605Z",
+  "commit": "1e41007f3d5ff8c9d87a5e4a03485049dc6b983e",
+  "generated": "2024-02-27T05:30:56.210Z",
   "metadata": [
     {
       "__outstatic": {
@@ -90,24 +90,6 @@
     },
     {
       "__outstatic": {
-        "commit": "f1d49d79a01c1d85981f368c71944529e6583183",
-        "hash": "3414222746",
-        "path": "outstatic/content/pages/home.md"
-      },
-      "author": {
-        "name": "Andre Vitorio",
-        "picture": ""
-      },
-      "collection": "pages",
-      "coverImage": "",
-      "description": "This is my blog.",
-      "publishedAt": "2022-03-17T05:35:07.322Z",
-      "slug": "home",
-      "status": "published",
-      "title": "Home"
-    },
-    {
-      "__outstatic": {
         "commit": "c80bc141205c656a67fc985549da1ad912410813",
         "hash": "1652555320",
         "path": "outstatic/content/posts/how-to-create-an-outstatic-blog.md"
@@ -146,6 +128,24 @@
       "slug": "about",
       "status": "published",
       "title": "About"
+    },
+    {
+      "__outstatic": {
+        "commit": "1e41007f3d5ff8c9d87a5e4a03485049dc6b983e",
+        "hash": "1964027246",
+        "path": "outstatic/content/pages/home.md"
+      },
+      "author": {
+        "name": "Andre Vitorio",
+        "picture": ""
+      },
+      "collection": "pages",
+      "coverImage": "",
+      "description": "This is my blog.",
+      "publishedAt": "2022-03-17T05:35:07.322Z",
+      "slug": "home",
+      "status": "published",
+      "title": "Home"
     }
   ]
 }
