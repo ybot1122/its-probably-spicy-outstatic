@@ -2,7 +2,7 @@
 title: 'Learn how to create your blog with Outstatic'
 status: 'published'
 description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.'
-coverImage: '/images/img_2135-gxOT.jpg'
+coverImage: '/images/img_2135-E3NT.jpg'
 tags: [{"label":"Daisy","value":"daisy"}]
 author:
   name: 'Daisy Isibor'
@@ -10,13 +10,17 @@ slug: 'how-to-create-an-outstatic-blog'
 publishedAt: '2022-07-14T02:34:02.322Z'
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus. Praesent elementum facilisis leo vel fringilla. Congue mauris rhoncus aenean vel. Egestas sed tempus urna et pharetra pharetra massa massa ultricies.
+# Here is my recipe
 
-Venenatis cras sed felis eget velit. Consectetur libero id faucibus nisl tincidunt. Gravida in fermentum et sollicitudin ac orci phasellus egestas tellus. Volutpat consequat mauris nunc congue nisi vitae. Id aliquet risus feugiat in ante metus dictum at tempor. Sed blandit libero volutpat sed cras. Sed odio morbi quis commodo odio aenean sed adipiscing. Velit euismod in pellentesque massa placerat. Mi bibendum neque egestas congue quisque egestas diam in arcu. Nisi lacus sed viverra tellus in. Nibh cras pulvinar mattis nunc sed. Luctus accumsan tortor posuere ac ut consequat semper viverra. Fringilla ut morbi tincidunt augue interdum velit euismod.
+1. 1 Cup of Flour
+2. 1/4 Cup of Rice
 
-```
-<script>Hello World</script>
-```
+Another list
+
+- This is a list
+- With bullets
+- Instead of 
+- Numbers
 
 ## Lorem Ipsum
 

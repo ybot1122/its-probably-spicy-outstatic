@@ -1,6 +1,6 @@
 {
   "commit": "c80bc141205c656a67fc985549da1ad912410813",
-  "generated": "2024-02-27T04:55:39.591Z",
+  "generated": "2024-02-27T05:01:35.106Z",
   "metadata": [
     {
       "__outstatic": {
@@ -109,14 +109,14 @@
     {
       "__outstatic": {
         "commit": "c80bc141205c656a67fc985549da1ad912410813",
-        "hash": "2615696424",
+        "hash": "1652555320",
         "path": "outstatic/content/posts/how-to-create-an-outstatic-blog.md"
       },
       "author": {
         "name": "Daisy Isibor"
       },
       "collection": "posts",
-      "coverImage": "/images/img_2135-gxOT.jpg",
+      "coverImage": "/images/img_2135-E3NT.jpg",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
       "publishedAt": "2022-07-14T02:34:02.322Z",
       "slug": "how-to-create-an-outstatic-blog",
