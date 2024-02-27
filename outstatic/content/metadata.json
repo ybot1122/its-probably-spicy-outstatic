@@ -1,6 +1,6 @@
 {
-  "commit": "c80bc141205c656a67fc985549da1ad912410813",
-  "generated": "2024-02-27T05:01:35.106Z",
+  "commit": "213df0938e1c792b5fdb9271267228f83cdfb611",
+  "generated": "2024-02-27T05:09:32.605Z",
   "metadata": [
     {
       "__outstatic": {
@@ -128,6 +128,24 @@
         }
       ],
       "title": "Learn how to create your blog with Outstatic"
+    },
+    {
+      "__outstatic": {
+        "commit": "213df0938e1c792b5fdb9271267228f83cdfb611",
+        "hash": "487851131",
+        "path": "outstatic/content/pages/about.md"
+      },
+      "author": {
+        "name": "Toby Liu",
+        "picture": "https://avatars.githubusercontent.com/u/3688288?v=4"
+      },
+      "collection": "pages",
+      "coverImage": "",
+      "description": "",
+      "publishedAt": "2024-02-27T04:21:12.315Z",
+      "slug": "about",
+      "status": "published",
+      "title": "About"
     }
   ]
 }
