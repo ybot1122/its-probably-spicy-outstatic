@@ -1,6 +1,6 @@
 {
-  "commit": "1e41007f3d5ff8c9d87a5e4a03485049dc6b983e",
-  "generated": "2024-02-27T05:30:56.210Z",
+  "commit": "d7dea6685b936f7328e2633ae768b803c9f0ac71",
+  "generated": "2024-02-27T05:38:31.713Z",
   "metadata": [
     {
       "__outstatic": {
@@ -128,24 +128,6 @@
       "slug": "about",
       "status": "published",
       "title": "About"
-    },
-    {
-      "__outstatic": {
-        "commit": "1e41007f3d5ff8c9d87a5e4a03485049dc6b983e",
-        "hash": "1964027246",
-        "path": "outstatic/content/pages/home.md"
-      },
-      "author": {
-        "name": "Andre Vitorio",
-        "picture": ""
-      },
-      "collection": "pages",
-      "coverImage": "",
-      "description": "This is my blog.",
-      "publishedAt": "2022-03-17T05:35:07.322Z",
-      "slug": "home",
-      "status": "published",
-      "title": "Home"
     }
   ]
 }
