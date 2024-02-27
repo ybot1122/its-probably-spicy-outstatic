@@ -1,4 +1,3 @@
-import Header from '@/components/Header'
 import Layout from '@/components/Layout'
 import markdownToHtml from '@/lib/markdownToHtml'
 import { getDocumentSlugs, load } from 'outstatic/server'
@@ -58,7 +57,6 @@ export default async function Project(params: Params) {
   return (
     <Layout>
       <div className="max-w-6xl mx-auto px-5">
-        <Header />
         <article className="mb-8">
           <div className="grid md:grid-cols-2 gap-8">
             <div className="relative mb-2 md:mb-4 sm:mx-0 aspect-square">

@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import { Metadata } from 'next'
 import { OstDocument } from 'outstatic'
-import Header from '@/components/Header'
 import Layout from '@/components/Layout'
 import markdownToHtml from '@/lib/markdownToHtml'
 import { getDocumentSlugs, load } from 'outstatic/server'
@@ -57,7 +56,6 @@ export default async function Post(params: Params) {
   return (
     <Layout>
       <div className="max-w-6xl mx-auto px-5">
-        <Header />
         <article className="mb-32">
           <div className="relative mb-2 md:mb-4 sm:mx-0 w-full h-52 md:h-96">
             <Image
