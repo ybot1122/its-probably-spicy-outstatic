@@ -5,7 +5,7 @@ const Footer = () => {
         Copyright It's Probably Spicy 2024
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
