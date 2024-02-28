@@ -39,36 +39,50 @@ export async function generateMetadata(params: Params): Promise<Metadata> {
 }
 
 export default async function Project(params: Params) {
-  console.log(params, 'fsf')
-  console.log('asb')
-  const { recipeName, publishedAt, author, description } = await getData()
+  const { recipeName, publishedAt, author, description, images, prepTime, totalTime } = await getData()
 
   return (
     <Layout>
-      <div className="max-w-6xl mx-auto px-5">
         <article className="mb-8">
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="relative mb-2 md:mb-4 sm:mx-0 aspect-square">
+            <div className="relative w-full h-80">
               <Image
                 alt={recipeName}
-                src={'/images/industrial-pattern.png'}
+                src={images.hero}
                 fill
-                className="object-cover object-center"
-                priority
+                className='object-cover'
               />
             </div>
-            <div>
-              <h1 className="font-primary text-2xl font-bold md:text-4xl mb-2">
-                {recipeName}
-              </h1>
-              <div className="hidden md:block md:mb-8 text-slate-600">
-                Launched on <DateFormatter dateString={publishedAt} />{' '}
-                {`by ${author}`}.
+            <div className='grid grid-cols-2'>
+              <div className='bg-blue'>
+                <h1 className="font-primary text-2xl font-bold md:text-4xl mb-2">
+                  {recipeName}
+                </h1>
+                <div className="">
+                  Recipe by {`${author}`}
+                </div>
+                <div className="">
+                  Published on <DateFormatter dateString={publishedAt} />
+                </div>
+                <div>
+                  {description}
+                </div>
+                <div className='grid grid-cols-2'>
+                  <div className='col-span-1'>
+                    <p>Prep Time</p>
+                      <p>{prepTime}</p>
+                    </div>
+                    <div>
+                      <p>Total Time</p>
+                      <p>{totalTime}</p>
+                    </div>
+                </div>
+              </div>
+
+              <div className='col-span-1'>
+                {images.gallery.map((img) => <Image src={img} alt={recipeName} width={200} height={200} key={img} />)}
               </div>
             </div>
-          </div>
         </article>
-      </div>
     </Layout>
   )
 }
@@ -84,9 +98,8 @@ async function getData() {
         "about  2 dozen medium pancakes or 1 dozen 8\u0022 waffles"
     ],
     "datePublished": "December 31, 2009 at 7:00pm",
-    "prepTime": "PT42M",
-    "cookTime": "PT0M",
-    "totalTime": "PT12H42M",
+    "prepTime": "42 mins",
+    "totalTime": "12 hrs 42 mins",
     "recipeIngredient": [
         "2 cups (240g) King Arthur Unbleached All-Purpose Flour",
         "1 cup (227g) sourdough starter unfed/discard",
@@ -98,6 +111,14 @@ async function getData() {
         "3/4 teaspoon table salt",
         "1 teaspoon baking soda"
     ],
+    images: {
+      hero: '/images/industrial-pattern.png',
+      gallery: [
+        '/images/flycream-travel.png',
+        '/images/couple-pizza.png',
+        '/images/og-image.png'
+      ]
+    }
   }
 }
 
