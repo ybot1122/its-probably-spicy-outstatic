@@ -3,3 +3,5 @@ build
 coverage
 outstatic
 public
+node_modules
+.next
