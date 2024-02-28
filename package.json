@@ -5,7 +5,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
     "date-fns": "^2.30.0",
@@ -26,6 +30,8 @@
     "autoprefixer": "10.4.14",
     "eslint": "8.42.0",
     "eslint-config-next": "^13.4.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
     "postcss": "8.4.24",
     "prettier": "3.2.5",
     "typescript": "5.1.3"
