@@ -1,6 +1,6 @@
 {
-  "commit": "8b31b743f7749910a6e984ba36d660aaef54b855",
-  "generated": "2024-02-27T05:53:27.287Z",
+  "commit": "a391d502d66b57ca1a629dcc0359f839271aba9b",
+  "generated": "2024-02-29T00:41:27.527Z",
   "metadata": [
     {
       "__outstatic": {
@@ -112,6 +112,24 @@
       "slug": "first-recipe",
       "status": "published",
       "title": "First Recipe"
+    },
+    {
+      "__outstatic": {
+        "commit": "a391d502d66b57ca1a629dcc0359f839271aba9b",
+        "hash": "2359183490",
+        "path": "outstatic/content/tedting/tes.md"
+      },
+      "author": {
+        "name": "Toby Liu",
+        "picture": "https://avatars.githubusercontent.com/u/3688288?v=4"
+      },
+      "collection": "tedting",
+      "coverImage": "",
+      "description": "",
+      "publishedAt": "2024-02-28T23:53:20.916Z",
+      "slug": "tes",
+      "status": "published",
+      "title": "tes"
     }
   ]
 }
