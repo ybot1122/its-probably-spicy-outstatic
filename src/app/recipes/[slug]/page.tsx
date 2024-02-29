@@ -54,7 +54,7 @@ export default async function Project(params: Params) {
   return (
     <Layout>
       <article className="mb-8">
-        <div className="relative w-full h-recipeHero">
+        <div className="relative w-full h-recipeHero mb-10">
           <div className="relative w-full h-full before:absolute before:block before:w-full before:h-full before:z-10 before:bg-recipeHeroScrim">
             <Image
               alt={recipeName}
@@ -70,13 +70,13 @@ export default async function Project(params: Params) {
           </div>
         </div>
 
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-2 ml-20 mr-20">
           <div className="bg-white">
-            <div className="">Recipe by {`${author}`}</div>
-            <div className="">
+            <div className="mb-10">Recipe by {`${author}`}</div>
+            <div className="mb-10">
               Published on <DateFormatter dateString={publishedAt} />
             </div>
-            <div>{description}</div>
+            <div className="pr-10 mb-10 leading-8">{description}</div>
 
             {/* Metadata */}
             <div className="grid grid-cols-2">
