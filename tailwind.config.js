@@ -13,5 +13,12 @@ module.exports = {
       white: "#FFFFFF",
       tan: "rgb(248, 245, 240)",
     },
+    height: {
+      recipeHero: "600px",
+      full: "100%",
+    },
+    backgroundImage: {
+      recipeHeroScrim: "linear-gradient(90deg,rgba(0,0,0,.5) 0,transparent)",
+    },
   },
 };

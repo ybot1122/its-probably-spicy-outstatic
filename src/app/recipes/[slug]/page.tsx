@@ -54,19 +54,24 @@ export default async function Project(params: Params) {
   return (
     <Layout>
       <article className="mb-8">
-        <div className="relative w-full h-80">
-          <Image
-            alt={recipeName}
-            src={images.hero}
-            fill
-            className="object-cover"
-          />
-        </div>
-        <div className="grid grid-cols-2">
-          <div className="bg-white">
-            <h1 className="font-primary text-2xl font-bold md:text-4xl mb-2">
+        <div className="relative w-full h-recipeHero">
+          <div className="relative w-full h-full before:absolute before:block before:w-full before:h-full before:z-10 before:bg-recipeHeroScrim">
+            <Image
+              alt={recipeName}
+              src={images.hero}
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="absolute h-full top-0 left-0">
+            <h1 className="relative top-[50%] translate-y-[-50%] font-primary text-6xl font-bold p-20 text-white z-20 max-w-[1000px]">
               {recipeName}
             </h1>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2">
+          <div className="bg-white">
             <div className="">Recipe by {`${author}`}</div>
             <div className="">
               Published on <DateFormatter dateString={publishedAt} />
@@ -199,7 +204,7 @@ async function getData() {
       },
     ],
     images: {
-      hero: "/images/industrial-pattern.png",
+      hero: "/images/Yellow-Banana-Bread_Hero_0530.jpg",
       gallery: [
         "/images/flycream-travel.png",
         "/images/couple-pizza.png",
