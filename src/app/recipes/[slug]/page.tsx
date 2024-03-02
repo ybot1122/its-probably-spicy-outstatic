@@ -8,7 +8,7 @@ import { absoluteUrl } from "@/lib/utils";
 import { libre_baskerville } from "@/app/fonts";
 import ImageGallery from "@/components/ImageGallery";
 import { getRecipe } from "@/lib/getRecipe";
-import { RecipeData } from "@/app/(newcms)/admin/page";
+import { RecipeData } from "@/interfaces/recipeData";
 
 interface Params {
   params: {
@@ -93,12 +93,12 @@ export default async function Recipe(params: Params) {
                 <p className="text-xl">{totalTime}</p>
               </div>
             </div>
-            <div className="border-t-2 border-orange mt-5 pt-5 mb-10">
+            <div className="border-t-2 border-orange mt-5 pt-5 mb-10 lg:mr-10">
               <p>Yield</p>
               <p className="text-xl">{totalYield}</p>
             </div>
           </div>
-          <div className="col-span-2 ml-5 mr-5 lg:ml-0 lg:mr-20 lg:col-span-1">
+          <div className="col-span-2 ml-5 mr-5 mb-10 lg:ml-0 lg:mr-20 lg:col-span-1">
             <ImageGallery
               images={images.gallery.map((img) => ({
                 src: img,
