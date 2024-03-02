@@ -6,6 +6,8 @@ import markdownToHtml from "../lib/markdownToHtml";
 export default async function Index() {
   const { content, allPosts, allRecipes } = await getData();
 
+  console.log(process.cwd(), process.env.OST_CONTENT_PATH);
+
   return (
     <Layout>
       <div className="max-w-6xl mx-auto px-5">
