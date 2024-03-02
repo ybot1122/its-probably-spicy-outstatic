@@ -15,9 +15,9 @@ export default async function Index() {
           <h1>All Recipes</h1>
         </section>
         <div>
-          {allRecipes.map((recipe) => (
-            <p key={recipe}>
-              <Link href={`recipes/test`}>{recipe}</Link>
+          {allRecipes.map((slug) => (
+            <p key={slug}>
+              <Link href={`recipes/${slug}`}>{slug}</Link>
             </p>
           ))}
         </div>

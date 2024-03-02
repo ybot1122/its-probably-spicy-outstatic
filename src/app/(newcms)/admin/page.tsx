@@ -1,10 +1,10 @@
 import { createRecipeAction } from "../../actions";
 
 export type RecipeData = {
-  recipeName: FormDataEntryValue;
+  recipeName: string;
   publishedAt: string;
   author: string;
-  description: FormDataEntryValue;
+  description: string;
 
   prepTime: string;
   totalTime: string;
@@ -21,10 +21,10 @@ export default async function Page() {
   async function createRecipe(formData: FormData) {
     "use server";
 
-    const recipeName = formData.get("recipeName");
-    const description = formData.get("description");
+    const recipeName = formData.get("recipeName")?.toString();
+    const description = formData.get("description")?.toString();
 
-    if (recipeName === null || description === null) {
+    if (!recipeName || !description) {
       return;
     }
 

@@ -8,7 +8,7 @@ export async function createRecipeAction(formData: RecipeData) {
     auth: process.env.PERSONAL_ACCESS_TOKEN,
   });
 
-  const filename = spinalCase(formData.recipeName as string);
+  const filename = spinalCase(formData.recipeName);
 
   const content = btoa(JSON.stringify(formData));
 

@@ -1,6 +1,5 @@
 import fs from "fs";
 import { join } from "path";
-const path = require("path");
 const recipesDirectory = join(process.cwd(), "outstatic/content/recipes");
 
 export function getAllRecipes() {

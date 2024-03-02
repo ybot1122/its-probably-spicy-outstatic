@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import { getDocumentSlugs } from "outstatic/server";
+import { getAllRecipes } from "@/lib/getAllRecipes";
 import DateFormatter from "@/components/DateFormatter";
 import Image from "next/image";
 import { OstDocument } from "outstatic";
@@ -7,10 +7,8 @@ import { Metadata } from "next";
 import { absoluteUrl } from "@/lib/utils";
 import { libre_baskerville } from "@/app/fonts";
 import ImageGallery from "@/components/ImageGallery";
-
-type Project = {
-  tags: { value: string; label: string }[];
-} & OstDocument;
+import { getRecipe } from "@/lib/getRecipe";
+import { RecipeData } from "@/app/(newcms)/admin/page";
 
 interface Params {
   params: {
@@ -18,7 +16,7 @@ interface Params {
   };
 }
 export async function generateMetadata(params: Params): Promise<Metadata> {
-  const project = await getData();
+  const project = await getData(params.params.slug);
 
   if (!project) {
     return {};
@@ -37,7 +35,7 @@ export async function generateMetadata(params: Params): Promise<Metadata> {
   };
 }
 
-export default async function Project(params: Params) {
+export default async function Recipe(params: Params) {
   const {
     recipeName,
     publishedAt,
@@ -49,7 +47,7 @@ export default async function Project(params: Params) {
     totalYield,
     recipeIngredients,
     recipeInstructions,
-  } = await getData();
+  } = await getData(params.params.slug);
 
   return (
     <Layout>
@@ -154,77 +152,13 @@ export default async function Project(params: Params) {
   );
 }
 
-async function getData() {
-  return {
-    recipeName: "Classic Sourdough Pancakes or Waffles",
-    publishedAt: "2022-09-14T17:55:40.452Z",
-    author: "Head Chef Daisy",
-    description:
-      "With their mild tang, sourdough pancakes are a tasty change from your usual breakfast short stack. You might worry that their flavor will be strong enough to clash with syrup or your other favorite toppings, but no worries: pancakes made with sourdough starter simply taste a bit richer and more nuanced than the norm. And sourdough waffles? They\u0027re perfect for either a drizzle of maple or as the base for savory toppings like fried chicken. \n ",
-    prepTime: "42 mins",
-    totalTime: "12 hrs 42 mins",
-    totalYield: 'about 2 dozen medium pancakes or 1 dozen 8" waffles',
-    recipeIngredients: [
-      "2 cups (240g) King Arthur Unbleached All-Purpose Flour",
-      "1 cup (227g) sourdough starter unfed/discard",
-      "2 tablespoons (28g) granulated sugar",
-      "2 cups (454g) buttermilk",
-      "all of the overnight sponge",
-      "2 large eggs",
-      "1/4 cup (50g) vegetable oil or 4 tablespoons (57g) butter melted",
-      "3/4 teaspoon table salt",
-      "1 teaspoon baking soda",
-    ],
-    recipeInstructions: [
-      {
-        text: "To make the overnight sponge: Stir down your refrigerated starter, and remove 1 cup (227g). Note: This is a good opportunity to feed the remainder, if necessary.",
-        image: null,
-      },
-      {
-        text: "In a large bowl, stir together the 1 cup (227g) unfed starter, flour, sugar, and buttermilk.",
-        image: "/images/couple-pizza.png",
-      },
-      {
-        text: "Cover and let rest at cool room temperature (about 65°F to 70°F) for about 12 hours, or overnight.",
-        image: "/images/flycream-travel.png",
-      },
-      {
-        text: "To make the batter: In a small bowl or mixing cup, beat together the eggs, and oil or butter. Add to the overnight sponge, stirring just to combine.",
-        image: null,
-      },
-      {
-        text: "Add the salt and baking soda, stirring to combine. The batter will expand and may bubble a bit.",
-        image: "/images/flycream-travel.png",
-      },
-      {
-        text: "To make pancakes: Pour the batter by the 1/4-cupful onto a preheated, lightly greased griddle. Cook until bubbles form and pop on the top side of the pancakes, then turn over and cook until browned underneath.",
-        image: "/images/flycream-travel.png",
-      },
-      {
-        text: "To make waffles: Pour the batter onto your preheated, greased waffle iron, and bake according to the manufacturer's instructions. Repeat with the remaining batter.",
-        image: "/images/flycream-travel.png",
-      },
-      {
-        text: "Serve pancakes or waffles immediately, with your favorite toppings; or hold in a warm oven until ready to serve.",
-        image: null,
-      },
-      {
-        text: "Storage instructions: Store any leftovers in the refrigerator for a day or two; freeze for longer storage.",
-        image: null,
-      },
-    ],
-    images: {
-      hero: "/images/Yellow-Banana-Bread_Hero_0530.jpg",
-      gallery: [
-        "/images/cinnamonrolls.jpeg",
-        "/images/HawaiianRolls1.jpeg",
-        "/images/Pretzels.jpeg",
-      ],
-    },
-  };
+async function getData(slug: string) {
+  const recipe = getRecipe(slug);
+
+  return recipe as any as RecipeData;
 }
 
 export async function generateStaticParams() {
-  const posts = getDocumentSlugs("projects");
-  return posts.map((slug) => ({ slug }));
+  const recipes = getAllRecipes();
+  return recipes.map((slug) => ({ slug }));
 }
