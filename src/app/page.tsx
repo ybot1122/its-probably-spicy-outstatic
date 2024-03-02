@@ -2,70 +2,34 @@ import Layout from "../components/Layout";
 import { load } from "outstatic/server";
 import ContentGrid from "../components/ContentGrid";
 import markdownToHtml from "../lib/markdownToHtml";
+import { getAllRecipes } from "@/lib/getAllRecipes";
+import Link from "next/link";
 
 export default async function Index() {
-  const { content, allPosts, allRecipes } = await getData();
-
-  console.log(process.cwd(), process.env.OST_CONTENT_PATH);
+  const { allRecipes } = await getData();
 
   return (
     <Layout>
       <div className="max-w-6xl mx-auto px-5">
         <section className="mt-16 mb-16 md:mb-12">
-          <div
-            className="prose lg:prose-2xl home-intro"
-            dangerouslySetInnerHTML={{ __html: content }}
-          />
+          <h1>All Recipes</h1>
         </section>
-        {allPosts.length > 0 && (
-          <ContentGrid
-            title="Posts"
-            items={allPosts}
-            collection="posts"
-            priority
-          />
-        )}
-        {allRecipes.length > 0 && (
-          <ContentGrid
-            title="Recipes"
-            items={allRecipes}
-            collection="recipes"
-          />
-        )}
+        <div>
+          {allRecipes.map((recipe) => (
+            <p key={recipe}>
+              <Link href={`recipes/test`}>{recipe}</Link>
+            </p>
+          ))}
+        </div>
       </div>
     </Layout>
   );
 }
 
 async function getData() {
-  const db = await load();
-
-  const page = await db
-    .find({ collection: "pages", slug: "home" }, ["content"])
-    .first();
-
-  const content = await markdownToHtml(page.content);
-
-  const allPosts = await db
-    .find({ collection: "posts" }, [
-      "title",
-      "publishedAt",
-      "slug",
-      "coverImage",
-      "description",
-      "tags",
-    ])
-    .sort({ publishedAt: -1 })
-    .toArray();
-
-  const allRecipes = await db
-    .find({ collection: "recipes" }, ["title", "slug", "coverImage"])
-    .sort({ publishedAt: -1 })
-    .toArray();
+  const allRecipes = getAllRecipes();
 
   return {
-    content,
-    allPosts,
     allRecipes,
   };
 }
