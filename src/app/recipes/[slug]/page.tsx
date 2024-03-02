@@ -6,6 +6,7 @@ import { OstDocument } from "outstatic";
 import { Metadata } from "next";
 import { absoluteUrl } from "@/lib/utils";
 import { libre_baskerville } from "@/app/fonts";
+import ImageGallery from "@/components/ImageGallery";
 
 type Project = {
   tags: { value: string; label: string }[];
@@ -69,7 +70,7 @@ export default async function Project(params: Params) {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 ml-20 mr-20">
+        <section className="grid grid-cols-2 max-w-screen-xl mx-auto">
           <div className="bg-white">
             <div className={`mb-10 ${libre_baskerville.className}`}>
               <span className="inline-block border-r-2 border-silver pr-10">
@@ -79,7 +80,7 @@ export default async function Project(params: Params) {
                 Published on <DateFormatter dateString={publishedAt} />
               </span>
             </div>
-            <div className="pr-10 mb-10 leading-8 text-2xl leading-loose">
+            <div className="pr-10 mb-10 text-xl leading-loose">
               {description}
             </div>
 
@@ -100,49 +101,48 @@ export default async function Project(params: Params) {
             </div>
           </div>
           <div className="col-span-1">
-            {images.gallery.map((img) => (
-              <Image
-                src={img}
-                alt={recipeName}
-                width={200}
-                height={200}
-                key={img}
-              />
-            ))}
+            <ImageGallery
+              images={images.gallery.map((img) => ({
+                src: img,
+                alt: recipeName,
+              }))}
+            />
           </div>
-        </div>
+        </section>
 
         {/* Ingredients and Instructions */}
-        <div className="grid grid-cols-4 bg-tan p-20">
-          <div className="col-span-1">
-            <h2 className="text-xl mb-5 mt-10">Ingredients</h2>
-            <ul>
-              {recipeIngredients.map((ingredient, ind) => (
-                <li key={ind} className="mb-5 mr-5">
-                  {ingredient}
-                </li>
-              ))}
-            </ul>
+        <section className="bg-tan">
+          <div className="grid grid-cols-4 p-20 max-w-screen-xl mx-auto">
+            <div className="col-span-1">
+              <h2 className="text-xl mb-5 mt-10">Ingredients</h2>
+              <ul>
+                {recipeIngredients.map((ingredient, ind) => (
+                  <li key={ind} className="mb-5 mr-5">
+                    {ingredient}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="col-span-3 bg-white p-10">
+              <h2 className="text-xl mb-5">Instructions</h2>
+              <ol className="list-decimal" key="recipe-instructions">
+                {recipeInstructions.map((step, ind) => (
+                  <li key={`instruction-${ind}`} className="">
+                    {step.text}
+                    {step.image && (
+                      <Image
+                        src={step.image}
+                        alt={`${recipeName} step ${ind + 1}`}
+                        width={50}
+                        height={50}
+                      />
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </div>
           </div>
-          <div className="col-span-3 bg-white p-10">
-            <h2 className="text-xl mb-5">Instructions</h2>
-            <ol className="list-decimal" key="recipe-instructions">
-              {recipeInstructions.map((step, ind) => (
-                <li key={`instruction-${ind}`} className="">
-                  {step.text}
-                  {step.image && (
-                    <Image
-                      src={step.image}
-                      alt={`${recipeName} step ${ind + 1}`}
-                      width={50}
-                      height={50}
-                    />
-                  )}
-                </li>
-              ))}
-            </ol>
-          </div>
-        </div>
+        </section>
       </article>
     </Layout>
   );
