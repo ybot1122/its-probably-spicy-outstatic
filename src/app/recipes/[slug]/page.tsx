@@ -73,7 +73,7 @@ export default async function Project(params: Params) {
         <section className="grid grid-cols-2 max-w-screen-xl mx-auto">
           <div className="bg-white ml-5 mr-5 col-span-2 lg:col-span-1 text-center lg:text-left lg:ml-20 lg:mr-0">
             <div className={`mb-10 text-sm ${libre_baskerville.className}`}>
-              <span className="inline-block border-r-2 border-silver pr-5">
+              <span className="inline-block border-r-2 border-orange pr-5">
                 Recipe by {`${author}`}
               </span>
               <span className="pl-5">
@@ -95,7 +95,7 @@ export default async function Project(params: Params) {
                 <p className="text-xl">{totalTime}</p>
               </div>
             </div>
-            <div className="border-t-2 border-silver mt-5 pt-5 mb-10">
+            <div className="border-t-2 border-orange mt-5 pt-5 mb-10">
               <p>Yield</p>
               <p className="text-xl">{totalYield}</p>
             </div>
@@ -115,19 +115,25 @@ export default async function Project(params: Params) {
           <div className="grid grid-cols-4 p-5 max-w-screen-xl mx-auto lg:p-20">
             <div className="col-span-4 md:col-span-1">
               <h2 className="text-xl mb-5 mt-10">Ingredients</h2>
-              <ul>
+              <ul className="ml-5" role="list">
                 {recipeIngredients.map((ingredient, ind) => (
-                  <li key={ind} className="mb-5 mr-5">
+                  <li
+                    key={ind}
+                    className="mb-5 mr-5 before:w-[10px] before:h-[1px] before:bg-orange before:inline-block before:absolute before:mt-3 before:ml-[-1rem]"
+                  >
                     {ingredient}
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="col-span-4 md:col-span-3 bg-white p-10">
+            <div className="col-span-4 md:col-span-3 bg-white p-10 lg:pl-20 lg:pr-20">
               <h2 className="text-xl mb-5">Instructions</h2>
-              <ol className="list-decimal" key="recipe-instructions">
+              <ol
+                className="list-decimal list-inside"
+                key="recipe-instructions"
+              >
                 {recipeInstructions.map((step, ind) => (
-                  <li key={`instruction-${ind}`} className="">
+                  <li key={`instruction-${ind}`} className="mb-10">
                     {step.text}
                     {step.image && (
                       <Image

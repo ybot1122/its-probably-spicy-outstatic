@@ -32,7 +32,7 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
       <div className="grid grid-cols-3 mt-5">
         {images.map((img, ind) => (
           <div
-            className={`col-span-1 ${ind < 2 && "mr-5"} ${ind === activeImageInd ? "border-red border-2" : ""} cursor-pointer`}
+            className={`col-span-1 ${ind < 2 && "mr-5"} ${ind === activeImageInd ? "border-orange border-2" : ""} cursor-pointer`}
             key={`img-gallery-${ind}`}
             onClick={() => setActiveImageInd(ind)}
           >
