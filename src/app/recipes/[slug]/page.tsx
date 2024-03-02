@@ -71,16 +71,16 @@ export default async function Project(params: Params) {
         </div>
 
         <section className="grid grid-cols-2 max-w-screen-xl mx-auto">
-          <div className="bg-white">
-            <div className={`mb-10 ${libre_baskerville.className}`}>
-              <span className="inline-block border-r-2 border-silver pr-10">
+          <div className="bg-white ml-5 mr-5 col-span-2 lg:col-span-1 text-center lg:text-left lg:ml-20 lg:mr-0">
+            <div className={`mb-10 text-sm ${libre_baskerville.className}`}>
+              <span className="inline-block border-r-2 border-silver pr-5">
                 Recipe by {`${author}`}
               </span>
-              <span className="pl-10">
-                Published on <DateFormatter dateString={publishedAt} />
+              <span className="pl-5">
+                <DateFormatter dateString={publishedAt} />
               </span>
             </div>
-            <div className="pr-10 mb-10 text-xl leading-loose">
+            <div className="pr-10 mb-10 text-xl leading-loose text-center lg:text-left">
               {description}
             </div>
 
@@ -100,7 +100,7 @@ export default async function Project(params: Params) {
               <p className="text-xl">{totalYield}</p>
             </div>
           </div>
-          <div className="col-span-1">
+          <div className="col-span-2 mr-20 lg:col-span-1">
             <ImageGallery
               images={images.gallery.map((img) => ({
                 src: img,
