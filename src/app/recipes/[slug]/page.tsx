@@ -161,7 +161,6 @@ async function getData() {
     author: "Head Chef Daisy",
     description:
       "With their mild tang, sourdough pancakes are a tasty change from your usual breakfast short stack. You might worry that their flavor will be strong enough to clash with syrup or your other favorite toppings, but no worries: pancakes made with sourdough starter simply taste a bit richer and more nuanced than the norm. And sourdough waffles? They\u0027re perfect for either a drizzle of maple or as the base for savory toppings like fried chicken. \n ",
-    datePublished: "December 31, 2009 at 7:00pm",
     prepTime: "42 mins",
     totalTime: "12 hrs 42 mins",
     totalYield: 'about 2 dozen medium pancakes or 1 dozen 8" waffles',
