@@ -10,14 +10,16 @@ export async function createRecipeAction(formData: RecipeData) {
 
   const filename = spinalCase(formData.recipeName as string);
 
+  const content = btoa(JSON.stringify(formData));
+
   const response = await octokit.request(
     "PUT /repos/{owner}/{repo}/contents/{path}",
     {
       owner: "ybot1122",
       repo: "its-probably-spicy-outstatic",
-      path: `outstatic/content/recipes/${filename}.txt`,
+      path: `outstatic/content/recipes/${filename}.json`,
       message: "my commit message",
-      content: "bXkgbmV3IGZpbGUgY29udGVudHM=",
+      content,
       headers: {
         "X-GitHub-Api-Version": "2022-11-28",
       },
