@@ -100,7 +100,7 @@ export default async function Project(params: Params) {
               <p className="text-xl">{totalYield}</p>
             </div>
           </div>
-          <div className="col-span-2 mr-20 lg:col-span-1">
+          <div className="col-span-2 ml-5 mr-5 lg:ml-0 lg:mr-20 lg:col-span-1">
             <ImageGallery
               images={images.gallery.map((img) => ({
                 src: img,
@@ -112,8 +112,8 @@ export default async function Project(params: Params) {
 
         {/* Ingredients and Instructions */}
         <section className="bg-tan">
-          <div className="grid grid-cols-4 p-20 max-w-screen-xl mx-auto">
-            <div className="col-span-1">
+          <div className="grid grid-cols-4 p-5 max-w-screen-xl mx-auto lg:p-20">
+            <div className="col-span-4 md:col-span-1">
               <h2 className="text-xl mb-5 mt-10">Ingredients</h2>
               <ul>
                 {recipeIngredients.map((ingredient, ind) => (
@@ -123,7 +123,7 @@ export default async function Project(params: Params) {
                 ))}
               </ul>
             </div>
-            <div className="col-span-3 bg-white p-10">
+            <div className="col-span-4 md:col-span-3 bg-white p-10">
               <h2 className="text-xl mb-5">Instructions</h2>
               <ol className="list-decimal" key="recipe-instructions">
                 {recipeInstructions.map((step, ind) => (
@@ -211,9 +211,9 @@ async function getData() {
     images: {
       hero: "/images/Yellow-Banana-Bread_Hero_0530.jpg",
       gallery: [
-        "/images/flycream-travel.png",
-        "/images/couple-pizza.png",
-        "/images/og-image.png",
+        "/images/cinnamonrolls.jpeg",
+        "/images/HawaiianRolls1.jpeg",
+        "/images/Pretzels.jpeg",
       ],
     },
   };
