@@ -1,4 +1,5 @@
 import { createRecipeAction } from "@/app/actions";
+import RecipeEditor from "@/components/RecipeEditor";
 import { RecipeData } from "@/interfaces/recipeData";
 
 export default async function Page() {
@@ -58,28 +59,11 @@ export default async function Page() {
   }
 
   return (
-    <div>
-      <h1>Hello</h1>
-
+    <div className="m-20 max-w-lg mx-auto">
+      <h1 className="text-6xl text-center">Create a Recipe</h1>
       <form action={createRecipe}>
-        <div>
-          <label>
-            Recipe Name
-            <input
-              type="text"
-              name="recipeName"
-              className="border-black border-2"
-            ></input>
-          </label>
-        </div>
-        <div>
-          <h2>Description</h2>
-          <textarea
-            name="description"
-            className="border-black border-2"
-          ></textarea>
-        </div>
-        ...<button type="submit">Make a Post</button>
+        <RecipeEditor />
+        <button type="submit">Make a Post</button>
       </form>
     </div>
   );
