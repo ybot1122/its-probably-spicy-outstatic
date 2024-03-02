@@ -1,6 +1,6 @@
 import { absoluteUrl } from "@/lib/utils";
 import { Metadata } from "next";
-import { Fraunces } from "next/font/google";
+import { fraunces } from "./fonts";
 import "../styles/index.css";
 
 export const metadata: Metadata = {
@@ -24,12 +24,6 @@ export const metadata: Metadata = {
     apple: [{ url: "/favicon/apple-touch-icon.png" }],
   },
 };
-
-// If loading a variable font, you don't need to specify the font weight
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  display: "swap",
-});
 
 export default function RootLayout({
   children,

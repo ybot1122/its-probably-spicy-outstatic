@@ -12,6 +12,7 @@ module.exports = {
       current: "currentColor",
       white: "#FFFFFF",
       tan: "rgb(248, 245, 240)",
+      silver: "#e4e4e4",
     },
     height: {
       recipeHero: "600px",

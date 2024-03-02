@@ -5,6 +5,7 @@ import Image from "next/image";
 import { OstDocument } from "outstatic";
 import { Metadata } from "next";
 import { absoluteUrl } from "@/lib/utils";
+import { libre_baskerville } from "@/app/fonts";
 
 type Project = {
   tags: { value: string; label: string }[];
@@ -70,26 +71,32 @@ export default async function Project(params: Params) {
 
         <div className="grid grid-cols-2 ml-20 mr-20">
           <div className="bg-white">
-            <div className="mb-10">Recipe by {`${author}`}</div>
-            <div className="mb-10">
-              Published on <DateFormatter dateString={publishedAt} />
+            <div className={`mb-10 ${libre_baskerville.className}`}>
+              <span className="inline-block border-r-2 border-silver pr-10">
+                Recipe by {`${author}`}
+              </span>
+              <span className="pl-10">
+                Published on <DateFormatter dateString={publishedAt} />
+              </span>
             </div>
-            <div className="pr-10 mb-10 leading-8">{description}</div>
+            <div className="pr-10 mb-10 leading-8 text-2xl leading-loose">
+              {description}
+            </div>
 
             {/* Metadata */}
             <div className="grid grid-cols-2">
               <div className="col-span-1">
                 <p>Prep Time</p>
-                <p>{prepTime}</p>
+                <p className="text-xl">{prepTime}</p>
               </div>
               <div>
                 <p>Total Time</p>
-                <p>{totalTime}</p>
+                <p className="text-xl">{totalTime}</p>
               </div>
-              <div className="border-t-4">
-                <p>Yield</p>
-                <p>{totalYield}</p>
-              </div>
+            </div>
+            <div className="border-t-2 border-silver mt-5 pt-5 mb-10">
+              <p>Yield</p>
+              <p className="text-xl">{totalYield}</p>
             </div>
           </div>
           <div className="col-span-1">
