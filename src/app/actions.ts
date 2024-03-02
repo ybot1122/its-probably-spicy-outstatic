@@ -1,7 +1,8 @@
 "use server";
 
 import { Octokit } from "octokit";
-import { RecipeData } from "./(newcms)/admin/page";
+import { RecipeData } from "@/interfaces/recipeData";
+import spinalCase from "@/lib/spinalCase";
 
 export async function createRecipeAction(formData: RecipeData) {
   const octokit = new Octokit({
@@ -32,10 +33,3 @@ export async function createRecipeAction(formData: RecipeData) {
     console.log("Recipe created");
   }
 }
-
-const spinalCase = (str: string) => {
-  return str
-    .split(" ") //splits the string into pieces at spaces
-    .map((c) => c.toLowerCase()) //makes each piece lowercase
-    .join("-"); //combines each piece with a "-"
-};
