@@ -1,12 +1,10 @@
 import Layout from "@/components/Layout";
-import markdownToHtml from "@/lib/markdownToHtml";
-import { getDocumentSlugs, load } from "outstatic/server";
+import { getDocumentSlugs } from "outstatic/server";
 import DateFormatter from "@/components/DateFormatter";
 import Image from "next/image";
 import { OstDocument } from "outstatic";
 import { Metadata } from "next";
 import { absoluteUrl } from "@/lib/utils";
-import { notFound } from "next/navigation";
 
 type Project = {
   tags: { value: string; label: string }[];

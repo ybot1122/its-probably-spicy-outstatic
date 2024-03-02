@@ -1,5 +1,6 @@
 import { absoluteUrl } from "@/lib/utils";
 import { Metadata } from "next";
+import { Fraunces } from "next/font/google";
 import "../styles/index.css";
 
 export const metadata: Metadata = {
@@ -24,13 +25,19 @@ export const metadata: Metadata = {
   },
 };
 
+// If loading a variable font, you don't need to specify the font weight
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={fraunces.className}>
       <body>{children}</body>
     </html>
   );
