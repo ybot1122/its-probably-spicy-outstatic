@@ -38,13 +38,7 @@ const RecipeIngredientsEditor = ({ initialVal }: { initialVal?: string[] }) => {
           <li key={ind}>
             {ing}
 
-            <input
-              type="text"
-              disabled
-              className="hidden"
-              name={`recipeIngredient-${ind}`}
-              defaultValue={ing}
-            />
+            <input type="hidden" name={`recipeIngredient-${ind}`} value={ing} />
           </li>
         ))}
         <li>

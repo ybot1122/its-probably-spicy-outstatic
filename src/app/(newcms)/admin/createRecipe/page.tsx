@@ -14,12 +14,14 @@ export default async function Page() {
     const totalYield = formData.get("totalYield")?.toString();
 
     if (!recipeName || !description || !prepTime || !totalTime || !totalYield) {
+      console.log("missing metadata");
       return;
     }
 
     let i = 0;
     const recipeIngredients: string[] = [];
     while (formData.get(`recipeIngredient-${i}`)?.toString()) {
+      console.log(i);
       const ingredient = formData.get(`recipeIngredient-${i}`)?.toString();
 
       if (ingredient) {
@@ -30,6 +32,7 @@ export default async function Page() {
     }
 
     if (recipeIngredients.length === 0) {
+      console.log("missing ingredients");
       return;
     }
 
