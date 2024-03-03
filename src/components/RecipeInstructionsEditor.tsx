@@ -76,7 +76,8 @@ const RecipeInstructionsEditor = ({
     <>
       <ol className="p-5">
         {ingredients.map((ing: string, ind: number) => (
-          <li key={ind} className="mb-2">
+          <li key={ind} className="mb-2 border-2 border-orange p-5">
+            <p className="mb-2">Step {ind + 1}</p>
             <span
               onClick={deleteIngredient(ind)}
               className="inline-block border-2 border-silver p-2 mr-5 hover:border-green cursor-pointer"
@@ -101,8 +102,7 @@ const RecipeInstructionsEditor = ({
             >
               Add Image
             </span>
-            Step {ind + 1}
-            <p>{ing}</p>
+            <p className="mt-2">{ing}</p>
           </li>
         ))}
         <li>
@@ -114,7 +114,12 @@ const RecipeInstructionsEditor = ({
           />
         </li>
       </ol>
-      {showImageChooser && <ImageChooser images={images} />}
+      {showImageChooser && (
+        <ImageChooser
+          images={images}
+          close={() => setShowImageChooser(false)}
+        />
+      )}
     </>
   );
 };
