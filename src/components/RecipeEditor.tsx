@@ -5,7 +5,13 @@ import TextArea from "./TextArea";
 import RecipeIngredientsEditor from "./RecipeIngredientsEditor";
 import RecipeInstructionsEditor from "./RecipeInstructionsEditor";
 
-const RecipeEditor = ({ initialData }: { initialData?: RecipeData }) => {
+const RecipeEditor = ({
+  initialData,
+  images,
+}: {
+  initialData?: RecipeData;
+  images: string[];
+}) => {
   return (
     <div className="mt-10">
       <div className="mb-5">
@@ -61,7 +67,7 @@ const RecipeEditor = ({ initialData }: { initialData?: RecipeData }) => {
 
       <div className="mb-5">
         <h2>Recipe Instructions</h2>
-        <RecipeInstructionsEditor />
+        <RecipeInstructionsEditor images={images} />
       </div>
     </div>
   );

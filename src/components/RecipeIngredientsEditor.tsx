@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
-import { style } from "./TextInput";
 
 const RecipeIngredientsEditor = ({ initialVal }: { initialVal?: string[] }) => {
   const addIngredientRef = useRef<HTMLInputElement>(null);

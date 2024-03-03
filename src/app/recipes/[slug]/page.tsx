@@ -155,7 +155,7 @@ export default async function Recipe(params: Params) {
 async function getData(slug: string) {
   const recipe = getRecipe(slug);
 
-  return recipe as any as RecipeData;
+  return recipe as RecipeData;
 }
 
 export async function generateStaticParams() {

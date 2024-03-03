@@ -2,14 +2,18 @@
 
 import { useCallback, useRef, useState } from "react";
 import { style } from "./TextInput";
+import ImageChooser from "./ImageChooser";
 
 const RecipeInstructionsEditor = ({
   initialVal,
+  images,
 }: {
   initialVal?: string[];
+  images: string[];
 }) => {
   const addIngredientRef = useRef<HTMLTextAreaElement>(null);
   const [ingredients, setIngredients] = useState<string[]>(initialVal ?? []);
+  const [showImageChooser, setShowImageChooser] = useState(false);
 
   const addIngredient = useCallback(
     (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -17,23 +21,25 @@ const RecipeInstructionsEditor = ({
 
       if (keyCode !== "Enter") {
         return;
-      } else {
-        e.preventDefault();
-        e.stopPropagation();
       }
+
+      e.preventDefault();
+      e.stopPropagation();
 
       if (
         !addIngredientRef ||
         !addIngredientRef.current ||
         !addIngredientRef.current.value
       ) {
-        return;
+        return false;
       }
 
       const updated = [...ingredients, addIngredientRef.current.value];
       setIngredients(updated);
 
       addIngredientRef.current.value = "";
+
+      return false;
     },
     [ingredients],
   );
@@ -62,6 +68,10 @@ const RecipeInstructionsEditor = ({
     [ingredients],
   );
 
+  const launchImageChooser = useCallback(() => {
+    setShowImageChooser(true);
+  }, []);
+
   return (
     <>
       <ol className="p-5">
@@ -86,7 +96,7 @@ const RecipeInstructionsEditor = ({
               &#8595;
             </span>
             <span
-              onClick={() => {}}
+              onClick={launchImageChooser}
               className="inline-block border-2 border-silver p-2 mr-5 hover:border-green cursor-pointer"
             >
               Add Image
@@ -104,6 +114,7 @@ const RecipeInstructionsEditor = ({
           />
         </li>
       </ol>
+      {showImageChooser && <ImageChooser images={images} />}
     </>
   );
 };
