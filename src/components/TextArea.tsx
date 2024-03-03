@@ -1,32 +1,26 @@
 import { libre_baskerville } from "@/app/fonts";
 
-export const style = `block border-2 border-silver p-5 w-full focus:outline-none focus:ring focus:border-blue-500 ${libre_baskerville.className}`;
-
-const TextInput = ({
+const TextArea = ({
   initialVal,
   inputName,
   label,
   placeholder,
-  onChange,
 }: {
   initialVal: string | undefined;
   label: string;
   inputName: string;
   placeholder: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) => (
   <>
     <label htmlFor={inputName} className="block mb-2">
       {label}
     </label>
-    <input
-      className={style}
-      type="text"
+    <textarea
+      className={`block border-2 border-silver p-5 w-full focus:outline-none focus:ring focus:border-blue-500 ${libre_baskerville.className}`}
       defaultValue={initialVal}
       placeholder={initialVal ? undefined : placeholder}
-      onChange={onChange}
     />
   </>
 );
 
-export default TextInput;
+export default TextArea;
