@@ -111,7 +111,13 @@ const ImageChooser = ({
                   key={ind}
                   className="p-2 border-2 border-silver hover:border-orange"
                 >
-                  <button onClick={() => selectImage(src)}>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      selectImage(src);
+                    }}
+                  >
                     <Image
                       src={`/images/${src}`}
                       alt="image chooser"
