@@ -17,6 +17,7 @@ const RecipeInstructionsEditor = ({
     {
       text: string;
       image: string | null;
+      localPreview?: string;
     }[]
   >(initialVal ?? []);
   const [showImageChooser, setShowImageChooser] = useState(-1);
@@ -88,9 +89,10 @@ const RecipeInstructionsEditor = ({
   );
 
   const selectImage = useCallback(
-    (src: string) => {
+    (src: string, localPreview?: string) => {
       const updated = [...ingredients];
       updated[showImageChooser].image = src;
+      updated[showImageChooser].localPreview = localPreview;
 
       setIngredients(updated);
       setShowImageChooser(-1);
@@ -101,7 +103,7 @@ const RecipeInstructionsEditor = ({
   return (
     <>
       <ol className="p-5">
-        {ingredients.map(({ text, image }, ind: number) => (
+        {ingredients.map(({ text, image, localPreview }, ind: number) => (
           <li key={ind} className="mb-2 border-2 border-orange p-5">
             <input
               type="hidden"
@@ -145,7 +147,7 @@ const RecipeInstructionsEditor = ({
             <p>
               {image && (
                 <Image
-                  src={`/images/${image}`}
+                  src={localPreview ? localPreview : `/images/${image}`}
                   alt={`Recipe instruction step ${ind + 1}`}
                   width={0}
                   height={0}
@@ -165,13 +167,16 @@ const RecipeInstructionsEditor = ({
           />
         </li>
       </ol>
-      {showImageChooser > -1 && (
-        <ImageChooser
-          images={images}
-          close={() => setShowImageChooser(-1)}
-          selectImage={selectImage}
-        />
-      )}
+      <ImageChooser
+        images={images}
+        close={(e) => {
+          setShowImageChooser(-1);
+          e.stopPropagation();
+          e.preventDefault();
+        }}
+        selectImage={selectImage}
+        hidden={showImageChooser === -1}
+      />
     </>
   );
 };

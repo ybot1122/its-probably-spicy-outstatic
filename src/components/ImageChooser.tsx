@@ -9,7 +9,7 @@ async function postData(url = "", file: File, str: string) {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
     body: formData,
   });
-  return response.json(); // parses JSON response into native JavaScript objects
+  return response.text();
 }
 
 async function encodeImageFileAsURL(file: File): Promise<string> {
@@ -28,14 +28,26 @@ const ImageChooser = ({
   images,
   close,
   selectImage,
+  hidden,
 }: {
   images: string[];
-  close: () => void;
-  selectImage: (src: string) => void;
+  close: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  selectImage: (src: string, localPreview?: string) => void;
+  hidden: boolean;
 }) => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [activeTab, setActiveTab] = useState<"choose" | "upload">("choose");
   const [isUploading, setIsUploading] = useState(false);
+  const [uploaded, setUploaded] = useState<
+    { localPreview: string; src: string }[]
+  >([]);
+
+  useEffect(() => {
+    if (hidden) {
+      setActiveTab("choose");
+      setSelectedImage(null);
+    }
+  }, [hidden]);
 
   useEffect(() => {
     const uploadCb = async () => {
@@ -46,7 +58,17 @@ const ImageChooser = ({
         selectedImage,
         str,
       );
+
+      const localPreview = URL.createObjectURL(selectedImage);
+      const newUploaded = [
+        ...uploaded,
+        { src: selectedImage.name, localPreview },
+      ];
+
       setIsUploading(false);
+      setUploaded(newUploaded);
+      selectImage(selectedImage.name, localPreview);
+      setSelectedImage(null);
     };
 
     if (isUploading) {
@@ -55,7 +77,9 @@ const ImageChooser = ({
   }, [isUploading]);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full">
+    <div
+      className={`fixed top-0 left-0 w-full h-full ${hidden ? "hidden" : ""}`}
+    >
       <div className="absolute top-0 left-0 bottom-0 right-0 w-[600px] h-[600px] bg-silver mx-auto my-auto">
         <button onClick={close} className="absolute right-5 p-5">
           X
@@ -99,6 +123,24 @@ const ImageChooser = ({
                   </button>
                 </div>
               ))}
+
+              {uploaded.map(({ src, localPreview }, ind) => (
+                <div
+                  key={ind}
+                  className="p-2 border-2 border-silver hover:border-orange"
+                >
+                  <button onClick={() => selectImage(src, localPreview)}>
+                    <Image
+                      src={localPreview}
+                      alt="image chooser"
+                      width={0}
+                      height={0}
+                      sizes="100vw"
+                      style={{ width: "100%", height: "100%" }} // optional
+                    />
+                  </button>
+                </div>
+              ))}
             </div>
           )}
 
@@ -109,7 +151,6 @@ const ImageChooser = ({
                 name="myImage"
                 className="block mx-auto mb-10"
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                  console.log(event?.target?.files?.[0]);
                   const file = event?.target?.files?.[0];
 
                   if (file) {

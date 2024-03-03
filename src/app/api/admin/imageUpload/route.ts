@@ -6,7 +6,10 @@ export async function POST(request: Request) {
   const content = res.get("raw") as string;
   const filename = image.name;
 
-  if (!image || !content) return Response.error();
+  if (!image || !content)
+    return new Response("Hello, Next.js!", {
+      status: 400,
+    });
 
   const octokit = new Octokit({
     auth: process.env.PERSONAL_ACCESS_TOKEN,
@@ -32,5 +35,7 @@ export async function POST(request: Request) {
     console.log("Image uploaded");
   }
 
-  return Response.json("hi");
+  return new Response("Hello, Next.js!", {
+    status: 200,
+  });
 }
