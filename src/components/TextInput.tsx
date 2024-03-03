@@ -25,6 +25,8 @@ const TextInput = ({
       defaultValue={initialVal}
       placeholder={initialVal ? undefined : placeholder}
       onChange={onChange}
+      name={inputName}
+      id={inputName}
     />
   </>
 );

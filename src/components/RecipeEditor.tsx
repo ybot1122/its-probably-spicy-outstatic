@@ -3,6 +3,7 @@ import TextInput from "./TextInput";
 import RecipeNameInput from "./RecipeNameInput";
 import TextArea from "./TextArea";
 import RecipeIngredientsEditor from "./RecipeIngredientsEditor";
+import RecipeInstructionsEditor from "./RecipeInstructionsEditor";
 
 const RecipeEditor = ({ initialData }: { initialData?: RecipeData }) => {
   return (
@@ -11,7 +12,7 @@ const RecipeEditor = ({ initialData }: { initialData?: RecipeData }) => {
         <RecipeNameInput initialVal={initialData?.recipeName} />
       </div>
 
-      <div className="mb-5">
+      <div className="mb-5 hidden">
         <TextInput
           initialVal={initialData?.author}
           label="Author"
@@ -56,6 +57,11 @@ const RecipeEditor = ({ initialData }: { initialData?: RecipeData }) => {
       <div className="mb-5">
         <h2>Recipe Ingredients</h2>
         <RecipeIngredientsEditor />
+      </div>
+
+      <div className="mb-5">
+        <h2>Recipe Instructions</h2>
+        <RecipeInstructionsEditor />
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { createRecipeAction } from "@/app/actions";
 import RecipeEditor from "@/components/RecipeEditor";
 import { RecipeData } from "@/interfaces/recipeData";
+import { AdminButton } from "../page";
 
 export default async function Page() {
   async function createRecipe(formData: FormData) {
@@ -8,8 +9,13 @@ export default async function Page() {
 
     const recipeName = formData.get("recipeName")?.toString();
     const description = formData.get("description")?.toString();
+    const prepTime = formData.get("prepTime")?.toString();
+    const totalTime = formData.get("totalTime")?.toString();
+    const totalYield = formData.get("totalYield")?.toString();
 
-    if (!recipeName || !description) {
+    console.log(recipeName, description);
+
+    if (!recipeName || !description || !prepTime || !totalTime || !totalYield) {
       return;
     }
 
@@ -18,9 +24,9 @@ export default async function Page() {
       publishedAt: new Date().toISOString(),
       author: "Head Chef Daisy",
       description,
-      prepTime: "42 mins",
-      totalTime: "12 hrs 42 mins",
-      totalYield: 'about 2 dozen medium pancakes or 1 dozen 8" waffles',
+      prepTime,
+      totalTime,
+      totalYield,
       recipeIngredients: [
         "2 cups (240g) King Arthur Unbleached All-Purpose Flour",
         "1 cup (227g) sourdough starter unfed/discard",
@@ -63,7 +69,10 @@ export default async function Page() {
       <h1 className="text-6xl text-center">Create a Recipe</h1>
       <form action={createRecipe}>
         <RecipeEditor />
-        <button type="submit">Make a Post</button>
+        <div className="text-center">
+          {" "}
+          <AdminButton text="Create Recipe!" type="submit" />
+        </div>
       </form>
     </div>
   );
