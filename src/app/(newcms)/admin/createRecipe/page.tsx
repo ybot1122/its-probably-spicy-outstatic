@@ -42,10 +42,11 @@ export default async function Page() {
       const text = formData.get(`recipeInstructions-${i}`)?.toString();
 
       if (text) {
+        const imageForm = formData.get(`recipeInstructions-${i}-image`);
         const image =
-          formData.get(`recipeInstructions-${i}-image`)?.toString() ?? null;
+          imageForm === null ? null : `/images/${imageForm.toString()}`;
 
-        recipeInstructions.push({ text, image: `/images/${image}` });
+        recipeInstructions.push({ text, image });
       }
 
       i++;
