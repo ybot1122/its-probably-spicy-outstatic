@@ -141,7 +141,7 @@ const ImageChooser = ({
                     }}
                     disabled={isUploading}
                   >
-                    Upload
+                    {isUploading ? "please wait..." : "Upload"}
                   </button>
                 </div>
               )}
