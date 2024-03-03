@@ -35,7 +35,17 @@ const RecipeIngredientsEditor = ({ initialVal }: { initialVal?: string[] }) => {
     <>
       <ul className="list-disc list-inside p-5">
         {ingredients.map((ing: string, ind: number) => (
-          <li key={ind}>{ing}</li>
+          <li key={ind}>
+            {ing}
+
+            <input
+              type="text"
+              disabled
+              className="hidden"
+              name={`recipeIngredient-${ind}`}
+              defaultValue={ing}
+            />
+          </li>
         ))}
         <li>
           <input

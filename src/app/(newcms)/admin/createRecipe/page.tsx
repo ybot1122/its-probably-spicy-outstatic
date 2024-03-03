@@ -13,9 +13,23 @@ export default async function Page() {
     const totalTime = formData.get("totalTime")?.toString();
     const totalYield = formData.get("totalYield")?.toString();
 
-    console.log(recipeName, description);
-
     if (!recipeName || !description || !prepTime || !totalTime || !totalYield) {
+      return;
+    }
+
+    let i = 0;
+    const recipeIngredients: string[] = [];
+    while (formData.get(`recipeIngredient-${i}`)?.toString()) {
+      const ingredient = formData.get(`recipeIngredient-${i}`)?.toString();
+
+      if (ingredient) {
+        recipeIngredients.push(ingredient);
+      }
+
+      i++;
+    }
+
+    if (recipeIngredients.length === 0) {
       return;
     }
 
@@ -27,17 +41,7 @@ export default async function Page() {
       prepTime,
       totalTime,
       totalYield,
-      recipeIngredients: [
-        "2 cups (240g) King Arthur Unbleached All-Purpose Flour",
-        "1 cup (227g) sourdough starter unfed/discard",
-        "2 tablespoons (28g) granulated sugar",
-        "2 cups (454g) buttermilk",
-        "all of the overnight sponge",
-        "2 large eggs",
-        "1/4 cup (50g) vegetable oil or 4 tablespoons (57g) butter melted",
-        "3/4 teaspoon table salt",
-        "1 teaspoon baking soda",
-      ],
+      recipeIngredients,
       recipeInstructions: [
         {
           text: "To make the overnight sponge: Stir down your refrigerated starter, and remove 1 cup (227g). Note: This is a good opportunity to feed the remainder, if necessary.",
