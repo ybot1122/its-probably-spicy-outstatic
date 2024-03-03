@@ -1,15 +1,26 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-async function postData(url = "", file: any) {
+async function postData(url = "", file: File) {
   const formData = new FormData();
   formData.append("image", file);
-
   const response = await fetch(url, {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
     body: formData,
   });
   return response.json(); // parses JSON response into native JavaScript objects
+}
+
+async function encodeImageFileAsURL(file: File) {
+  return new Promise((resolve, reject) => {
+    console.log("reader");
+    var reader = new FileReader();
+    reader.onloadend = function () {
+      resolve(reader.result);
+      console.log("RESULT", reader.result);
+    };
+    reader.readAsDataURL(file);
+  });
 }
 
 const ImageChooser = ({
@@ -23,6 +34,19 @@ const ImageChooser = ({
 }) => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [activeTab, setActiveTab] = useState<"choose" | "upload">("choose");
+  const [isUploading, setIsUploading] = useState(false);
+
+  useEffect(() => {
+    const uploadCb = async () => {
+      if (selectedImage === null) return;
+      const upload = await postData("/api/admin/imageUpload", selectedImage);
+      setIsUploading(false);
+    };
+
+    if (isUploading) {
+      uploadCb();
+    }
+  }, [isUploading]);
 
   return (
     <div className="fixed top-0 left-0 w-full h-full">
@@ -105,11 +129,11 @@ const ImageChooser = ({
                   <button
                     className="inline-block border-2 border-orange p-2"
                     onClick={(e) => {
-                      console.log(selectedImage);
-                      postData("/api/admin/imageUpload", selectedImage);
+                      setIsUploading(true);
                       e.preventDefault();
                       e.stopPropagation();
                     }}
+                    disabled={isUploading}
                   >
                     Upload
                   </button>

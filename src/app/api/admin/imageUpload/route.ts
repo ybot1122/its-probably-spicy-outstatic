@@ -2,17 +2,15 @@ import { Octokit } from "octokit";
 
 export async function POST(request: Request) {
   const res = await request.formData();
-  const image = res.get("image");
+  const image = res.get("image") as File;
+  const filename = image.name;
+  console.log(image);
 
   if (!image) return Response.error();
 
   const octokit = new Octokit({
     auth: process.env.PERSONAL_ACCESS_TOKEN,
   });
-
-  const filename = (image as any).name;
-
-  console.log(filename);
 
   const content = "";
 
@@ -33,7 +31,7 @@ export async function POST(request: Request) {
   if (response.status !== 201) {
     throw new Error("Failed to create recipe");
   } else {
-    console.log("Recipe created");
+    console.log("Image uploaded");
   }
 
   return Response.json("hi");
