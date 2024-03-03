@@ -62,19 +62,19 @@ const RecipeIngredientsEditor = ({ initialVal }: { initialVal?: string[] }) => {
           <li key={ind} className="mb-2">
             <span
               onClick={deleteIngredient(ind)}
-              className="inline-block border-2 border-silver p-2 mr-5 hover:border-green"
+              className="inline-block border-2 border-silver p-2 mr-5 hover:border-green cursor-pointer"
             >
               X
             </span>
             <span
               onClick={moveIngredient(ind, true)}
-              className="inline-block border-2 border-silver p-2 mr-5 hover:border-green"
+              className="inline-block border-2 border-silver p-2 mr-5 hover:border-green cursor-pointer"
             >
               &#8593;
             </span>
             <span
               onClick={moveIngredient(ind, false)}
-              className="inline-block border-2 border-silver p-2 mr-5 hover:border-green"
+              className="inline-block border-2 border-silver p-2 mr-5 hover:border-green cursor-pointer"
             >
               &#8595;
             </span>

@@ -38,11 +38,62 @@ const RecipeInstructionsEditor = ({
     [ingredients],
   );
 
+  const deleteIngredient = useCallback(
+    (ind: number) => () => {
+      const updated = [...ingredients];
+      updated.splice(ind, 1);
+      setIngredients(updated);
+    },
+    [ingredients],
+  );
+
+  const moveIngredient = useCallback(
+    (ind: number, up: boolean) => () => {
+      if (up && ind === 0) return;
+      if (!up && ind === ingredients.length - 1) return;
+
+      const updated = [...ingredients];
+      const temp = updated[ind];
+      updated[ind] = up ? updated[ind - 1] : updated[ind + 1];
+      updated[up ? ind - 1 : ind + 1] = temp;
+
+      setIngredients(updated);
+    },
+    [ingredients],
+  );
+
   return (
     <>
-      <ol className="list-decimal list-inside p-5">
+      <ol className="p-5">
         {ingredients.map((ing: string, ind: number) => (
-          <li key={ind}>{ing}</li>
+          <li key={ind} className="mb-2">
+            <span
+              onClick={deleteIngredient(ind)}
+              className="inline-block border-2 border-silver p-2 mr-5 hover:border-green cursor-pointer"
+            >
+              X
+            </span>
+            <span
+              onClick={moveIngredient(ind, true)}
+              className="inline-block border-2 border-silver p-2 mr-5 hover:border-green cursor-pointer"
+            >
+              &#8593;
+            </span>
+            <span
+              onClick={moveIngredient(ind, false)}
+              className="inline-block border-2 border-silver p-2 mr-5 hover:border-green cursor-pointer"
+            >
+              &#8595;
+            </span>
+            <span
+              onClick={() => {}}
+              className="inline-block border-2 border-silver p-2 mr-5 hover:border-green cursor-pointer"
+            >
+              Add Image
+            </span>
+            Step {ind + 1}
+            <p>{ing}</p>
+          </li>
         ))}
         <li>
           <textarea
