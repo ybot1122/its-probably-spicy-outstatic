@@ -31,13 +31,54 @@ const RecipeIngredientsEditor = ({ initialVal }: { initialVal?: string[] }) => {
     [ingredients],
   );
 
+  const deleteIngredient = useCallback(
+    (ind: number) => () => {
+      const updated = [...ingredients];
+      updated.splice(ind, 1);
+      setIngredients(updated);
+    },
+    [ingredients],
+  );
+
+  const moveIngredient = useCallback(
+    (ind: number, up: boolean) => () => {
+      if (up && ind === 0) return;
+      if (!up && ind === ingredients.length - 1) return;
+
+      const updated = [...ingredients];
+      const temp = updated[ind];
+      updated[ind] = up ? updated[ind - 1] : updated[ind + 1];
+      updated[up ? ind - 1 : ind + 1] = temp;
+
+      setIngredients(updated);
+    },
+    [ingredients],
+  );
+
   return (
     <>
       <ul className="list-disc list-inside p-5">
         {ingredients.map((ing: string, ind: number) => (
-          <li key={ind}>
+          <li key={ind} className="mb-2">
+            <span
+              onClick={deleteIngredient(ind)}
+              className="inline-block border-2 border-silver p-2 mr-5 hover:border-green"
+            >
+              X
+            </span>
+            <span
+              onClick={moveIngredient(ind, true)}
+              className="inline-block border-2 border-silver p-2 mr-5 hover:border-green"
+            >
+              &#8593;
+            </span>
+            <span
+              onClick={moveIngredient(ind, false)}
+              className="inline-block border-2 border-silver p-2 mr-5 hover:border-green"
+            >
+              &#8595;
+            </span>
             {ing}
-
             <input type="hidden" name={`recipeIngredient-${ind}`} value={ing} />
           </li>
         ))}
