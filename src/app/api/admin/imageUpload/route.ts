@@ -3,16 +3,14 @@ import { Octokit } from "octokit";
 export async function POST(request: Request) {
   const res = await request.formData();
   const image = res.get("image") as File;
+  const content = res.get("raw") as string;
   const filename = image.name;
-  console.log(image);
 
-  if (!image) return Response.error();
+  if (!image || !content) return Response.error();
 
   const octokit = new Octokit({
     auth: process.env.PERSONAL_ACCESS_TOKEN,
   });
-
-  const content = "";
 
   const response = await octokit.request(
     "PUT /repos/{owner}/{repo}/contents/{path}",

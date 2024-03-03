@@ -1,9 +1,10 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-async function postData(url = "", file: File) {
+async function postData(url = "", file: File, str: string) {
   const formData = new FormData();
   formData.append("image", file);
+  formData.append("raw", str);
   const response = await fetch(url, {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
     body: formData,
@@ -11,15 +12,15 @@ async function postData(url = "", file: File) {
   return response.json(); // parses JSON response into native JavaScript objects
 }
 
-async function encodeImageFileAsURL(file: File) {
+async function encodeImageFileAsURL(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
-    console.log("reader");
     var reader = new FileReader();
     reader.onloadend = function () {
-      resolve(reader.result);
-      console.log("RESULT", reader.result);
+      const bytes = reader.result as string;
+      const buffer = Buffer.from(bytes, "binary");
+      resolve(buffer.toString("base64"));
     };
-    reader.readAsDataURL(file);
+    reader.readAsArrayBuffer(file);
   });
 }
 
@@ -39,7 +40,12 @@ const ImageChooser = ({
   useEffect(() => {
     const uploadCb = async () => {
       if (selectedImage === null) return;
-      const upload = await postData("/api/admin/imageUpload", selectedImage);
+      const str = await encodeImageFileAsURL(selectedImage);
+      const upload = await postData(
+        "/api/admin/imageUpload",
+        selectedImage,
+        str,
+      );
       setIsUploading(false);
     };
 
