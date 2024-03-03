@@ -36,6 +36,26 @@ export default async function Page() {
       return;
     }
 
+    i = 0;
+    const recipeInstructions: { text: string; image: string | null }[] = [];
+    while (formData.get(`recipeInstructions-${i}`)?.toString()) {
+      const text = formData.get(`recipeInstructions-${i}`)?.toString();
+
+      if (text) {
+        const image =
+          formData.get(`recipeInstructions-${i}-image`)?.toString() ?? null;
+
+        recipeInstructions.push({ text, image: `/images/${image}` });
+      }
+
+      i++;
+    }
+
+    if (recipeInstructions.length === 0) {
+      console.log("missing instructions");
+      return;
+    }
+
     const rawFormData: RecipeData = {
       recipeName,
       publishedAt: new Date().toISOString(),
@@ -45,16 +65,7 @@ export default async function Page() {
       totalTime,
       totalYield,
       recipeIngredients,
-      recipeInstructions: [
-        {
-          text: "To make the overnight sponge: Stir down your refrigerated starter, and remove 1 cup (227g). Note: This is a good opportunity to feed the remainder, if necessary.",
-          image: null,
-        },
-        {
-          text: "In a large bowl, stir together the 1 cup (227g) unfed starter, flour, sugar, and buttermilk.",
-          image: "/images/couple-pizza.png",
-        },
-      ],
+      recipeInstructions,
       images: {
         hero: "/images/Yellow-Banana-Bread_Hero_0530.jpg",
         gallery: [

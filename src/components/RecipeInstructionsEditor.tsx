@@ -3,17 +3,23 @@
 import { useCallback, useRef, useState } from "react";
 import { style } from "./TextInput";
 import ImageChooser from "./ImageChooser";
+import Image from "next/image";
 
 const RecipeInstructionsEditor = ({
   initialVal,
   images,
 }: {
-  initialVal?: string[];
+  initialVal?: { text: string; image: string | null }[];
   images: string[];
 }) => {
   const addIngredientRef = useRef<HTMLTextAreaElement>(null);
-  const [ingredients, setIngredients] = useState<string[]>(initialVal ?? []);
-  const [showImageChooser, setShowImageChooser] = useState(false);
+  const [ingredients, setIngredients] = useState<
+    {
+      text: string;
+      image: string | null;
+    }[]
+  >(initialVal ?? []);
+  const [showImageChooser, setShowImageChooser] = useState(-1);
 
   const addIngredient = useCallback(
     (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -34,7 +40,13 @@ const RecipeInstructionsEditor = ({
         return false;
       }
 
-      const updated = [...ingredients, addIngredientRef.current.value];
+      const updated = [
+        ...ingredients,
+        {
+          text: addIngredientRef.current.value,
+          image: null,
+        },
+      ];
       setIngredients(updated);
 
       addIngredientRef.current.value = "";
@@ -68,15 +80,42 @@ const RecipeInstructionsEditor = ({
     [ingredients],
   );
 
-  const launchImageChooser = useCallback(() => {
-    setShowImageChooser(true);
-  }, []);
+  const launchImageChooser = useCallback(
+    (ind: number) => () => {
+      setShowImageChooser(ind);
+    },
+    [],
+  );
+
+  const selectImage = useCallback(
+    (src: string) => {
+      const updated = [...ingredients];
+      updated[showImageChooser].image = src;
+
+      setIngredients(updated);
+      setShowImageChooser(-1);
+    },
+    [ingredients, showImageChooser],
+  );
 
   return (
     <>
       <ol className="p-5">
-        {ingredients.map((ing: string, ind: number) => (
+        {ingredients.map(({ text, image }, ind: number) => (
           <li key={ind} className="mb-2 border-2 border-orange p-5">
+            <input
+              type="hidden"
+              name={`recipeInstructions-${ind}`}
+              value={text}
+            />
+            {image && (
+              <input
+                type="hidden"
+                name={`recipeInstructions-${ind}-image`}
+                value={image}
+              />
+            )}
+
             <p className="mb-2">Step {ind + 1}</p>
             <span
               onClick={deleteIngredient(ind)}
@@ -97,12 +136,24 @@ const RecipeInstructionsEditor = ({
               &#8595;
             </span>
             <span
-              onClick={launchImageChooser}
+              onClick={launchImageChooser(ind)}
               className="inline-block border-2 border-silver p-2 mr-5 hover:border-green cursor-pointer"
             >
-              Add Image
+              {image ? "Change" : "Add"} Image
             </span>
-            <p className="mt-2">{ing}</p>
+            <p className="mt-2">{text}</p>
+            <p>
+              {image && (
+                <Image
+                  src={`/images/${image}`}
+                  alt={`Recipe instruction step ${ind + 1}`}
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  style={{ width: "100%", height: "100%" }} // optional
+                />
+              )}
+            </p>
           </li>
         ))}
         <li>
@@ -114,10 +165,11 @@ const RecipeInstructionsEditor = ({
           />
         </li>
       </ol>
-      {showImageChooser && (
+      {showImageChooser > -1 && (
         <ImageChooser
           images={images}
-          close={() => setShowImageChooser(false)}
+          close={() => setShowImageChooser(-1)}
+          selectImage={selectImage}
         />
       )}
     </>
