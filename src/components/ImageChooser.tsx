@@ -1,6 +1,17 @@
 import Image from "next/image";
 import { useState } from "react";
 
+async function postData(url = "", file: any) {
+  const formData = new FormData();
+  formData.append("image", file);
+
+  const response = await fetch(url, {
+    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    body: formData,
+  });
+  return response.json(); // parses JSON response into native JavaScript objects
+}
+
 const ImageChooser = ({
   images,
   close,
@@ -93,7 +104,12 @@ const ImageChooser = ({
 
                   <button
                     className="inline-block border-2 border-orange p-2"
-                    onClick={() => setSelectedImage(null)}
+                    onClick={(e) => {
+                      console.log(selectedImage);
+                      postData("/api/admin/imageUpload", selectedImage);
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }}
                   >
                     Upload
                   </button>
