@@ -78,5 +78,5 @@ export async function GET(request: Request) {
     });
   }
 
-  redirect("/admin/dashboard");
+  redirect("/admin/secure/dashboard");
 }

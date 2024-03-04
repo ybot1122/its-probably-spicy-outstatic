@@ -22,7 +22,7 @@ export default async function Page() {
 
       <div className="grid grid-cols-2 text-center mt-20">
         <div className="col-span-1">
-          <Link href="admin/createRecipe">
+          <Link href="/admin/secure/createRecipe">
             <AdminButton text="Create a new Recipe" />
           </Link>
         </div>

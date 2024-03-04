@@ -2,7 +2,6 @@ import Layout from "@/components/Layout";
 import { getAllRecipes } from "@/lib/getAllRecipes";
 import DateFormatter from "@/components/DateFormatter";
 import Image from "next/image";
-import { OstDocument } from "outstatic";
 import { Metadata } from "next";
 import { absoluteUrl } from "@/lib/utils";
 import { libre_baskerville } from "@/app/fonts";
@@ -10,7 +9,7 @@ import ImageGallery from "@/components/ImageGallery";
 import { getRecipe } from "@/lib/getRecipe";
 import { RecipeData } from "@/interfaces/recipeData";
 
-interface Params {
+export interface Params {
   params: {
     slug: string;
   };

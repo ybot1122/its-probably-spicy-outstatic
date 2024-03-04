@@ -1,7 +1,7 @@
 import { createRecipeAction } from "@/app/actions";
 import RecipeEditor from "@/components/RecipeEditor";
 import { RecipeData } from "@/interfaces/recipeData";
-import { AdminButton } from "@/app/(newcms)/admin/dashboard/page";
+import { AdminButton } from "@/app/(newcms)/admin/secure/dashboard/page";
 import { getAllImages } from "@/lib/getAllImages";
 
 export default async function Page() {
