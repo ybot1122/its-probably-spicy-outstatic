@@ -154,12 +154,23 @@ const ImageChooser = ({
             <div className="text-center mt-10">
               <input
                 type="file"
+                accept="image/*"
                 name="myImage"
                 className="block mx-auto mb-10"
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                   const file = event?.target?.files?.[0];
-
                   if (file) {
+                    // check if the file is an image
+                    if (!file.type.includes("image/")) {
+                      console.error("File type not supported.");
+                      return;
+
+                      // check if the file size is less than 20MB
+                    } else if (file.size / 1024 / 1024 > 20) {
+                      console.error("File size too big (max 20MB).");
+                      return;
+                    }
+
                     setSelectedImage(file);
                   }
                 }}
