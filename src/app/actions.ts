@@ -3,9 +3,6 @@
 import { Octokit } from "octokit";
 import { RecipeData } from "@/interfaces/recipeData";
 import spinalCase from "@/lib/spinalCase";
-import { cookies } from "next/headers";
-import * as Iron from "@hapi/iron";
-import { MAX_AGE, TOKEN_NAME } from "@/lib/auth/cookies";
 
 export async function createRecipeAction(formData: RecipeData) {
   const octokit = new Octokit({
@@ -35,33 +32,4 @@ export async function createRecipeAction(formData: RecipeData) {
   } else {
     console.log("Recipe created");
   }
-}
-
-export async function loginUserAction(code: string) {
-  const TOKEN_SECRET = process.env.OST_TOKEN_SECRET;
-
-  if (!TOKEN_SECRET)
-    throw new Error(
-      "invalid setup. no token secret found to encrypt access token",
-    );
-
-  // TODO use GH API to exchange the code for an API access token
-  const accessToken = "fake";
-
-  // Encrypt the access token
-  const encryptedToken = await Iron.seal(
-    accessToken,
-    TOKEN_SECRET,
-    Iron.defaults,
-  );
-
-  // Set the encrypted access token in cookie
-  await cookies().set(TOKEN_NAME, encryptedToken, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    maxAge: MAX_AGE,
-    path: "/",
-  });
-
-  return encryptedToken;
 }
