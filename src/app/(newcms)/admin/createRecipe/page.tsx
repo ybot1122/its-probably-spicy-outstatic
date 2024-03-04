@@ -1,7 +1,7 @@
 import { createRecipeAction } from "@/app/actions";
 import RecipeEditor from "@/components/RecipeEditor";
 import { RecipeData } from "@/interfaces/recipeData";
-import { AdminButton } from "../page";
+import { AdminButton } from "../layout";
 import { getAllImages } from "@/lib/getAllImages";
 
 export default async function Page() {

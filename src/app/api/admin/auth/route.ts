@@ -4,6 +4,7 @@ import * as Iron from "@hapi/iron";
 import { cookies } from "next/headers";
 import { MAX_AGE, TOKEN_NAME } from "@/lib/auth/cookies";
 import { redirect } from "next/navigation";
+import { allowedUsers } from "@/lib/allowedUsers";
 
 export async function GET(request: Request) {
   const code = new URL(request.url).searchParams.get("code");
@@ -51,7 +52,7 @@ export async function GET(request: Request) {
 
     const data = await response.data;
 
-    if (data.login === "ybot1122" || data.login === "isibord") {
+    if (allowedUsers.includes(data.login)) {
       // Encrypt the access token
       const encryptedToken = await Iron.seal(
         token.token,
@@ -77,5 +78,5 @@ export async function GET(request: Request) {
     });
   }
 
-  redirect("/admin/login");
+  redirect("/admin/dashboard");
 }
