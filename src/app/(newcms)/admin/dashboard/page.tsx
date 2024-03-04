@@ -1,20 +1,35 @@
 import Link from "next/link";
-import { AdminButton } from "@/app/(newcms)/admin/layout";
-import { MAX_AGE, TOKEN_NAME } from "@/lib/auth/cookies";
+
+export const AdminButton = ({
+  text,
+  type,
+}: {
+  text: string;
+  type?: "submit";
+}) => (
+  <button
+    type={type}
+    className="border-silver border-2 hover:border-orange rounded p-10 transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300 "
+  >
+    {text}
+  </button>
+);
 
 export default async function Page() {
-  const scopes = ["read:user", "user:email", "repo"];
-
-  const url = new URL("https://github.com/login/oauth/authorize");
-  url.searchParams.append("client_id", process.env.OST_GITHUB_ID ?? "");
-  url.searchParams.append("scope", scopes.join(","));
-
   return (
     <div className="m-20 max-w-lg mx-auto">
-      <h1 className="text-6xl text-center">Dashboard Panel</h1>
+      <h1 className="text-6xl text-center">Welcome to the Admin Panel</h1>
 
       <div className="grid grid-cols-2 text-center mt-20">
-        <div className="col-span-2"></div>
+        <div className="col-span-1">
+          <Link href="admin/createRecipe">
+            <AdminButton text="Create a new Recipe" />
+          </Link>
+        </div>
+
+        <div className="col-span-1">
+          <AdminButton text="Edit an Existing Recipe" />
+        </div>
       </div>
     </div>
   );

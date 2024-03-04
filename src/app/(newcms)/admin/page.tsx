@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { AdminButton } from "@/app/(newcms)/admin/layout";
-import { MAX_AGE, TOKEN_NAME } from "@/lib/auth/cookies";
 
 export default async function Page() {
   const scopes = ["read:user", "user:email", "repo"];
