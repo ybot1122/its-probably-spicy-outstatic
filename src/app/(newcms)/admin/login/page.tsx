@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { AdminButton } from "@/app/(newcms)/admin/page";
-import { useCallback } from "react";
-import { loginUserAction } from "@/app/actions";
+
+const GH_OAUTH = ``;
 
 export default async function Page() {
-  async function loginUser() {
-    "use server";
-    loginUserAction("fake code");
-  }
+  const scopes = ["read:user", "user:email", "repo"];
+
+  const url = new URL("https://github.com/login/oauth/authorize");
+  url.searchParams.append("client_id", process.env.OST_GITHUB_ID ?? "");
+  url.searchParams.append("scope", scopes.join(","));
 
   return (
     <div className="m-20 max-w-lg mx-auto">
@@ -15,9 +16,7 @@ export default async function Page() {
 
       <div className="grid grid-cols-2 text-center mt-20">
         <div className="col-span-2">
-          <form action={loginUser}>
-            <AdminButton text="Click to Login" type="submit" />
-          </form>
+          <Link href={url.toString()}>Click to Login</Link>
         </div>
       </div>
     </div>

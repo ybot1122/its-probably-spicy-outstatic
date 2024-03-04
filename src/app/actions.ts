@@ -63,5 +63,5 @@ export async function loginUserAction(code: string) {
     path: "/",
   });
 
-  cookies().set("name", "hi");
+  return encryptedToken;
 }
