@@ -4,7 +4,7 @@
 
 import { useCallback, useState } from "react";
 import spinalCase from "@/lib/spinalCase";
-import TextArea from "./TextArea";
+import TextArea from "../../../../../components/TextArea";
 
 const RecipeNameInput = ({
   initialVal,

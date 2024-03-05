@@ -1,7 +1,7 @@
 import { RecipeData } from "@/interfaces/recipeData";
-import TextInput from "./TextInput";
+import TextInput from "../../../../../components/TextInput";
 import RecipeNameInput from "./RecipeNameInput";
-import TextArea from "./TextArea";
+import TextArea from "../../../../../components/TextArea";
 import RecipeIngredientsEditor from "./RecipeIngredientsEditor";
 import RecipeInstructionsEditor from "./RecipeInstructionsEditor";
 import { useState } from "react";

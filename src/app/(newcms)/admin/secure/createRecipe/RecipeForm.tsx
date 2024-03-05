@@ -4,7 +4,7 @@ import {
   CreateRecipeFormState,
   createRecipeAction,
 } from "@/app/(newcms)/admin/secure/createRecipe/actions";
-import RecipeEditor from "@/components/RecipeEditor";
+import RecipeEditor from "@/app/(newcms)/admin/secure/createRecipe/RecipeEditor";
 import { CreateRecipeSubmitButton } from "./CreateRecipeSubmitButton";
 
 // @ts-expect-error

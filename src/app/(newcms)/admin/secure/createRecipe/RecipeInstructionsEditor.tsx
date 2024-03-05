@@ -3,6 +3,7 @@
 import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import { onImageSelectedType } from "@/app/(newcms)/admin/secure/createRecipe/page";
+import { IMAGE_PATH } from "@/lib/imagePath";
 
 const RecipeInstructionsEditor = ({
   initialVal,
@@ -16,7 +17,6 @@ const RecipeInstructionsEditor = ({
     {
       text: string;
       image: string | null;
-      localPreview?: string;
     }[]
   >(initialVal ?? []);
   const addIngredient = useCallback(
@@ -90,7 +90,7 @@ const RecipeInstructionsEditor = ({
   return (
     <>
       <ol className="p-5">
-        {ingredients.map(({ text, image, localPreview }, ind: number) => (
+        {ingredients.map(({ text, image }, ind: number) => (
           <li key={ind} className="mb-2 border-2 border-silver p-5">
             <input
               type="hidden"
@@ -136,7 +136,7 @@ const RecipeInstructionsEditor = ({
             <p>
               {image && (
                 <Image
-                  src={localPreview ? localPreview : `/images/${image}`}
+                  src={`${IMAGE_PATH}${image}`}
                   alt={`Recipe instruction step ${ind + 1}`}
                   width={0}
                   height={0}
