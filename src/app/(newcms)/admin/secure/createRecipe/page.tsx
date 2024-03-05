@@ -13,8 +13,6 @@ export default function Page() {
     onImageSelectedType | undefined
   >();
 
-  console.log(onImageSelected + " ");
-
   return (
     <>
       <h1 className="text-6xl text-center">Create a Recipe</h1>

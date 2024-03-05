@@ -9,7 +9,7 @@ const RecipeInstructionsEditor = ({
   setOnImageSelected,
 }: {
   initialVal?: { text: string; image: string | null }[];
-  setOnImageSelected: (cb: onImageSelectedType) => void;
+  setOnImageSelected: (cb?: onImageSelectedType) => void;
 }) => {
   const addIngredientRef = useRef<HTMLTextAreaElement>(null);
   const [ingredients, setIngredients] = useState<
@@ -79,10 +79,12 @@ const RecipeInstructionsEditor = ({
   );
 
   const onImageSelected = useCallback(
-    () => (imgname: string) => {
-      console.log(imgname);
+    (ind: number) => () => (imgname: string) => {
+      const updated = [...ingredients];
+      updated[ind].image = imgname;
+      setOnImageSelected(undefined);
     },
-    [],
+    [ingredients, setOnImageSelected],
   );
 
   return (
@@ -125,7 +127,7 @@ const RecipeInstructionsEditor = ({
             <span
               className="inline-block border-2 border-silver p-2 mr-5 hover:border-green cursor-pointer"
               onClick={() => {
-                setOnImageSelected(onImageSelected);
+                setOnImageSelected(onImageSelected(ind));
               }}
             >
               {image ? "Change" : "Add"} Image

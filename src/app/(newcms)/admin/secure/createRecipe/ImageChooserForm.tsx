@@ -18,12 +18,13 @@ const SubmitButton = ({
   const { pending } = useFormStatus();
 
   useEffect(() => {
-    console.log(formState);
-    console.log(pending);
-    console.log(onImageSelected);
-    if (!pending && formState?.status === "success" && onImageSelected) {
-      console.log("a");
-      onImageSelected("");
+    if (
+      !pending &&
+      formState?.status === "success" &&
+      formState.reason &&
+      onImageSelected
+    ) {
+      onImageSelected(formState.reason);
     }
   }, [formState, onImageSelected, pending]);
 

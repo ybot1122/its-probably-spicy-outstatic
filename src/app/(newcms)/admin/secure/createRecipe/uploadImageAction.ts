@@ -1,6 +1,7 @@
 "use server";
 
 import { CLOUDINARY_CLOUD_NAME } from "@/lib/imagePath";
+import spinalCase from "@/lib/spinalCase";
 import { UploadApiResponse, v2 as cloudinary } from "cloudinary";
 import path from "path";
 
@@ -15,7 +16,7 @@ export async function uploadImageAction(
 ): Promise<UploadImageActionState> {
   const file = formData.get("image") as File;
 
-  const public_id = path.parse(file.name).name;
+  const public_id = spinalCase(path.parse(file.name).name);
 
   const arrayBuffer = await file.arrayBuffer();
 
@@ -56,5 +57,5 @@ export async function uploadImageAction(
     return { status: "fail", reason: "Filename already exists" };
   }
 
-  return { status: "success" };
+  return { status: "success", reason: public_id };
 }

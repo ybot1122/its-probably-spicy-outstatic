@@ -19,7 +19,7 @@ const RecipeEditor = ({
   setOnImageSelected,
 }: {
   initialData?: RecipeData;
-  setOnImageSelected: (cb: onImageSelectedType) => void;
+  setOnImageSelected: (cb?: onImageSelectedType) => void;
 }) => {
   return (
     <div className="mt-10">

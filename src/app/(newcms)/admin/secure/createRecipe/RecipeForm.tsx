@@ -14,7 +14,7 @@ import { onImageSelectedType } from "./page";
 const RecipeForm = ({
   setOnImageSelected,
 }: {
-  setOnImageSelected: (cb: onImageSelectedType) => void;
+  setOnImageSelected: (cb?: onImageSelectedType) => void;
 }) => {
   const images: string[] = [];
   const [formState, formAction] = useFormState<CreateRecipeFormState>(
