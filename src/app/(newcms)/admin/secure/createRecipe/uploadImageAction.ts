@@ -42,7 +42,7 @@ export async function uploadImageAction(
             public_id,
           },
           (error, result) => {
-            console.log("Image upload completed with " + { error });
+            console.log("Image upload completed with " + JSON.stringify(error));
 
             if (error) {
               reject(error);
