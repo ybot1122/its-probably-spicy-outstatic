@@ -1,5 +1,8 @@
 import { Octokit } from "octokit";
+
+// @ts-ignore
 import { createOAuthUserAuth } from "@octokit/auth-oauth-user";
+
 import * as Iron from "@hapi/iron";
 import { cookies } from "next/headers";
 import { MAX_AGE, TOKEN_NAME } from "@/lib/auth/cookies";
