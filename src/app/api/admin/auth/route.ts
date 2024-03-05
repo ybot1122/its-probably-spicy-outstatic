@@ -26,8 +26,8 @@ export async function GET(request: Request) {
   let token;
   try {
     const auth = createOAuthUserAuth({
-      clientId: process.env.OST_GITHUB_ID,
-      clientSecret: process.env.OST_GITHUB_SECRET,
+      clientId: process.env.OST_GITHUB_ID ?? "",
+      clientSecret: process.env.OST_GITHUB_SECRET ?? "",
       code: code,
     });
 
