@@ -47,8 +47,7 @@ const validateFormData = (formData: FormData): RecipeData | string => {
 
     if (text) {
       const imageForm = formData.get(`recipeInstructions-${i}-image`);
-      const image =
-        imageForm === null ? null : `/images/${imageForm.toString()}`;
+      const image = imageForm === null ? null : `${imageForm.toString()}`;
 
       recipeInstructions.push({ text, image });
     }
@@ -71,12 +70,8 @@ const validateFormData = (formData: FormData): RecipeData | string => {
     recipeIngredients,
     recipeInstructions,
     images: {
-      hero: "/images/Yellow-Banana-Bread_Hero_0530.jpg",
-      gallery: [
-        "/images/cinnamonrolls.jpeg",
-        "/images/HawaiianRolls1.jpeg",
-        "/images/Pretzels.jpeg",
-      ],
+      hero: "Yellow-Banana-Bread_Hero_0530.jpg",
+      gallery: ["cinnamonrolls.jpeg", "HawaiianRolls1.jpeg", "Pretzels.jpeg"],
     },
   };
 

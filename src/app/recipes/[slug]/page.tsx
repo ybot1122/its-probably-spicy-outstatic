@@ -8,6 +8,7 @@ import { libre_baskerville } from "@/app/fonts";
 import ImageGallery from "@/components/ImageGallery";
 import { getRecipe } from "@/lib/getRecipe";
 import { RecipeData } from "@/interfaces/recipeData";
+import { IMAGE_PATH } from "@/lib/imagePath";
 
 export interface Params {
   params: {
@@ -55,7 +56,7 @@ export default async function Recipe(params: Params) {
           <div className="relative w-full h-full before:absolute before:block before:w-full before:h-full before:z-10 before:bg-recipeHeroScrim">
             <Image
               alt={recipeName}
-              src={images.hero}
+              src={IMAGE_PATH + images.hero}
               fill
               className="object-cover"
             />
@@ -100,7 +101,7 @@ export default async function Recipe(params: Params) {
           <div className="col-span-2 ml-5 mr-5 mb-10 lg:ml-0 lg:mr-20 lg:col-span-1">
             <ImageGallery
               images={images.gallery.map((img) => ({
-                src: img,
+                src: IMAGE_PATH + img,
                 alt: recipeName,
               }))}
             />
@@ -134,7 +135,7 @@ export default async function Recipe(params: Params) {
                     {step.text}
                     {step.image && (
                       <Image
-                        src={step.image}
+                        src={IMAGE_PATH + step.image}
                         alt={`${recipeName} step ${ind + 1}`}
                         width={50}
                         height={50}
