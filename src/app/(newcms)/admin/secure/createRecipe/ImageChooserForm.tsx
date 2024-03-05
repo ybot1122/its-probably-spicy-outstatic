@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UploadImageActionState, uploadImageAction } from "./uploadImageAction";
 // @ts-expect-error
 import { experimental_useFormState as useFormState } from "react-dom";
@@ -8,8 +8,24 @@ import { experimental_useFormState as useFormState } from "react-dom";
 import { experimental_useFormStatus as useFormStatus } from "react-dom";
 import { onImageSelectedType } from "./page";
 
-const SubmitButton = () => {
+const SubmitButton = ({
+  formState,
+  onImageSelected,
+}: {
+  formState: UploadImageActionState;
+  onImageSelected?: onImageSelectedType;
+}) => {
   const { pending } = useFormStatus();
+
+  useEffect(() => {
+    console.log(formState);
+    console.log(pending);
+    console.log(onImageSelected);
+    if (!pending && formState?.status === "success" && onImageSelected) {
+      console.log("a");
+      onImageSelected("");
+    }
+  }, [formState, onImageSelected, pending]);
 
   return (
     <button
@@ -25,16 +41,24 @@ const SubmitButton = () => {
 const ImageChooserForm = ({
   onImageSelected,
 }: {
-  onImageSelected: onImageSelectedType;
+  onImageSelected?: onImageSelectedType;
 }) => {
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [selectedImage, setSelectedImage] = useState<Blob | null>(null);
   const [formState, formAction] = useFormState<UploadImageActionState>(
     uploadImageAction,
     null,
   );
 
   return (
-    <div className="mt-20">
+    <div className={`mt-20 ${onImageSelected ? "" : "hidden"}`}>
+      {selectedImage && (
+        <img
+          alt="not found"
+          width={"250px"}
+          src={URL.createObjectURL(selectedImage)}
+        />
+      )}
+
       <form action={formAction}>
         <input
           type="file"
@@ -59,7 +83,7 @@ const ImageChooserForm = ({
           }}
         />
 
-        <SubmitButton />
+        <SubmitButton formState={formState} onImageSelected={onImageSelected} />
         {formState?.status}
       </form>
     </div>

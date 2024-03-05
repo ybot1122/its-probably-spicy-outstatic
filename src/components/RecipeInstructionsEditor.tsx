@@ -78,6 +78,13 @@ const RecipeInstructionsEditor = ({
     [ingredients],
   );
 
+  const onImageSelected = useCallback(
+    () => (imgname: string) => {
+      console.log(imgname);
+    },
+    [],
+  );
+
   return (
     <>
       <ol className="p-5">
@@ -115,7 +122,12 @@ const RecipeInstructionsEditor = ({
             >
               &#8595;
             </span>
-            <span className="inline-block border-2 border-silver p-2 mr-5 hover:border-green cursor-pointer">
+            <span
+              className="inline-block border-2 border-silver p-2 mr-5 hover:border-green cursor-pointer"
+              onClick={() => {
+                setOnImageSelected(onImageSelected);
+              }}
+            >
               {image ? "Change" : "Add"} Image
             </span>
             <p className="mt-2">{text}</p>
