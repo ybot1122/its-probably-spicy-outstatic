@@ -1,14 +1,23 @@
+"use client";
+
+import { useState } from "react";
 import { ImageChooserForm } from "./ImageChooserForm";
 import { RecipeForm } from "./RecipeForm";
 
+export type onImageSelectedType = (img: string) => void;
+
 export default function Page() {
-  const images: string[] = [];
+  // when a callback is defined, it will be used by the image chooser form to
+  // return the name of the image that was selected
+  const [onImageSelected, setOnImageSelected] = useState<
+    onImageSelectedType | undefined
+  >();
 
   return (
     <>
       <h1 className="text-6xl text-center">Create a Recipe</h1>
-      <RecipeForm />
-      <ImageChooserForm />
+      <RecipeForm setOnImageSelected={setOnImageSelected} />
+      <ImageChooserForm onImageSelected={onImageSelected} />
     </>
   );
 }

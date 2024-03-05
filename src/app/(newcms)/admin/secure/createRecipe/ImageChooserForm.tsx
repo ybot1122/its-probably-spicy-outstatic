@@ -6,6 +6,7 @@ import { UploadImageActionState, uploadImageAction } from "./uploadImageAction";
 import { experimental_useFormState as useFormState } from "react-dom";
 // @ts-expect-error
 import { experimental_useFormStatus as useFormStatus } from "react-dom";
+import { onImageSelectedType } from "./page";
 
 const SubmitButton = () => {
   const { pending } = useFormStatus();
@@ -21,7 +22,11 @@ const SubmitButton = () => {
   );
 };
 
-const ImageChooserForm = () => {
+const ImageChooserForm = ({
+  onImageSelected,
+}: {
+  onImageSelected: onImageSelectedType;
+}) => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [formState, formAction] = useFormState<UploadImageActionState>(
     uploadImageAction,

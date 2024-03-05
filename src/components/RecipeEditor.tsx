@@ -5,6 +5,7 @@ import TextArea from "./TextArea";
 import RecipeIngredientsEditor from "./RecipeIngredientsEditor";
 import RecipeInstructionsEditor from "./RecipeInstructionsEditor";
 import { useState } from "react";
+import { onImageSelectedType } from "@/app/(newcms)/admin/secure/createRecipe/page";
 
 type CreateRecipeSteps =
   | "recipeName"
@@ -15,10 +16,10 @@ type CreateRecipeSteps =
 
 const RecipeEditor = ({
   initialData,
-  images,
+  setOnImageSelected,
 }: {
   initialData?: RecipeData;
-  images: string[];
+  setOnImageSelected: (cb: onImageSelectedType) => void;
 }) => {
   return (
     <div className="mt-10">
@@ -75,7 +76,7 @@ const RecipeEditor = ({
 
       <div className="mb-5">
         <h2>Recipe Instructions</h2>
-        <RecipeInstructionsEditor images={images} />
+        <RecipeInstructionsEditor setOnImageSelected={setOnImageSelected} />
       </div>
     </div>
   );

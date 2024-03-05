@@ -9,8 +9,13 @@ import { CreateRecipeSubmitButton } from "./CreateRecipeSubmitButton";
 
 // @ts-expect-error
 import { experimental_useFormState as useFormState } from "react-dom";
+import { onImageSelectedType } from "./page";
 
-const RecipeForm = () => {
+const RecipeForm = ({
+  setOnImageSelected,
+}: {
+  setOnImageSelected: (cb: onImageSelectedType) => void;
+}) => {
   const images: string[] = [];
   const [formState, formAction] = useFormState<CreateRecipeFormState>(
     createRecipeAction,
@@ -34,7 +39,7 @@ const RecipeForm = () => {
         style={{ display: "none" }}
         aria-hidden="true"
       ></button>
-      <RecipeEditor images={images} />
+      <RecipeEditor setOnImageSelected={setOnImageSelected} />
       <CreateRecipeSubmitButton formState={formState} />
     </form>
   );

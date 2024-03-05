@@ -1,16 +1,15 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
-import { style } from "./TextInput";
-import ImageChooser from "./ImageChooser";
 import Image from "next/image";
+import { onImageSelectedType } from "@/app/(newcms)/admin/secure/createRecipe/page";
 
 const RecipeInstructionsEditor = ({
   initialVal,
-  images,
+  setOnImageSelected,
 }: {
   initialVal?: { text: string; image: string | null }[];
-  images: string[];
+  setOnImageSelected: (cb: onImageSelectedType) => void;
 }) => {
   const addIngredientRef = useRef<HTMLTextAreaElement>(null);
   const [ingredients, setIngredients] = useState<
@@ -20,8 +19,6 @@ const RecipeInstructionsEditor = ({
       localPreview?: string;
     }[]
   >(initialVal ?? []);
-  const [showImageChooser, setShowImageChooser] = useState(-1);
-
   const addIngredient = useCallback(
     (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
       const keyCode = e.code;
@@ -81,25 +78,6 @@ const RecipeInstructionsEditor = ({
     [ingredients],
   );
 
-  const launchImageChooser = useCallback(
-    (ind: number) => () => {
-      setShowImageChooser(ind);
-    },
-    [],
-  );
-
-  const selectImage = useCallback(
-    (src: string, localPreview?: string) => {
-      const updated = [...ingredients];
-      updated[showImageChooser].image = src;
-      updated[showImageChooser].localPreview = localPreview;
-
-      setIngredients(updated);
-      setShowImageChooser(-1);
-    },
-    [ingredients, showImageChooser],
-  );
-
   return (
     <>
       <ol className="p-5">
@@ -137,10 +115,7 @@ const RecipeInstructionsEditor = ({
             >
               &#8595;
             </span>
-            <span
-              onClick={launchImageChooser(ind)}
-              className="inline-block border-2 border-silver p-2 mr-5 hover:border-green cursor-pointer"
-            >
+            <span className="inline-block border-2 border-silver p-2 mr-5 hover:border-green cursor-pointer">
               {image ? "Change" : "Add"} Image
             </span>
             <p className="mt-2">{text}</p>
@@ -167,16 +142,6 @@ const RecipeInstructionsEditor = ({
           />
         </li>
       </ol>
-      <ImageChooser
-        images={images}
-        close={(e) => {
-          setShowImageChooser(-1);
-          e.stopPropagation();
-          e.preventDefault();
-        }}
-        selectImage={selectImage}
-        hidden={showImageChooser === -1}
-      />
     </>
   );
 };
