@@ -18,6 +18,8 @@ export async function uploadImageAction(
 
   const public_id = spinalCase(path.parse(file.name).name);
 
+  const ext = path.parse(file.name).ext;
+
   const arrayBuffer = await file.arrayBuffer();
 
   const buffer = new Uint8Array(arrayBuffer);
@@ -57,5 +59,5 @@ export async function uploadImageAction(
     return { status: "fail", reason: "Filename already exists" };
   }
 
-  return { status: "success", reason: public_id };
+  return { status: "success", reason: public_id + ext };
 }

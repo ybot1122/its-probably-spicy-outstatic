@@ -42,7 +42,7 @@ const SubmitButton = ({
 const ImageChooserForm = ({
   onImageSelected,
 }: {
-  onImageSelected?: onImageSelectedType;
+  onImageSelected: onImageSelectedType;
 }) => {
   const [selectedImage, setSelectedImage] = useState<Blob | null>(null);
   const [formState, formAction] = useFormState<UploadImageActionState>(
@@ -51,7 +51,7 @@ const ImageChooserForm = ({
   );
 
   return (
-    <div className={`mt-20 ${onImageSelected ? "" : "hidden"}`}>
+    <div className={`mt-20`}>
       {selectedImage && (
         <img
           alt="not found"

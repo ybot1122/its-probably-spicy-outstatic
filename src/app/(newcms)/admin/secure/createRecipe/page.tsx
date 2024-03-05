@@ -17,7 +17,9 @@ export default function Page() {
     <>
       <h1 className="text-6xl text-center">Create a Recipe</h1>
       <RecipeForm setOnImageSelected={setOnImageSelected} />
-      <ImageChooserForm onImageSelected={onImageSelected} />
+      {onImageSelected && (
+        <ImageChooserForm onImageSelected={onImageSelected} />
+      )}
     </>
   );
 }
