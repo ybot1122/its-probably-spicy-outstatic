@@ -1,7 +1,7 @@
 import { createRecipeAction } from "@/app/actions";
 import RecipeEditor from "@/components/RecipeEditor";
 import { RecipeData } from "@/interfaces/recipeData";
-import { AdminButton } from "@/app/(newcms)/admin/secure/dashboard/page";
+import { AdminButton } from "@/components/AdminButton";
 import { getAllImages } from "@/lib/getAllImages";
 import { authorizeUser } from "@/lib/auth/authorizeUser";
 
@@ -9,7 +9,7 @@ export default async function Page() {
   async function createRecipe(formData: FormData) {
     "use server";
 
-    const authorizationStatus = await authorizeUser();
+    const { authorizationStatus, octokit } = await authorizeUser();
 
     if (authorizationStatus === "unauthorized") {
       console.error("unauthorized");

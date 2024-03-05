@@ -2,7 +2,7 @@ import { authorizeUser } from "@/lib/auth/authorizeUser";
 import { Octokit } from "octokit";
 
 export async function POST(request: Request) {
-  const authorizationStatus = await authorizeUser();
+  const { authorizationStatus, octokit } = await authorizeUser();
 
   if (authorizationStatus === "unauthorized") {
     return new Response("unauthorized", { status: 403 });
@@ -17,10 +17,6 @@ export async function POST(request: Request) {
     return new Response("Hello, Next.js!", {
       status: 400,
     });
-
-  const octokit = new Octokit({
-    auth: process.env.PERSONAL_ACCESS_TOKEN,
-  });
 
   const response = await octokit.request(
     "PUT /repos/{owner}/{repo}/contents/{path}",

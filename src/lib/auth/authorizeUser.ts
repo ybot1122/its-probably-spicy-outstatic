@@ -7,13 +7,16 @@ import { allowedUsers } from "@/lib/allowedUsers";
 // Helper function to decryt access token from cookie and check that it is an authorized user
 
 // It must run on the server only
-const authorizeUser = async (): Promise<"authorized" | "unauthorized"> => {
+const authorizeUser = async (): Promise<{
+  authorizationStatus: "authorized" | "unauthorized";
+  octokit?: any;
+}> => {
   const TOKEN_SECRET = process.env.OST_TOKEN_SECRET;
 
   if (!TOKEN_SECRET) {
     console.error("App is not configured correctly. No TOKEN_SECRET found.");
 
-    return "unauthorized";
+    return { authorizationStatus: "unauthorized" };
   }
 
   const encryptedToken = await cookies().get(TOKEN_NAME);
@@ -39,9 +42,9 @@ const authorizeUser = async (): Promise<"authorized" | "unauthorized"> => {
   const data = await response.data;
 
   if (allowedUsers.includes(data.login)) {
-    return "authorized";
+    return { authorizationStatus: "authorized", octokit };
   }
-  return "unauthorized";
+  return { authorizationStatus: "unauthorized" };
 };
 
 export { authorizeUser };

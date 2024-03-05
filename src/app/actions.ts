@@ -1,13 +1,15 @@
 "use server";
 
-import { Octokit } from "octokit";
 import { RecipeData } from "@/interfaces/recipeData";
 import spinalCase from "@/lib/spinalCase";
+import { authorizeUser } from "@/lib/auth/authorizeUser";
 
 export async function createRecipeAction(formData: RecipeData) {
-  const octokit = new Octokit({
-    auth: process.env.PERSONAL_ACCESS_TOKEN,
-  });
+  const { authorizationStatus, octokit } = await authorizeUser();
+
+  if (authorizationStatus === "unauthorized") {
+    return new Response("unauthorized", { status: 403 });
+  }
 
   const filename = spinalCase(formData.recipeName);
 

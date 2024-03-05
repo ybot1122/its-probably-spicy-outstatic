@@ -10,7 +10,7 @@ export default async function RootLayout({
   async function validateSession(): Promise<"authorized" | "unauthorized"> {
     "use server";
 
-    const authorizationStatus = await authorizeUser();
+    const { authorizationStatus } = await authorizeUser();
 
     if (authorizationStatus === "unauthorized") {
       redirect("/admin");
