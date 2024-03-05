@@ -105,33 +105,39 @@ export async function createRecipeAction(
     };
   }
 
-  const filename = spinalCase(recipeData.recipeName);
+  try {
+    const filename = spinalCase(recipeData.recipeName);
 
-  const content = btoa(JSON.stringify(recipeData));
+    const content = btoa(JSON.stringify(recipeData));
 
-  const response = await octokit.request(
-    "PUT /repos/{owner}/{repo}/contents/{path}",
-    {
-      owner: "ybot1122",
-      repo: "its-probably-spicy-outstatic",
-      path: `outstatic/content/recipes/${filename}.json`,
-      message: "my commit message",
-      content,
-      headers: {
-        "X-GitHub-Api-Version": "2022-11-28",
+    const response = await octokit.request(
+      "PUT /repos/{owner}/{repo}/contents/{path}",
+      {
+        owner: "ybot1122",
+        repo: "its-probably-spicy-outstatic",
+        path: `outstatic/content/recipes/${filename}.json`,
+        message: "my commit message",
+        content,
+        headers: {
+          "X-GitHub-Api-Version": "2022-11-28",
+        },
       },
-    },
-  );
+    );
 
-  if (response.status !== 201) {
-    return {
-      status: "success",
-      message: `published at recipes/${filename}`,
-    };
-  } else {
+    if (response.status === 201) {
+      return {
+        status: "success",
+        message: `published at recipes/${filename}`,
+      };
+    }
+  } catch (e: any) {
     return {
       status: "fail",
-      message: "Could not publish",
+      message: "error during publish",
     };
   }
+  return {
+    status: "fail",
+    message: "Could not publish",
+  };
 }

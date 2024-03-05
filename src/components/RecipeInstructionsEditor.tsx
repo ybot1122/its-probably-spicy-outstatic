@@ -104,7 +104,7 @@ const RecipeInstructionsEditor = ({
     <>
       <ol className="p-5">
         {ingredients.map(({ text, image, localPreview }, ind: number) => (
-          <li key={ind} className="mb-2 border-2 border-orange p-5">
+          <li key={ind} className="mb-2 border-2 border-silver p-5">
             <input
               type="hidden"
               name={`recipeInstructions-${ind}`}

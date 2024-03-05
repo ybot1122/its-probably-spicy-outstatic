@@ -18,6 +18,14 @@ export default function Page() {
     null,
   );
 
+  if (formState?.status === "success") {
+    return (
+      <div className="m-20 max-w-lg mx-auto">
+        <h1 className="text-6xl text-center">Success! {formState.message}</h1>
+      </div>
+    );
+  }
+
   return (
     <div className="m-20 max-w-lg mx-auto">
       <h1 className="text-6xl text-center">Create a Recipe</h1>
