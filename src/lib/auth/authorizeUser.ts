@@ -19,13 +19,19 @@ const authorizeUser = async (): Promise<{
     return { authorizationStatus: "unauthorized" };
   }
 
-  const encryptedToken = await cookies().get(TOKEN_NAME);
+  let accessToken = "";
+  try {
+    const encryptedToken = await cookies().get(TOKEN_NAME);
 
-  const accessToken = await Iron.unseal(
-    encryptedToken?.value ?? "",
-    TOKEN_SECRET,
-    Iron.defaults,
-  );
+    accessToken = await Iron.unseal(
+      encryptedToken?.value ?? "",
+      TOKEN_SECRET,
+      Iron.defaults,
+    );
+  } catch (e) {
+    console.error("failed to get access token from cookie");
+    return { authorizationStatus: "unauthorized" };
+  }
 
   // Octokit.js
   // https://github.com/octokit/core.js#readme
