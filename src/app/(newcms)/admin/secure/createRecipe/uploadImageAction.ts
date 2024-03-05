@@ -4,6 +4,7 @@ import { UploadApiResponse, v2 as cloudinary } from "cloudinary";
 
 export type UploadImageActionState = {
   status: "success" | "fail";
+  reason?: string;
 };
 
 export async function uploadImageAction(
@@ -22,17 +23,34 @@ export async function uploadImageAction(
     api_secret: process.env.CLOUDINARY_SECRET,
   });
 
-  await new Promise((resolve, reject) => {
-    cloudinary.uploader
-      .upload_stream({}, (error, result) => {
-        if (error) {
-          reject(error);
-          return;
-        }
-        resolve(result);
-      })
-      .end(buffer);
-  });
+  const result = await new Promise<UploadApiResponse | undefined>(
+    (resolve, reject) => {
+      cloudinary.uploader
+        .upload_stream(
+          {
+            overwrite: false,
+            folder: "its-probably-spicy",
+            public_id: file.name,
+          },
+          (error, result) => {
+            if (error) {
+              reject(error);
+              return;
+            }
+            resolve(result);
+          },
+        )
+        .end(buffer);
+    },
+  );
+
+  if (!result) {
+    return { status: "fail" };
+  }
+
+  if (result.existing) {
+    return { status: "fail", reason: "Filename already exists" };
+  }
 
   return { status: "success" };
 }
