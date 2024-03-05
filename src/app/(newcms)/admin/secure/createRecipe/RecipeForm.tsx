@@ -3,7 +3,7 @@
 import {
   CreateRecipeFormState,
   createRecipeAction,
-} from "@/app/(newcms)/admin/secure/createRecipe/actions";
+} from "@/app/(newcms)/admin/secure/createRecipe/createRecipeAction";
 import RecipeEditor from "@/app/(newcms)/admin/secure/createRecipe/RecipeEditor";
 import { CreateRecipeSubmitButton } from "./CreateRecipeSubmitButton";
 

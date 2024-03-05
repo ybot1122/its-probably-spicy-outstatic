@@ -30,6 +30,8 @@ export async function uploadImageAction(
     api_secret: process.env.CLOUDINARY_SECRET,
   });
 
+  console.log("Starting image upload");
+
   const result = await new Promise<UploadApiResponse | undefined>(
     (resolve, reject) => {
       cloudinary.uploader
@@ -40,6 +42,8 @@ export async function uploadImageAction(
             public_id,
           },
           (error, result) => {
+            console.log("Image upload completed with " + { error });
+
             if (error) {
               reject(error);
               return;
@@ -50,6 +54,8 @@ export async function uploadImageAction(
         .end(buffer);
     },
   );
+
+  console.log("Successful image upload");
 
   if (!result) {
     return { status: "fail" };

@@ -1,5 +1,5 @@
 import { AdminButton } from "@/components/AdminButton";
-import { CreateRecipeFormState } from "./actions";
+import { CreateRecipeFormState } from "./createRecipeAction";
 
 // @ts-expect-error
 import { experimental_useFormStatus as useFormStatus } from "react-dom";
