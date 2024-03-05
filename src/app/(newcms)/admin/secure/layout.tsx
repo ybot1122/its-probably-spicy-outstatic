@@ -1,10 +1,6 @@
-import { Octokit } from "octokit";
-import { TOKEN_NAME } from "@/lib/auth/cookies";
-import * as Iron from "@hapi/iron";
-import { cookies } from "next/headers";
-import { allowedUsers } from "@/lib/allowedUsers";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { authorizeUser } from "@/lib/auth/authorizeUser";
 
 export default async function RootLayout({
   children,
@@ -14,41 +10,13 @@ export default async function RootLayout({
   async function validateSession(): Promise<"authorized" | "unauthorized"> {
     "use server";
 
-    const TOKEN_SECRET = process.env.OST_TOKEN_SECRET;
+    const authorizationStatus = await authorizeUser();
 
-    if (!TOKEN_SECRET) {
-      throw new Error(
-        "App is not configured correctly. No TOKEN_SECRET found.",
-      );
-    }
-
-    const encryptedToken = await cookies().get(TOKEN_NAME);
-
-    const accessToken = await Iron.unseal(
-      encryptedToken?.value ?? "",
-      TOKEN_SECRET,
-      Iron.defaults,
-    );
-
-    // Octokit.js
-    // https://github.com/octokit/core.js#readme
-    const octokit = new Octokit({
-      auth: accessToken,
-    });
-
-    const response = await octokit.request("GET /user", {
-      headers: {
-        "X-GitHub-Api-Version": "2022-11-28",
-      },
-    });
-
-    const data = await response.data;
-
-    if (allowedUsers.includes(data.login)) {
-      return "authorized";
-    } else {
+    if (authorizationStatus === "unauthorized") {
       redirect("/admin");
     }
+
+    return authorizationStatus;
   }
 
   const authStatus = await validateSession();

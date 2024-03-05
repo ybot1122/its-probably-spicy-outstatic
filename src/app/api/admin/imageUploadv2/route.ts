@@ -1,9 +1,16 @@
 // Using Cloudinary
 
 // TODO?
+import { authorizeUser } from "@/lib/auth/authorizeUser";
 import { UploadApiResponse, v2 as cloudinary } from "cloudinary";
 
 export async function POST(request: Request) {
+  const authorizationStatus = await authorizeUser();
+
+  if (authorizationStatus === "unauthorized") {
+    return new Response("unauthorized", { status: 403 });
+  }
+
   const formData = await request.formData();
   const image = formData.get("image") as File;
   const content = formData.get("raw") as string;

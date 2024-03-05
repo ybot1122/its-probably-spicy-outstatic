@@ -3,10 +3,18 @@ import RecipeEditor from "@/components/RecipeEditor";
 import { RecipeData } from "@/interfaces/recipeData";
 import { AdminButton } from "@/app/(newcms)/admin/secure/dashboard/page";
 import { getAllImages } from "@/lib/getAllImages";
+import { authorizeUser } from "@/lib/auth/authorizeUser";
 
 export default async function Page() {
   async function createRecipe(formData: FormData) {
     "use server";
+
+    const authorizationStatus = await authorizeUser();
+
+    if (authorizationStatus === "unauthorized") {
+      console.error("unauthorized");
+      return;
+    }
 
     const recipeName = formData.get("recipeName")?.toString();
     const description = formData.get("description")?.toString();

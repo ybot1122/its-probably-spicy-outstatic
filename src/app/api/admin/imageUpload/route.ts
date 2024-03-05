@@ -1,6 +1,13 @@
+import { authorizeUser } from "@/lib/auth/authorizeUser";
 import { Octokit } from "octokit";
 
 export async function POST(request: Request) {
+  const authorizationStatus = await authorizeUser();
+
+  if (authorizationStatus === "unauthorized") {
+    return new Response("unauthorized", { status: 403 });
+  }
+
   const res = await request.formData();
   const image = res.get("image") as File;
   const content = res.get("raw") as string;
