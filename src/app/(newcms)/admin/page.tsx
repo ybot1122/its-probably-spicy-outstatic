@@ -12,7 +12,7 @@ export default async function Page() {
 
       <div className="grid grid-cols-2 text-center mt-20">
         <div className="col-span-2">
-          <Link href={url.toString()}>Click to Login</Link>
+          <Link href={url.toString()}>Click to Login with GitHub</Link>
         </div>
       </div>
     </div>

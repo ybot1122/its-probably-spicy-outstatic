@@ -3,8 +3,8 @@
 // TODO: REGEX
 
 import { useCallback, useState } from "react";
-import TextInput from "./TextInput";
 import spinalCase from "@/lib/spinalCase";
+import TextArea from "./TextArea";
 
 const RecipeNameInput = ({
   initialVal,
@@ -13,13 +13,13 @@ const RecipeNameInput = ({
 }) => {
   const [val, setVal] = useState(initialVal ?? "");
 
-  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setVal(e.target.value);
   }, []);
 
   return (
     <>
-      <TextInput
+      <TextArea
         initialVal={initialVal}
         label="Recipe Name"
         inputName="recipeName"

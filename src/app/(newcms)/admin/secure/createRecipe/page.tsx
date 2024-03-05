@@ -27,7 +27,7 @@ export default function Page() {
   }
 
   return (
-    <div className="m-20 max-w-lg mx-auto">
+    <>
       <h1 className="text-6xl text-center">Create a Recipe</h1>
       <form action={formAction}>
         {/*<!-- Prevent implicit submission of the form -->*/}
@@ -40,6 +40,6 @@ export default function Page() {
         <RecipeEditor images={images} />
         <CreateRecipeSubmitButton formState={formState} />
       </form>
-    </div>
+    </>
   );
 }

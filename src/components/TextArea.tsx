@@ -5,11 +5,13 @@ const TextArea = ({
   inputName,
   label,
   placeholder,
+  onChange,
 }: {
   initialVal: string | undefined;
   label: string;
   inputName: string;
   placeholder: string;
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }) => (
   <>
     <label htmlFor={inputName} className="block mb-2">
@@ -21,6 +23,7 @@ const TextArea = ({
       placeholder={initialVal ? undefined : placeholder}
       name={inputName}
       id={inputName}
+      onChange={onChange}
     />
   </>
 );

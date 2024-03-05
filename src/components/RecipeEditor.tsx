@@ -4,6 +4,14 @@ import RecipeNameInput from "./RecipeNameInput";
 import TextArea from "./TextArea";
 import RecipeIngredientsEditor from "./RecipeIngredientsEditor";
 import RecipeInstructionsEditor from "./RecipeInstructionsEditor";
+import { useState } from "react";
+
+type CreateRecipeSteps =
+  | "recipeName"
+  | "recipeDescription"
+  | "recipeTimes"
+  | "recipeIngredients"
+  | "recipeInstructions";
 
 const RecipeEditor = ({
   initialData,
@@ -36,7 +44,7 @@ const RecipeEditor = ({
         ></TextArea>
       </div>
       <div className="mb-5">
-        <TextInput
+        <TextArea
           initialVal={initialData?.prepTime}
           label="Prep Time"
           inputName="prepTime"
@@ -44,7 +52,7 @@ const RecipeEditor = ({
         />
       </div>
       <div className="mb-5">
-        <TextInput
+        <TextArea
           initialVal={initialData?.totalTime}
           label="Total Time"
           inputName="totalTime"
@@ -52,7 +60,7 @@ const RecipeEditor = ({
         />
       </div>
       <div className="mb-5">
-        <TextInput
+        <TextArea
           initialVal={initialData?.totalYield}
           label="Total Yield"
           inputName="totalYield"

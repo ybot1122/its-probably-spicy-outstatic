@@ -23,10 +23,13 @@ export default async function RootLayout({
 
   return (
     <>
-      <nav>
-        <Link href="/admin/secure/dashboard">Home</Link> | Logout
+      <nav className="m-10 text-2xl">
+        <Link href="/admin/secure/dashboard" className="hover:underline">
+          Home
+        </Link>{" "}
+        | Logout
       </nav>
-      {children}
+      <div className="m-20 w-xl max-w-xl mx-auto">{children}</div>
     </>
   );
 }
