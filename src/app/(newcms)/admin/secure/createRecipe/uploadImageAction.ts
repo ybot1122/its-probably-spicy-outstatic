@@ -1,6 +1,8 @@
 "use server";
 
+import { CLOUDINARY_CLOUD_NAME } from "@/lib/imagePath";
 import { UploadApiResponse, v2 as cloudinary } from "cloudinary";
+import path from "path";
 
 export type UploadImageActionState = {
   status: "success" | "fail";
@@ -13,12 +15,14 @@ export async function uploadImageAction(
 ): Promise<UploadImageActionState> {
   const file = formData.get("image") as File;
 
+  const public_id = path.parse(file.name).name;
+
   const arrayBuffer = await file.arrayBuffer();
 
   const buffer = new Uint8Array(arrayBuffer);
 
   cloudinary.config({
-    cloud_name: "dryy6uo6k",
+    cloud_name: CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_KEY,
     api_secret: process.env.CLOUDINARY_SECRET,
   });
@@ -30,7 +34,7 @@ export async function uploadImageAction(
           {
             overwrite: false,
             folder: "its-probably-spicy",
-            public_id: file.name,
+            public_id,
           },
           (error, result) => {
             if (error) {

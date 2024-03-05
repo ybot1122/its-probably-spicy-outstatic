@@ -11,7 +11,11 @@ const SubmitButton = () => {
   const { pending } = useFormStatus();
 
   return (
-    <button type="submit" disabled={pending}>
+    <button
+      type="submit"
+      disabled={pending}
+      className="border-2 border-black p-5 hover:border-silver"
+    >
       Upload
     </button>
   );
