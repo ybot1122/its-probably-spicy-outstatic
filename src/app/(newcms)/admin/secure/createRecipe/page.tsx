@@ -1,3 +1,4 @@
+import { ImageChooserForm } from "./ImageChooserForm";
 import { RecipeForm } from "./RecipeForm";
 
 export default function Page() {
@@ -7,6 +8,7 @@ export default function Page() {
     <>
       <h1 className="text-6xl text-center">Create a Recipe</h1>
       <RecipeForm />
+      <ImageChooserForm />
     </>
   );
 }
