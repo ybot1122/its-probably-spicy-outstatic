@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
+import { StepOptions } from "./StepOptions";
 
 const RecipeIngredientsEditor = ({ initialVal }: { initialVal?: string[] }) => {
   const addIngredientRef = useRef<HTMLInputElement>(null);
@@ -59,24 +60,11 @@ const RecipeIngredientsEditor = ({ initialVal }: { initialVal?: string[] }) => {
       <ul className="list-disc list-inside p-5">
         {ingredients.map((ing: string, ind: number) => (
           <li key={ind} className="mb-2">
-            <span
-              onClick={deleteIngredient(ind)}
-              className="inline-block border-2 border-silver p-2 mr-5 hover:border-green cursor-pointer"
-            >
-              X
-            </span>
-            <span
-              onClick={moveIngredient(ind, true)}
-              className="inline-block border-2 border-silver p-2 mr-5 hover:border-green cursor-pointer"
-            >
-              &#8593;
-            </span>
-            <span
-              onClick={moveIngredient(ind, false)}
-              className="inline-block border-2 border-silver p-2 mr-5 hover:border-green cursor-pointer"
-            >
-              &#8595;
-            </span>
+            <StepOptions
+              deleteStep={deleteIngredient(ind)}
+              reorderStepUp={moveIngredient(ind, true)}
+              reorderStepDown={moveIngredient(ind, false)}
+            />
             {ing}
             <input type="hidden" name={`recipeIngredient-${ind}`} value={ing} />
           </li>

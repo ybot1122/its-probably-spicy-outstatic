@@ -4,6 +4,7 @@ import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import { onImageSelectedType } from "@/app/(newcms)/admin/secure/createRecipe/page";
 import { IMAGE_PATH } from "@/lib/imagePath";
+import { StepOptions } from "./StepOptions";
 
 const RecipeInstructionsEditor = ({
   initialVal,
@@ -107,32 +108,18 @@ const RecipeInstructionsEditor = ({
             )}
 
             <p className="mb-2">Step {ind + 1}</p>
-            <span
-              onClick={deleteInstruction(ind)}
-              className="inline-block border-2 border-silver p-2 mr-5 hover:border-green cursor-pointer"
-            >
-              X
-            </span>
-            <span
-              onClick={moveInstruction(ind, true)}
-              className="inline-block border-2 border-silver p-2 mr-5 hover:border-green cursor-pointer"
-            >
-              &#8593;
-            </span>
-            <span
-              onClick={moveInstruction(ind, false)}
-              className="inline-block border-2 border-silver p-2 mr-5 hover:border-green cursor-pointer"
-            >
-              &#8595;
-            </span>
-            <span
-              className="inline-block border-2 border-silver p-2 mr-5 hover:border-green cursor-pointer"
-              onClick={() => {
-                setOnImageSelected(onImageSelected(ind));
+
+            <StepOptions
+              deleteStep={deleteInstruction(ind)}
+              reorderStepUp={moveInstruction(ind, true)}
+              reorderStepDown={moveInstruction(ind, false)}
+              imageOptions={{
+                hasImage: !!image,
+                changeImage: () => {
+                  setOnImageSelected(onImageSelected(ind));
+                },
               }}
-            >
-              {image ? "Change" : "Add"} Image
-            </span>
+            />
             <p className="mt-2">{text}</p>
             <p>
               {image && (
