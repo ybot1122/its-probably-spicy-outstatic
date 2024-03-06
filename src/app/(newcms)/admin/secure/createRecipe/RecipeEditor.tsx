@@ -7,6 +7,7 @@ import RecipeInstructionsEditor from "./RecipeInstructionsEditor";
 import { useState } from "react";
 import { onImageSelectedType } from "@/app/(newcms)/admin/secure/createRecipe/page";
 import { RecipeImageGalleryEditor } from "./RecipeImageGalleryEditor";
+import { HeroImageSelector } from "./HeroImageSelector";
 
 type CreateRecipeSteps =
   | "recipeName"
@@ -78,6 +79,11 @@ const RecipeEditor = ({
       <div className="mb-5">
         <h2>Recipe Instructions</h2>
         <RecipeInstructionsEditor setOnImageSelected={setOnImageSelected} />
+      </div>
+
+      <div className="mb-5">
+        <h2>Hero Image</h2>
+        <HeroImageSelector setOnImageSelected={setOnImageSelected} />
       </div>
 
       <div className="mb-5">
