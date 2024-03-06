@@ -30,22 +30,23 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
     <div className="relative w-full h-full">
       <div>{activeImage}</div>
       <div className="grid grid-cols-3 mt-5">
-        {images.map((img, ind) => (
-          <div
-            className={`col-span-1 ${ind < 2 && "mr-5"} ${ind === activeImageInd ? "border-orange border-2" : ""} cursor-pointer`}
-            key={`img-gallery-${ind}`}
-            onClick={() => setActiveImageInd(ind)}
-          >
-            <Image
-              src={img.src}
-              alt={img.alt}
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{ width: "100%", height: "100%" }} // optional
-            />
-          </div>
-        ))}
+        {images.length > 1 &&
+          images.map((img, ind) => (
+            <div
+              className={`col-span-1 ${ind < 2 && "mr-5"} ${ind === activeImageInd ? "border-orange border-2" : ""} cursor-pointer`}
+              key={`img-gallery-${ind}`}
+              onClick={() => setActiveImageInd(ind)}
+            >
+              <Image
+                src={img.src}
+                alt={img.alt}
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{ width: "100%", height: "100%" }} // optional
+              />
+            </div>
+          ))}
       </div>
     </div>
   );
