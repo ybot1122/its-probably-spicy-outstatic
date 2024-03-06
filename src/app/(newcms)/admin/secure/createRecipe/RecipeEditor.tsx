@@ -81,7 +81,7 @@ const RecipeEditor = ({
       </div>
 
       <div className="mb-5">
-        <h2>Recipe Image Gallery - Add up to 4 images</h2>
+        <h2>Recipe Image Gallery - Add up to 3 images</h2>
         <RecipeImageGalleryEditor setOnImageSelected={setOnImageSelected} />
       </div>
     </div>

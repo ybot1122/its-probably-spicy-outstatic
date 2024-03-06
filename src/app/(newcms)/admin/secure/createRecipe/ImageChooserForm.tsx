@@ -99,10 +99,12 @@ const ImageChooserForm = ({
                   }}
                 />
 
-                <SubmitButton
-                  formState={formState}
-                  onImageSelected={onImageSelected}
-                />
+                {selectedImage && (
+                  <SubmitButton
+                    formState={formState}
+                    onImageSelected={onImageSelected}
+                  />
+                )}
               </form>
             </p>
           </div>

@@ -14,6 +14,8 @@ const validateFormData = (formData: FormData): RecipeData | string => {
     return "no form data";
   }
 
+  /** METADATA */
+
   const recipeName = formData.get("recipeName")?.toString();
   const description = formData.get("description")?.toString();
   const prepTime = formData.get("prepTime")?.toString();
@@ -23,6 +25,8 @@ const validateFormData = (formData: FormData): RecipeData | string => {
   if (!recipeName || !description || !prepTime || !totalTime || !totalYield) {
     return "missing metadata";
   }
+
+  /** INGREDIENTS */
 
   let i = 0;
   const recipeIngredients: string[] = [];
@@ -39,6 +43,8 @@ const validateFormData = (formData: FormData): RecipeData | string => {
   if (recipeIngredients.length === 0) {
     return "missing ingredients";
   }
+
+  /** INSTRUCTIONS */
 
   i = 0;
   const recipeInstructions: { text: string; image: string | null }[] = [];
@@ -59,6 +65,30 @@ const validateFormData = (formData: FormData): RecipeData | string => {
     return "missing instructions";
   }
 
+  /** IMAGE GALLERY */
+  i = 0;
+  const recipeImageGallery: string[] = [];
+  while (formData.get(`recipeGallery-${i}`)?.toString()) {
+    const imgsrc = formData.get(`recipeGallery-${i}`)?.toString();
+
+    if (imgsrc) {
+      recipeImageGallery.push(imgsrc);
+    }
+
+    i++;
+  }
+
+  if (recipeImageGallery.length === 0) {
+    return "at least 1 image required for image gallery";
+  }
+
+  /** HERO IMAGE */
+  const heroImage = formData.get(`recipeHero`)?.toString();
+
+  if (!heroImage) {
+    return "Hero Image required for recipe";
+  }
+
   const rawFormData: RecipeData = {
     recipeName,
     publishedAt: new Date().toISOString(),
@@ -70,8 +100,8 @@ const validateFormData = (formData: FormData): RecipeData | string => {
     recipeIngredients,
     recipeInstructions,
     images: {
-      hero: "Yellow-Banana-Bread_Hero_0530.jpg",
-      gallery: ["cinnamonrolls.jpeg", "HawaiianRolls1.jpeg", "Pretzels.jpeg"],
+      hero: heroImage,
+      gallery: recipeImageGallery,
     },
   };
 
