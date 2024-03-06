@@ -1,5 +1,7 @@
 "use server";
 
+// https://community.cloudinary.com/discussion/432/image-upload-from-api-route-on-cloudinary-works-on-localhost-but-not-on-vercel-production
+
 import { CLOUDINARY_CLOUD_NAME } from "@/lib/imagePath";
 import spinalCase from "@/lib/spinalCase";
 import { UploadApiResponse, v2 as cloudinary } from "cloudinary";
@@ -20,9 +22,12 @@ export async function uploadImageAction(
 
   const ext = path.parse(file.name).ext;
 
-  const arrayBuffer = await file.arrayBuffer();
+  const fileBuffer = await file.arrayBuffer();
 
-  const buffer = new Uint8Array(arrayBuffer);
+  const mime = file.type;
+  const encoding = "base64";
+  const base64Data = Buffer.from(fileBuffer).toString("base64");
+  const fileUri = "data:" + mime + ";" + encoding + "," + base64Data;
 
   cloudinary.config({
     cloud_name: CLOUDINARY_CLOUD_NAME,
@@ -32,28 +37,26 @@ export async function uploadImageAction(
 
   console.log("Starting image upload");
 
-  const result = await new Promise<UploadApiResponse | undefined>(
-    (resolve, reject) => {
-      cloudinary.uploader
-        .upload_stream(
-          {
-            overwrite: false,
-            folder: "its-probably-spicy",
-            public_id,
-          },
-          (error, result) => {
-            console.log("Image upload completed with " + JSON.stringify(error));
+  const uploadToCloudinary = () => {
+    return new Promise<UploadApiResponse>((resolve, reject) => {
+      const result = cloudinary.uploader
+        .upload(fileUri, {
+          invalidate: true,
+          overwrite: false,
+          folder: "its-probably-spicy",
+          public_id,
+        })
+        .then((result) => {
+          resolve(result);
+        })
+        .catch((error) => {
+          console.log(error);
+          reject(error);
+        });
+    });
+  };
 
-            if (error) {
-              reject(error);
-              return;
-            }
-            resolve(result);
-          },
-        )
-        .end(buffer);
-    },
-  );
+  const result = await uploadToCloudinary();
 
   console.log("Successful image upload");
 

@@ -29,14 +29,21 @@ const SubmitButton = ({
     }
   }, [formState, onImageSelected, pending]);
 
-  return (
-    <button
-      type="submit"
-      disabled={pending}
-      className="border-2 border-black p-5 hover:border-silver"
-    >
-      Upload
-    </button>
+  return !pending ? (
+    <>
+      <button
+        type="submit"
+        disabled={pending}
+        className="block mt-5 border-2 border-black p-5 hover:border-silver mx-auto"
+      >
+        Upload
+      </button>
+      {formState?.status === "fail" && (
+        <p className="text-red">{formState.reason}</p>
+      )}
+    </>
+  ) : (
+    <p>please wait...</p>
   );
 };
 
@@ -94,7 +101,6 @@ const ImageChooserForm = ({
                   formState={formState}
                   onImageSelected={onImageSelected}
                 />
-                {formState?.status}
               </form>
             </p>
           </div>
