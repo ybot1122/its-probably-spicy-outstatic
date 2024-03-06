@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { ImageChooserForm } from "./ImageChooserForm";
 import { RecipeForm } from "./RecipeForm";
 
@@ -13,12 +13,19 @@ export default function Page() {
     onImageSelectedType | undefined
   >();
 
+  const closeImageChooser = useCallback(() => {
+    setOnImageSelected(undefined);
+  }, [setOnImageSelected]);
+
   return (
     <>
       <h1 className="text-6xl text-center">Create a Recipe</h1>
       <RecipeForm setOnImageSelected={setOnImageSelected} />
       {onImageSelected && (
-        <ImageChooserForm onImageSelected={onImageSelected} />
+        <ImageChooserForm
+          onImageSelected={onImageSelected}
+          closeImageChooser={closeImageChooser}
+        />
       )}
     </>
   );

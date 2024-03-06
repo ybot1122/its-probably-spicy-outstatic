@@ -49,8 +49,10 @@ const SubmitButton = ({
 
 const ImageChooserForm = ({
   onImageSelected,
+  closeImageChooser,
 }: {
   onImageSelected: onImageSelectedType;
+  closeImageChooser: () => void;
 }) => {
   const [selectedImage, setSelectedImage] = useState<Blob | null>(null);
   const [formState, formAction] = useFormState<UploadImageActionState>(
@@ -106,12 +108,7 @@ const ImageChooserForm = ({
           </div>
           <div className="flex justify-center mt-4">
             {/* Navigates back to the base URL - closing the modal */}
-            <Link
-              href="/"
-              className="px-4 py-2 bg-blue-500  text-base font-medium rounded-md shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300"
-            >
-              Close
-            </Link>
+            <button onClick={closeImageChooser}>Close</button>
           </div>
         </div>
       </div>

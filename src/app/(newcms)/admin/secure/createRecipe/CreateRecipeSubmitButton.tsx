@@ -11,6 +11,10 @@ const CreateRecipeSubmitButton = ({
 }) => {
   const { pending } = useFormStatus();
 
+  if (pending) {
+    return <div className="text-center">please wait...</div>;
+  }
+
   return (
     <div className="text-center">
       {" "}
