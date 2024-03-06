@@ -12,14 +12,14 @@ const RecipeInstructionsEditor = ({
   initialVal?: { text: string; image: string | null }[];
   setOnImageSelected: (cb?: onImageSelectedType) => void;
 }) => {
-  const addIngredientRef = useRef<HTMLTextAreaElement>(null);
-  const [ingredients, setIngredients] = useState<
+  const addInstructionRef = useRef<HTMLTextAreaElement>(null);
+  const [instructions, setInstructions] = useState<
     {
       text: string;
       image: string | null;
     }[]
   >(initialVal ?? []);
-  const addIngredient = useCallback(
+  const addInstruction = useCallback(
     (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
       const keyCode = e.code;
 
@@ -31,66 +31,67 @@ const RecipeInstructionsEditor = ({
       e.stopPropagation();
 
       if (
-        !addIngredientRef ||
-        !addIngredientRef.current ||
-        !addIngredientRef.current.value
+        !addInstructionRef ||
+        !addInstructionRef.current ||
+        !addInstructionRef.current.value
       ) {
         return false;
       }
 
       const updated = [
-        ...ingredients,
+        ...instructions,
         {
-          text: addIngredientRef.current.value,
+          text: addInstructionRef.current.value,
           image: null,
         },
       ];
-      setIngredients(updated);
+      setInstructions(updated);
 
-      addIngredientRef.current.value = "";
+      addInstructionRef.current.value = "";
 
       return false;
     },
-    [ingredients],
+    [instructions],
   );
 
-  const deleteIngredient = useCallback(
+  const deleteInstruction = useCallback(
     (ind: number) => () => {
-      const updated = [...ingredients];
+      const updated = [...instructions];
       updated.splice(ind, 1);
-      setIngredients(updated);
+      setInstructions(updated);
     },
-    [ingredients],
+    [instructions],
   );
 
-  const moveIngredient = useCallback(
+  const moveInstruction = useCallback(
     (ind: number, up: boolean) => () => {
       if (up && ind === 0) return;
-      if (!up && ind === ingredients.length - 1) return;
+      if (!up && ind === instructions.length - 1) return;
 
-      const updated = [...ingredients];
+      const updated = [...instructions];
       const temp = updated[ind];
       updated[ind] = up ? updated[ind - 1] : updated[ind + 1];
       updated[up ? ind - 1 : ind + 1] = temp;
 
-      setIngredients(updated);
+      setInstructions(updated);
     },
-    [ingredients],
+    [instructions],
   );
 
   const onImageSelected = useCallback(
     (ind: number) => () => (imgname: string) => {
-      const updated = [...ingredients];
+      const updated = [...instructions];
       updated[ind].image = imgname;
+      setInstructions(updated);
       setOnImageSelected(undefined);
     },
-    [ingredients, setOnImageSelected],
+    [instructions, setOnImageSelected],
   );
 
   return (
     <>
       <ol className="p-5">
-        {ingredients.map(({ text, image }, ind: number) => (
+        {instructions.map(({ text, image }, ind: number) => (
           <li key={ind} className="mb-2 border-2 border-silver p-5">
             <input
               type="hidden"
@@ -107,19 +108,19 @@ const RecipeInstructionsEditor = ({
 
             <p className="mb-2">Step {ind + 1}</p>
             <span
-              onClick={deleteIngredient(ind)}
+              onClick={deleteInstruction(ind)}
               className="inline-block border-2 border-silver p-2 mr-5 hover:border-green cursor-pointer"
             >
               X
             </span>
             <span
-              onClick={moveIngredient(ind, true)}
+              onClick={moveInstruction(ind, true)}
               className="inline-block border-2 border-silver p-2 mr-5 hover:border-green cursor-pointer"
             >
               &#8593;
             </span>
             <span
-              onClick={moveIngredient(ind, false)}
+              onClick={moveInstruction(ind, false)}
               className="inline-block border-2 border-silver p-2 mr-5 hover:border-green cursor-pointer"
             >
               &#8595;
@@ -151,8 +152,8 @@ const RecipeInstructionsEditor = ({
           <textarea
             className="border-2 border-silver p-2 focus:outline-none focus:ring focus:border-blue-500 w-full h-300"
             placeholder="New Instruction"
-            ref={addIngredientRef}
-            onKeyDown={addIngredient}
+            ref={addInstructionRef}
+            onKeyDown={addInstruction}
           />
         </li>
       </ol>
