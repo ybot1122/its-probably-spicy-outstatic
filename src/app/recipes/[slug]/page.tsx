@@ -9,6 +9,7 @@ import ImageGallery from "@/components/ImageGallery";
 import { getRecipe } from "@/lib/getRecipe";
 import { RecipeData } from "@/interfaces/recipeData";
 import { IMAGE_PATH } from "@/lib/imagePath";
+import { FullHero } from "@/components/FullHero";
 
 export interface Params {
   params: {
@@ -52,22 +53,11 @@ export default async function Recipe(params: Params) {
   return (
     <Layout>
       <article className="mb-8">
-        <div className="relative w-full h-recipeHero mb-10">
-          <div className="relative w-full h-full before:absolute before:block before:w-full before:h-full before:z-10 before:bg-recipeHeroScrim">
-            <Image
-              alt={recipeName}
-              src={IMAGE_PATH + images.hero}
-              fill
-              className="object-cover"
-            />
-          </div>
-          <div className="absolute h-full top-0 left-[50%] translate-x-[-50%] w-full max-w-screen-xl mx-auto z-20">
-            <h1 className="relative top-[50%] translate-y-[-50%] font-primary text-6xl font-bold p-20 text-white z-20 max-w-[1000px] text-center lg:text-left">
-              {recipeName}
-            </h1>
-          </div>
-        </div>
-
+        <FullHero
+          alt={recipeName}
+          src={IMAGE_PATH + images.hero}
+          title={recipeName}
+        />
         <section className="grid grid-cols-2 max-w-screen-xl mx-auto">
           <div className="bg-white ml-5 mr-5 col-span-2 lg:col-span-1 text-center lg:text-left lg:ml-20 lg:mr-0">
             <div className={`mb-10 text-sm ${libre_baskerville.className}`}>

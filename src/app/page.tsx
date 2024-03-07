@@ -4,16 +4,21 @@ import ContentGrid from "../components/ContentGrid";
 import markdownToHtml from "../lib/markdownToHtml";
 import { getAllRecipes } from "@/lib/getAllRecipes";
 import Link from "next/link";
+import Image from "next/image";
+import { FullHero } from "@/components/FullHero";
 
 export default async function Index() {
   const { allRecipes } = await getData();
 
   return (
     <Layout>
-      <div className="max-w-screen-lg mx-auto px-5">
-        <section className="mt-16 mb-16 md:mb-12">
-          <h1>All Recipes</h1>
-        </section>
+      <FullHero
+        alt="New Recipe Now Available"
+        src="/images/IMG_3320.jpg"
+        title={"New Recipe Now Available"}
+      />
+
+      <div className="max-w-screen-lg mx-auto">
         <div>
           {allRecipes.map((slug) => (
             <p key={slug}>
