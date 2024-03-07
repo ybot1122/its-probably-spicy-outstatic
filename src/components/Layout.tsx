@@ -9,9 +9,7 @@ const Layout = ({ children }: Props) => {
   return (
     <>
       <Header />
-      <div className="min-h-screen">
-        <main>{children}</main>
-      </div>
+      <main>{children}</main>
       <Footer />
     </>
   );

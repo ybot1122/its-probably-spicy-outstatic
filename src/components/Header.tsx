@@ -31,7 +31,7 @@ const Header = () => {
 
   return (
     <nav className={`bg-tan h-navHeight ${dosis.className}`}>
-      <div className="layout flex flex-wrap items-center justify-between py-4 pl-5 pr-10 mx-auto max-w-screen-lg h-full">
+      <div className="flex flex-wrap items-center justify-between py-4 pl-5 pr-10 mx-auto max-w-screen-lg h-full">
         <Link href="/">
           <Image
             src="/images/ITS-PROBABLY-SPICY_PRIMARY-LOGO_persimmon-768x768.png"
@@ -56,22 +56,22 @@ const Header = () => {
 
         <div className="basis-full h-0 md:hidden" />
 
-        {navOpen && (
-          <ul
-            className={`flex md:hidden items-center justify-between space-x-3 md:text-base w-full z-10 animate-slideIn`}
-          >
-            {navItems.map(({ text, href }) => (
-              <NavItem text={text} href={href} key={text} />
-            ))}
-          </ul>
-        )}
-
         <ul className="hidden md:flex items-center justify-between space-x-3 md:space-x-4 md:text-base">
           {navItems.map(({ text, href }) => (
             <NavItem text={text} href={href} key={text} />
           ))}
         </ul>
       </div>
+
+      {navOpen && (
+        <ul
+          className={`absolute flex md:hidden items-center justify-between space-x-3 md:text-base w-full z-30 animate-slideIn bg-tan`}
+        >
+          {navItems.map(({ text, href }) => (
+            <NavItem text={text} href={href} key={text} />
+          ))}
+        </ul>
+      )}
     </nav>
   );
 };
