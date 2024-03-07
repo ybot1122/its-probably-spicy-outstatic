@@ -61,8 +61,8 @@ export default async function Recipe(params: Params) {
               className="object-cover"
             />
           </div>
-          <div className="absolute h-full top-0 left-0">
-            <h1 className="relative top-[50%] translate-y-[-50%] font-primary text-6xl font-bold p-20 text-white z-20 max-w-[1000px]">
+          <div className="absolute h-full top-0 left-[50%] translate-x-[-50%] w-full max-w-screen-xl mx-auto z-20">
+            <h1 className="relative top-[50%] translate-y-[-50%] font-primary text-6xl font-bold p-20 text-white z-20 max-w-[1000px] text-center lg:text-left">
               {recipeName}
             </h1>
           </div>
