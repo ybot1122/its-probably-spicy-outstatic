@@ -1,9 +1,13 @@
+"use client";
+
+import { dosis } from "@/app/fonts";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 const NavItem = ({ text, href }: { text: string; href: string }) => {
   return (
-    <li className="group relative text-center">
+    <li className={`group relative text-center`}>
       <Link href={href} className="block p-5">
         {text}
       </Link>
@@ -16,6 +20,8 @@ const NavItem = ({ text, href }: { text: string; href: string }) => {
 };
 
 const Header = () => {
+  const [navOpen, setNavOpen] = useState(false);
+
   const navItems = [
     { text: "Home", href: "/" },
     { text: "About", href: "/" },
@@ -24,18 +30,43 @@ const Header = () => {
   ];
 
   return (
-    <nav className="bg-tan">
-      <div className="layout flex items-center justify-between py-4 px-10 mx-auto max-w-screen-lg">
+    <nav className={`bg-tan h-navHeight ${dosis.className}`}>
+      <div className="layout flex flex-wrap items-center justify-between py-4 pl-5 pr-10 mx-auto max-w-screen-lg h-full">
         <Link href="/">
           <Image
             src="/images/ITS-PROBABLY-SPICY_PRIMARY-LOGO_persimmon-768x768.png"
-            width={150}
-            height={150}
+            width={130}
+            height={130}
             alt="It's Always Spicy"
             className="inline-block"
           />
         </Link>
-        <ul className="flex items-center justify-between space-x-3 md:space-x-4 md:text-base">
+
+        <button
+          className="md:hidden rounded-full hover:bg-silver p-2"
+          onClick={() => setNavOpen(!navOpen)}
+        >
+          <Image
+            src="/images/icons8-menu.svg"
+            width={25}
+            height={25}
+            alt={"Navigation Menu"}
+          />
+        </button>
+
+        <div className="basis-full h-0 md:hidden" />
+
+        {navOpen && (
+          <ul
+            className={`flex md:hidden items-center justify-between space-x-3 md:text-base w-full z-10 animate-slideIn`}
+          >
+            {navItems.map(({ text, href }) => (
+              <NavItem text={text} href={href} key={text} />
+            ))}
+          </ul>
+        )}
+
+        <ul className="hidden md:flex items-center justify-between space-x-3 md:space-x-4 md:text-base">
           {navItems.map(({ text, href }) => (
             <NavItem text={text} href={href} key={text} />
           ))}

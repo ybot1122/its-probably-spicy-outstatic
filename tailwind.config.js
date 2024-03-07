@@ -20,9 +20,19 @@ module.exports = {
     height: {
       recipeHero: "600px",
       full: "100%",
+      navHeight: "150px",
     },
     backgroundImage: {
       recipeHeroScrim: "linear-gradient(90deg,rgba(0,0,0,.5) 0,transparent)",
+    },
+    animation: {
+      slideIn: "300ms 1 alternate slidein",
+    },
+    keyframes: {
+      slidein: {
+        "0%": { transform: "translateY(-20px)" },
+        "100%": { transform: "translateY(0px)" },
+      },
     },
   },
 };

@@ -10,7 +10,7 @@ export default async function Index() {
 
   return (
     <Layout>
-      <div className="max-w-6xl mx-auto px-5">
+      <div className="max-w-screen-lg mx-auto px-5">
         <section className="mt-16 mb-16 md:mb-12">
           <h1>All Recipes</h1>
         </section>
