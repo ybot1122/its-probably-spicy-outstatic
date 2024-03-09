@@ -100,7 +100,6 @@ export default async function Index() {
           ))}
         </div>
       </div>
-      <EngagementBanner />
     </Layout>
   );
 }

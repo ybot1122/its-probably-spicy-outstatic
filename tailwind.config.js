@@ -17,6 +17,7 @@ module.exports = {
       orange: "rgb(206, 92, 37)",
       green: "#00FF00",
       transparentBlack: "rgba(0,0,0,.5)",
+      black: "#000000",
     },
     height: {
       recipeHero: "600px",
