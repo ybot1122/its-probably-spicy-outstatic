@@ -7,7 +7,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { FullHero } from "@/components/FullHero";
 import { libre_baskerville, kalam } from "@/app/fonts";
-import { EngagementBanner } from "@/components/EngagementBanner";
 
 export default async function Index() {
   const { allRecipes } = await getData();
