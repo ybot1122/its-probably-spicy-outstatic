@@ -16,6 +16,7 @@ module.exports = {
       red: "#da1a32",
       orange: "rgb(206, 92, 37)",
       green: "#00FF00",
+      transparentBlack: "rgba(0,0,0,.5)",
     },
     height: {
       recipeHero: "600px",
@@ -33,6 +34,9 @@ module.exports = {
         "0%": { transform: "translateX(50%)" },
         "100%": { transform: "translateX(0px)" },
       },
+    },
+    boxShadow: {
+      "3xl": "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
     },
   },
 };

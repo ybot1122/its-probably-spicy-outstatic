@@ -14,7 +14,27 @@ export default async function Index() {
   return (
     <Layout>
       <div className="max-w-screen-lg mx-auto px-5 mt-10">
-        <section className={`${kalam.className} text-3xl font-light`}>
+        <section>
+          <h1
+            className={`max-w-screen-sm mx-auto text-xl md:text-3xl ${kalam.className} text-center py-5`}
+          >
+            FEATURED RECIPE
+          </h1>
+
+          <div className="group flex relative max-w-screen-sm w-full aspect-video mx-auto justify-center">
+            <h1 className="absolute z-10 self-end rounded-lg text-xl md:text-3xl p-5 bg-transparentBlack text-center text-white uppercase mb-5 hover:bg-orange transition">
+              {" "}
+              <Link href="/recipes/demo-for-daisy">Shiomi Skippers Burger</Link>
+            </h1>
+            <Image
+              src="/images/IMG_3328.jpg"
+              fill
+              alt="Head Chef Daisy"
+              className="rounded-lg object-cover shadow-3xl"
+            />{" "}
+          </div>
+        </section>
+        <section className={`${kalam.className} text-3xl font-light mt-20`}>
           <div className="relative float-right w-[128px] h-[128px] m-2">
             <Image
               src="/images/daisy.jpeg"

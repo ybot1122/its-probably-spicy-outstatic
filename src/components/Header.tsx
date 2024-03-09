@@ -44,7 +44,7 @@ const Header = () => {
           </Link>
         </div>
 
-        <div className="md:hidden justify-self-end flex mr-20">
+        <div className="md:hidden justify-self-end flex mr-5">
           <button
             className=" rounded-full hover:bg-silver p-2 self-center"
             onClick={() => setNavOpen(!navOpen)}
