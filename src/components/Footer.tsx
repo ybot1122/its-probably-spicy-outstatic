@@ -43,7 +43,7 @@ const Footer = () => {
             </Link>
           ))}
         </div>
-        <div className="col-span-3 md:col-span-1 m-10 text-xs italic text-center">
+        <div className="col-span-3 md:col-span-1 p-10 text-xs italic text-center">
           &#169; It's Probably Spicy 2024
         </div>
       </div>

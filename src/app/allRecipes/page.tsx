@@ -64,7 +64,7 @@ export default async function AllRecipes() {
     <Layout>
       <section className={`px-5 mt-20 mb-20`}>
         <div className="flex">
-          <div className="w-[240px] border-r border-orange pr-2">
+          <div className="w-[240px] border-r border-orange pr-2 shrink-0">
             <input
               type="text"
               placeholder="Search Recipes"

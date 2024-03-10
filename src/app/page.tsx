@@ -23,7 +23,7 @@ export default async function Index() {
             FEATURED RECIPE
           </h1>
 
-          <div className="group flex relative max-w-screen-sm w-full aspect-video mx-auto justify-center">
+          <div className="group flex relative w-full aspect-square md:aspect-video mx-auto justify-center">
             <h1 className="absolute z-10 self-end rounded-lg text-xl md:text-3xl p-5 bg-transparentBlack text-center text-white uppercase mb-5 hover:bg-orange transition">
               {" "}
               <Link href="/recipes/demo-for-daisy">Shiomi Skippers Burger</Link>
@@ -54,7 +54,7 @@ export default async function Index() {
 
           <div className="max-w-screen-lg mx-auto px-5 grid grid-cols-4 gap-4">
             {allRecipes.slice(0, 4).map(({ title, image, slug }) => (
-              <div key={title} className="col-span-2 md:col-span-1">
+              <div key={title} className="col-span-4 md:col-span-2">
                 <RecipeCard title={title} slug={slug} image={image} />
               </div>
             ))}

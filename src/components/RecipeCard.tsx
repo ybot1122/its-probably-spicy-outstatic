@@ -29,10 +29,14 @@ const RecipeCard = ({
       </div>
       <div className="grid place-items-center pb-2">
         <h2
-          className={`mt-5 mb-10 text-3xl font-semibold p-2 text-center ${mooli.className}`}
+          className={`mt-5 text-2xl font-semibold p-2 text-center ${mooli.className}`}
         >
           <Link href={`/recipes/${slug}`}>{title}</Link>
         </h2>
+        <p className="text-center px-5 mb-5">
+          It is a long established fact that a reader will be distracted by the
+          readable content of a page when looking at its layout.
+        </p>
       </div>
     </div>
   );
