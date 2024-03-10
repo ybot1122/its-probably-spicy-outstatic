@@ -67,24 +67,24 @@ export default async function Recipe(params: Params) {
                 <DateFormatter dateString={publishedAt} />
               </span>
             </div>
-            <div className="pr-10 mb-10 text-xl leading-loose text-center lg:text-left">
+            <div className="lg:pr-10 mb-10 text-xl leading-relaxed text-left">
               {description}
             </div>
 
             {/* Metadata */}
-            <div className="grid grid-cols-2">
+            <div className="grid grid-cols-3 mb-10">
               <div className="col-span-1">
                 <p>Prep Time</p>
                 <p className="text-xl">{prepTime}</p>
               </div>
-              <div>
+              <div className="col-span-1">
                 <p>Total Time</p>
                 <p className="text-xl">{totalTime}</p>
               </div>
-            </div>
-            <div className="border-t-2 border-orange mt-5 pt-5 mb-10 lg:mr-10">
-              <p>Yield</p>
-              <p className="text-xl">{totalYield}</p>
+              <div className="col-span-1">
+                <p>Yield</p>
+                <p className="text-xl">{totalYield}</p>
+              </div>
             </div>
           </div>
           <div className="col-span-2 ml-5 mr-5 mb-10 lg:ml-0 lg:mr-20 lg:col-span-1">
