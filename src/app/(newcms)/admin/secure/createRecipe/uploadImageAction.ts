@@ -56,17 +56,24 @@ export async function uploadImageAction(
     });
   };
 
-  const result = await uploadToCloudinary();
+  try {
+    const result = await uploadToCloudinary();
 
-  console.log("Successful image upload");
+    if (!result) {
+      return { status: "fail" };
+    }
 
-  if (!result) {
-    return { status: "fail" };
+    if (result.existing) {
+      return { status: "fail", reason: "Filename already exists" };
+    }
+
+    console.log("Successful image upload");
+
+    return { status: "success", reason: public_id + ext };
+  } catch (e: any) {
+    return {
+      status: "fail",
+      reason: e.message,
+    };
   }
-
-  if (result.existing) {
-    return { status: "fail", reason: "Filename already exists" };
-  }
-
-  return { status: "success", reason: public_id + ext };
 }
