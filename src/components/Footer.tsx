@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { dosis } from "@/app/fonts";
 
 /* Social Media Icons https://www.iconfinder.com/social-media-icons*/
 
@@ -7,7 +8,7 @@ const socials = ["facebook", "whatsapp", "instagram", "youtube"];
 
 const Footer = () => {
   return (
-    <footer className="bg-tan">
+    <footer className={`bg-tan ${dosis.className}`}>
       <div className="grid grid-cols-3 max-w-screen-lg mx-auto items-center">
         <div className="col-span-3 md:col-span-1 p-10 border-b md:border-b-0 border-silver">
           <p className="mb-5">

@@ -1,4 +1,10 @@
-import { Fraunces, Libre_Baskerville, Dosis, Kalam } from "next/font/google";
+import {
+  Fraunces,
+  Libre_Baskerville,
+  Dosis,
+  Kalam,
+  Mooli,
+} from "next/font/google";
 
 // 300-light, 400-semibold, 700-bold
 export const fraunces = Fraunces({
@@ -7,6 +13,12 @@ export const fraunces = Fraunces({
 });
 
 export const libre_baskerville = Libre_Baskerville({
+  subsets: ["latin"],
+  display: "swap",
+  weight: "400",
+});
+
+export const mooli = Libre_Baskerville({
   subsets: ["latin"],
   display: "swap",
   weight: "400",
