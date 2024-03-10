@@ -1,6 +1,7 @@
 import { getRecipe } from "@/lib/getRecipe";
 import { RecipeData } from "@/interfaces/recipeData";
 import { RecipeForm } from "../RecipeForm";
+import { getExistingSha } from "./getExistingSha";
 
 export type onImageSelectedType = (img: string) => void;
 
@@ -18,13 +19,18 @@ export default async function Page(params: Params) {
   return (
     <>
       <h1 className="text-6xl text-center">Create a Recipe</h1>
-      <RecipeForm initialData={initialData} />
+      <RecipeForm
+        initialData={initialData?.recipe}
+        sha={initialData?.sha}
+        slug={params.params.slug}
+      />
     </>
   );
 }
 
 async function getData(slug: string) {
   const recipe = getRecipe(slug);
+  const response = await getExistingSha({ filename: slug });
 
-  return recipe as RecipeData;
+  return { recipe: recipe as RecipeData, sha: response.message };
 }

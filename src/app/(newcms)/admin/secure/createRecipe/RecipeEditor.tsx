@@ -19,14 +19,16 @@ type CreateRecipeSteps =
 const RecipeEditor = ({
   initialData,
   setOnImageSelected,
+  slug,
 }: {
   initialData?: RecipeData;
   setOnImageSelected: (cb?: onImageSelectedType) => void;
+  slug?: string;
 }) => {
   return (
     <div className="mt-10">
       <div className="mb-5">
-        <RecipeNameInput initialVal={initialData?.recipeName} />
+        <RecipeNameInput initialVal={initialData?.recipeName} slug={slug} />
       </div>
 
       <div className="mb-5 hidden">

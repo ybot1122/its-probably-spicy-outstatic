@@ -8,8 +8,10 @@ import TextArea from "../../../../../components/TextArea";
 
 const RecipeNameInput = ({
   initialVal,
+  slug,
 }: {
-  initialVal: string | undefined;
+  initialVal?: string;
+  slug?: string;
 }) => {
   const [val, setVal] = useState(initialVal ?? "");
 
@@ -28,7 +30,9 @@ const RecipeNameInput = ({
       />
       {val && (
         <p className="text-sm pt-2">
-          Your URL will be: {`/recipes/${spinalCase(val)}`}
+          {slug
+            ? `Your URL Will Continue to Be: /recipes/${slug}`
+            : `Your URL will be: /recipes/${spinalCase(val)}`}
         </p>
       )}
     </>

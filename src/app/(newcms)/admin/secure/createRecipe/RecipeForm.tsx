@@ -14,8 +14,15 @@ import { onImageSelectedType } from "./[[...slug]]/page";
 import { RecipeData } from "@/interfaces/recipeData";
 import { useCallback, useState } from "react";
 
-const RecipeForm = ({ initialData }: { initialData?: RecipeData }) => {
-  const images: string[] = [];
+const RecipeForm = ({
+  initialData,
+  sha,
+  slug,
+}: {
+  initialData?: RecipeData;
+  sha?: string;
+  slug?: string;
+}) => {
   const [formState, formAction] = useFormState<CreateRecipeFormState>(
     createRecipeAction,
     null,
@@ -52,8 +59,11 @@ const RecipeForm = ({ initialData }: { initialData?: RecipeData }) => {
         <RecipeEditor
           setOnImageSelected={setOnImageSelected}
           initialData={initialData}
+          slug={slug}
         />
-        <CreateRecipeSubmitButton formState={formState} />
+        {sha && <input type="hidden" name="sha" value={sha} />}
+        {slug && <input type="hidden" name="slug" value={slug} />}
+        <CreateRecipeSubmitButton formState={formState} sha={sha} />
       </form>
       {onImageSelected && (
         <ImageChooserForm

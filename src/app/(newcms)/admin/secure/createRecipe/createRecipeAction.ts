@@ -9,10 +9,15 @@ export type CreateRecipeFormState = {
   message: string;
 };
 
-const validateFormData = (formData: FormData): RecipeData | string => {
+const validateFormData = (
+  formData: FormData,
+): { recipeData: RecipeData; sha?: string; slug?: string } | string => {
   if (!formData || !formData.get) {
     return "no form data";
   }
+
+  const sha = formData.get("sha")?.toString();
+  const slug = formData.get("slug")?.toString();
 
   /** METADATA */
 
@@ -105,7 +110,7 @@ const validateFormData = (formData: FormData): RecipeData | string => {
     },
   };
 
-  return rawFormData;
+  return { recipeData: rawFormData, sha, slug };
 };
 
 export async function createRecipeAction(
@@ -121,14 +126,16 @@ export async function createRecipeAction(
     };
   }
 
-  const recipeData = validateFormData(formData);
+  const validatedFormData = validateFormData(formData);
 
-  if (typeof recipeData === "string") {
+  if (typeof validatedFormData === "string") {
     return {
       status: "fail",
-      message: recipeData,
+      message: validatedFormData,
     };
   }
+
+  const { recipeData, sha, slug } = validatedFormData;
 
   try {
     const filename = spinalCase(recipeData.recipeName);
@@ -140,9 +147,10 @@ export async function createRecipeAction(
       {
         owner: "ybot1122",
         repo: "its-probably-spicy-outstatic",
-        path: `outstatic/content/recipes/${filename}.json`,
+        path: `outstatic/content/recipes/${slug ? slug : filename}.json`,
         message: "my commit message",
         content,
+        sha,
         headers: {
           "X-GitHub-Api-Version": "2022-11-28",
         },
@@ -152,7 +160,12 @@ export async function createRecipeAction(
     if (response.status === 201) {
       return {
         status: "success",
-        message: `published at recipes/${filename}`,
+        message: `published at recipes/${filename} ; Please wait 2 mins for update.`,
+      };
+    } else if (response.status === 200) {
+      return {
+        status: "success",
+        message: `updated at recipes/${slug} ; Please wait 2 mins for update.`,
       };
     }
   } catch (e: any) {

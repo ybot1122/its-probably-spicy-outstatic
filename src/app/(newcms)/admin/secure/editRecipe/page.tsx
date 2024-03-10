@@ -13,24 +13,28 @@ export default async function EditRecipe() {
       <div className="grid grid-cols-2 text-center mt-20">
         <div className="col-span-2">
           <table className="w-full text-left">
-            <tr>
-              <th>Recipe Name</th>
-              <th>Date Published</th>
-              <th>Slug</th>
-            </tr>
-            {allRecipes.map(({ title, publishedAt, slug }) => (
-              <tr key={slug}>
-                <td>
-                  <Link href={`/admin/secure/createRecipe/${slug}`}>
-                    {title}
-                  </Link>
-                </td>
-                <td>
-                  <DateFormatter dateString={publishedAt} />
-                </td>
-                <td>{slug}</td>
+            <thead>
+              <tr>
+                <th>Recipe Name</th>
+                <th>Date Published</th>
+                <th>Slug</th>
               </tr>
-            ))}
+            </thead>
+            <tbody>
+              {allRecipes.map(({ title, publishedAt, slug }) => (
+                <tr key={slug}>
+                  <td>
+                    <Link href={`/admin/secure/createRecipe/${slug}`}>
+                      {title}
+                    </Link>
+                  </td>
+                  <td>
+                    <DateFormatter dateString={publishedAt} />
+                  </td>
+                  <td>{slug}</td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
       </div>
