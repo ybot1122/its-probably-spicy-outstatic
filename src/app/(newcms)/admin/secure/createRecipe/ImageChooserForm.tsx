@@ -6,7 +6,7 @@ import { UploadImageActionState, uploadImageAction } from "./uploadImageAction";
 import { experimental_useFormState as useFormState } from "react-dom";
 // @ts-expect-error
 import { experimental_useFormStatus as useFormStatus } from "react-dom";
-import { onImageSelectedType } from "./page";
+import { onImageSelectedType } from "./[[...slug]]/page";
 import Link from "next/link";
 
 const SubmitButton = ({

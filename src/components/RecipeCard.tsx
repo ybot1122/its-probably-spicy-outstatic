@@ -15,7 +15,7 @@ const RecipeCard = ({
 }) => {
   return (
     <div className={`mb-5 bg-tan`}>
-      <div className="w-full aspect-square border-orange p-2">
+      <div className="w-full aspect-square border-orange px-5 pt-5">
         <div className="relative w-full aspect-square">
           <Link href={`/recipes/${slug}`}>
             <Image

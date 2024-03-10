@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { AdminButton } from "@/components/AdminButton";
 
-export default async function Page() {
+export default async function Dashboard() {
   return (
     <>
       <h1 className="text-6xl text-center">Welcome to the Admin Panel</h1>
@@ -14,7 +14,9 @@ export default async function Page() {
         </div>
 
         <div className="col-span-1">
-          <AdminButton text="Edit an Existing Recipe" />
+          <Link href="/admin/secure/editRecipe">
+            <AdminButton text="Edit an Existing Recipe" />
+          </Link>
         </div>
       </div>
     </>

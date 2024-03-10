@@ -5,7 +5,7 @@ import TextArea from "../../../../../components/TextArea";
 import RecipeIngredientsEditor from "./RecipeIngredientsEditor";
 import RecipeInstructionsEditor from "./RecipeInstructionsEditor";
 import { useState } from "react";
-import { onImageSelectedType } from "@/app/(newcms)/admin/secure/createRecipe/page";
+import { onImageSelectedType } from "@/app/(newcms)/admin/secure/createRecipe/[[...slug]]/page";
 import { RecipeImageGalleryEditor } from "./RecipeImageGalleryEditor";
 import { HeroImageSelector } from "./HeroImageSelector";
 

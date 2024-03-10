@@ -21,6 +21,7 @@ export async function getAllRecipes() {
         title: json.recipeName,
         image: json.images.hero,
         slug,
+        publishedAt: json.publishedAt,
       };
     });
 

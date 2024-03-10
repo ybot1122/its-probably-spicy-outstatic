@@ -9,11 +9,14 @@ import { CreateRecipeSubmitButton } from "./CreateRecipeSubmitButton";
 
 // @ts-expect-error
 import { experimental_useFormState as useFormState } from "react-dom";
-import { onImageSelectedType } from "./page";
+import { onImageSelectedType } from "./[[...slug]]/page";
+import { RecipeData } from "@/interfaces/recipeData";
 
 const RecipeForm = ({
+  initialData,
   setOnImageSelected,
 }: {
+  initialData?: RecipeData;
   setOnImageSelected: (cb?: onImageSelectedType) => void;
 }) => {
   const images: string[] = [];

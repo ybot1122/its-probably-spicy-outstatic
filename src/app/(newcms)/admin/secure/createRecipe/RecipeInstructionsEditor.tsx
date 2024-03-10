@@ -2,7 +2,7 @@
 
 import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
-import { onImageSelectedType } from "@/app/(newcms)/admin/secure/createRecipe/page";
+import { onImageSelectedType } from "@/app/(newcms)/admin/secure/createRecipe/[[...slug]]/page";
 import { IMAGE_PATH } from "@/lib/imagePath";
 import { StepOptions } from "./StepOptions";
 

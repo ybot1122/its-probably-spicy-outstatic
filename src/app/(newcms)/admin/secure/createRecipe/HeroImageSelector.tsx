@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { onImageSelectedType } from "./page";
+import { onImageSelectedType } from "./[[...slug]]/page";
 import { IMAGE_PATH } from "@/lib/imagePath";
 import Image from "next/image";
 

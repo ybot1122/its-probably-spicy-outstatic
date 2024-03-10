@@ -1,12 +1,18 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { ImageChooserForm } from "./ImageChooserForm";
-import { RecipeForm } from "./RecipeForm";
+import { ImageChooserForm } from "../ImageChooserForm";
+import { RecipeForm } from "../RecipeForm";
 
 export type onImageSelectedType = (img: string) => void;
 
-export default function Page() {
+interface Params {
+  params: {
+    slug: string;
+  };
+}
+
+export default function Page(params: Params) {
   // when a callback is defined, it will be used by the image chooser form to
   // return the name of the image that was selected
   const [onImageSelected, setOnImageSelected] = useState<
