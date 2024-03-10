@@ -18,7 +18,11 @@ export default async function Page(params: Params) {
 
   return (
     <>
-      <h1 className="text-6xl text-center">Create a Recipe</h1>
+      <h1 className="text-6xl text-center">
+        {initialData
+          ? `Updating Recipe at /recipes/${params.params.slug}`
+          : "Create a Recipe"}
+      </h1>
       <RecipeForm
         initialData={initialData?.recipe}
         sha={initialData?.sha}

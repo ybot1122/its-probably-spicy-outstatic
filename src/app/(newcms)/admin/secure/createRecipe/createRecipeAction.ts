@@ -169,6 +169,7 @@ export async function createRecipeAction(
       };
     }
   } catch (e: any) {
+    console.log(e);
     return {
       status: "fail",
       message: "error during publish",
