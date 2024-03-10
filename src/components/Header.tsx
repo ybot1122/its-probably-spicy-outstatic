@@ -26,7 +26,7 @@ const Header = () => {
     { text: "Home", href: "/" },
     { text: "About", href: "/about" },
     { text: "Recipes", href: "/allRecipes" },
-    { text: "Contact", href: "/" },
+    { text: "Contact", href: "/contact" },
   ];
 
   return (
