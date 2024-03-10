@@ -1,12 +1,28 @@
+import { RecipeData } from "@/interfaces/recipeData";
 import fs from "fs";
 import { join } from "path";
 const recipesDirectory = join(process.cwd(), "outstatic/content/recipes");
 
-export function getAllRecipes() {
+export async function getAllRecipes() {
   const files = fs
     .readdirSync(recipesDirectory)
     .filter((filename) => filename.endsWith(".json"))
-    .map((f) => f.slice(0, -5));
+    .map((f) => {
+      const slug = f.slice(0, -5);
+
+      const data = fs.readFileSync(join(recipesDirectory, f), {
+        encoding: "utf8",
+        flag: "r",
+      });
+
+      const json: RecipeData = JSON.parse(data);
+
+      return {
+        title: json.recipeName,
+        image: json.images.hero,
+        slug,
+      };
+    });
 
   return files;
 }

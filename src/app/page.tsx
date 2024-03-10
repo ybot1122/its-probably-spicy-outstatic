@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FullHero } from "@/components/FullHero";
 import { libre_baskerville, kalam } from "@/app/fonts";
+import { IMAGE_PATH } from "@/lib/imagePath";
 
 const TEMP = [
   "IMG_3320.jpg",
@@ -56,46 +57,43 @@ export default async function Index() {
             </h1>
 
             <span
-              className="inline-block grow h-[2px] bg-orange"
+              className="inline-block grow h-[2px] bg-orange mr-5"
               aria-hidden="true"
             ></span>
           </div>
 
           <div className="max-w-screen-lg mx-auto pb-20 px-5 grid grid-cols-4 gap-4">
-            {TEMP.map((t) => (
-              <div className="col-span-2 md:col-span-1 mb-10 bg-tan" key={t}>
+            {allRecipes.slice(0, 4).map(({ title, image, slug }) => (
+              <div
+                className="col-span-2 md:col-span-1 mb-10 bg-tan"
+                key={title}
+              >
                 <div className="w-full aspect-square border-orange p-2">
                   <div className="relative w-full aspect-square">
                     <Image
-                      src={`/images/${t}`}
+                      src={IMAGE_PATH + image}
                       fill
-                      alt={t}
+                      alt={title}
                       className="object-cover"
                     />
                   </div>
                 </div>
                 <div className="grid place-items-center pb-2">
-                  <h2>Recipe Title Here</h2>
+                  <h2>
+                    <Link href={`/recipes/${slug}`}>{title}</Link>
+                  </h2>
                 </div>
               </div>
             ))}
           </div>
         </section>
-
-        <div className="mt-20">
-          {allRecipes.map((slug) => (
-            <p key={slug}>
-              <Link href={`recipes/${slug}`}>{slug}</Link>
-            </p>
-          ))}
-        </div>
       </div>
     </Layout>
   );
 }
 
 async function getData() {
-  const allRecipes = getAllRecipes();
+  const allRecipes = await getAllRecipes();
 
   return {
     allRecipes,

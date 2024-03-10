@@ -149,6 +149,6 @@ async function getData(slug: string) {
 }
 
 export async function generateStaticParams() {
-  const recipes = getAllRecipes();
-  return recipes.map((slug) => ({ slug }));
+  const recipes = await getAllRecipes();
+  return recipes.map(({ slug }) => ({ slug }));
 }
