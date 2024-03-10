@@ -1,6 +1,6 @@
 import { absoluteUrl } from "@/lib/utils";
 import { Metadata } from "next";
-import { fraunces } from "./fonts";
+import { mooli } from "./fonts";
 import "../styles/index.css";
 
 export const metadata: Metadata = {
@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={fraunces.className}>
+    <html lang="en" className={mooli.className}>
       <body>{children}</body>
     </html>
   );

@@ -4,7 +4,6 @@ import DateFormatter from "@/components/DateFormatter";
 import Image from "next/image";
 import { Metadata } from "next";
 import { absoluteUrl } from "@/lib/utils";
-import { libre_baskerville } from "@/app/fonts";
 import ImageGallery from "@/components/ImageGallery";
 import { getRecipe } from "@/lib/getRecipe";
 import { RecipeData } from "@/interfaces/recipeData";
@@ -60,7 +59,7 @@ export default async function Recipe(params: Params) {
         />
         <section className="grid grid-cols-2 max-w-screen-xl mx-auto">
           <div className="bg-white ml-5 mr-5 col-span-2 lg:col-span-1 text-center lg:text-left lg:ml-20 lg:mr-0">
-            <div className={`mb-10 text-sm ${libre_baskerville.className}`}>
+            <div className={`mb-10 text-sm `}>
               <span className="inline-block border-r-2 border-orange pr-5">
                 Recipe by {`${author}`}
               </span>

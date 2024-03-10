@@ -6,19 +6,9 @@ import { getAllRecipes } from "@/lib/getAllRecipes";
 import Link from "next/link";
 import Image from "next/image";
 import { FullHero } from "@/components/FullHero";
-import { libre_baskerville, kalam } from "@/app/fonts";
+import { kalam } from "@/app/fonts";
 import { IMAGE_PATH } from "@/lib/imagePath";
-
-const TEMP = [
-  "IMG_3320.jpg",
-  "IMG_3438.jpg",
-  "IMG_3429.jpg",
-  "IMG_3440.jpg",
-  "IMG_3320.jpg",
-  "IMG_3438.jpg",
-  "IMG_3429.jpg",
-  "IMG_3440.jpg",
-];
+import { RecipeCard } from "@/components/RecipeCard";
 
 export default async function Index() {
   const { allRecipes } = await getData();
@@ -48,7 +38,7 @@ export default async function Index() {
         </section>
 
         {/*image zoom https://w3bits.com/labs/css-image-hover-zoom/ */}
-        <section className={`${libre_baskerville.className} `}>
+        <section>
           <div className="flex max-w-screen-lg mx-auto items-center mt-20">
             <h1
               className={` text-xl md:text-3xl ${kalam.className} text-left p-5`}
@@ -64,30 +54,14 @@ export default async function Index() {
 
           <div className="max-w-screen-lg mx-auto px-5 grid grid-cols-4 gap-4">
             {allRecipes.slice(0, 4).map(({ title, image, slug }) => (
-              <div className="col-span-2 md:col-span-1 mb-5 bg-tan" key={title}>
-                <div className="w-full aspect-square border-orange p-2">
-                  <div className="relative w-full aspect-square">
-                    <Link href={`/recipes/${slug}`}>
-                      <Image
-                        src={IMAGE_PATH + image}
-                        fill
-                        alt={title}
-                        className="object-cover"
-                      />
-                    </Link>
-                  </div>
-                </div>
-                <div className="grid place-items-center pb-2">
-                  <h2>
-                    <Link href={`/recipes/${slug}`}>{title}</Link>
-                  </h2>
-                </div>
+              <div key={title} className="col-span-2 md:col-span-1">
+                <RecipeCard title={title} slug={slug} image={image} />
               </div>
             ))}
 
             <div className="col-start-2 col-span-2 text-center">
               <Link
-                href="/"
+                href="/allRecipes"
                 className="inline-block border-orange p-5 border-2 transition hover:bg-orange rounded-lg"
               >
                 VIEW ALL RECIPES
@@ -97,9 +71,7 @@ export default async function Index() {
         </section>
 
         {/*image zoom https://w3bits.com/labs/css-image-hover-zoom/ */}
-        <section
-          className={`${libre_baskerville.className} mt-20 max-w-screen-lg mx-auto`}
-        >
+        <section className={`mt-20 max-w-screen-lg mx-auto`}>
           <FullHero
             src="/images/granola.jpg"
             alt="World's Best Granola"

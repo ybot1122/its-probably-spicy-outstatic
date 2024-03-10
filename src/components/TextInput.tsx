@@ -1,6 +1,4 @@
-import { libre_baskerville } from "@/app/fonts";
-
-export const style = `block border-2 border-silver p-5 w-full focus:outline-none focus:ring focus:border-blue-500 ${libre_baskerville.className}`;
+export const style = `block border-2 border-silver p-5 w-full focus:outline-none focus:ring focus:border-blue-500`;
 
 const TextInput = ({
   initialVal,
