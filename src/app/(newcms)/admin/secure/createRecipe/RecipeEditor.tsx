@@ -73,22 +73,31 @@ const RecipeEditor = ({
 
       <div className="mb-5">
         <h2>Recipe Ingredients</h2>
-        <RecipeIngredientsEditor />
+        <RecipeIngredientsEditor initialVal={initialData?.recipeIngredients} />
       </div>
 
       <div className="mb-5">
         <h2>Recipe Instructions</h2>
-        <RecipeInstructionsEditor setOnImageSelected={setOnImageSelected} />
+        <RecipeInstructionsEditor
+          setOnImageSelected={setOnImageSelected}
+          initialVal={initialData?.recipeInstructions}
+        />
       </div>
 
       <div className="mb-5">
         <h2>Hero Image</h2>
-        <HeroImageSelector setOnImageSelected={setOnImageSelected} />
+        <HeroImageSelector
+          setOnImageSelected={setOnImageSelected}
+          initialVal={initialData?.images.hero}
+        />
       </div>
 
       <div className="mb-5">
         <h2>Recipe Image Gallery - Add up to 3 images</h2>
-        <RecipeImageGalleryEditor setOnImageSelected={setOnImageSelected} />
+        <RecipeImageGalleryEditor
+          setOnImageSelected={setOnImageSelected}
+          initialVal={initialData?.images.gallery}
+        />
       </div>
     </div>
   );

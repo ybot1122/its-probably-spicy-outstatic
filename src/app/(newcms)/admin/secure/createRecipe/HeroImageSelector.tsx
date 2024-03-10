@@ -2,13 +2,16 @@ import { useCallback, useState } from "react";
 import { onImageSelectedType } from "./[[...slug]]/page";
 import { IMAGE_PATH } from "@/lib/imagePath";
 import Image from "next/image";
+import { RecipeData } from "@/interfaces/recipeData";
 
 const HeroImageSelector = ({
+  initialVal,
   setOnImageSelected,
 }: {
+  initialVal?: RecipeData["images"]["hero"];
   setOnImageSelected: (cb?: onImageSelectedType) => void;
 }) => {
-  const [heroImage, setHeroImage] = useState<string>();
+  const [heroImage, setHeroImage] = useState<string>(initialVal ?? "");
 
   const onImageSelected = useCallback(
     () => () => (imgname: string) => {

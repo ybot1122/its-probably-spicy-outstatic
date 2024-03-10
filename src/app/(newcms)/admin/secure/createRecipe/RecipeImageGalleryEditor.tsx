@@ -5,13 +5,16 @@ import Image from "next/image";
 import { useCallback, useState } from "react";
 import { onImageSelectedType } from "./[[...slug]]/page";
 import { StepOptions } from "./StepOptions";
+import { RecipeData } from "@/interfaces/recipeData";
 
 const RecipeImageGalleryEditor = ({
+  initialVal,
   setOnImageSelected,
 }: {
+  initialVal?: RecipeData["images"]["gallery"];
   setOnImageSelected: (cb?: onImageSelectedType) => void;
 }) => {
-  const [images, setImages] = useState<string[]>([]);
+  const [images, setImages] = useState<string[]>(initialVal ?? []);
 
   const onImageSelected = useCallback(
     (ind: number) => () => (imgname: string) => {

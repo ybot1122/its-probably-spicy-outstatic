@@ -20,11 +20,15 @@ export default async function EditRecipe() {
             </tr>
             {allRecipes.map(({ title, publishedAt, slug }) => (
               <tr key={slug}>
-                <td>{title}</td>
+                <td>
+                  <Link href={`/admin/secure/createRecipe/${slug}`}>
+                    {title}
+                  </Link>
+                </td>
                 <td>
                   <DateFormatter dateString={publishedAt} />
                 </td>
-                <td>{`/recipes/${slug}`}</td>
+                <td>{slug}</td>
               </tr>
             ))}
           </table>
