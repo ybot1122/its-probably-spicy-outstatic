@@ -6,24 +6,30 @@ import {
 } from "@/app/(newcms)/admin/secure/createRecipe/createRecipeAction";
 import RecipeEditor from "@/app/(newcms)/admin/secure/createRecipe/RecipeEditor";
 import { CreateRecipeSubmitButton } from "./CreateRecipeSubmitButton";
+import { ImageChooserForm } from "@/app/(newcms)/admin/secure/createRecipe/ImageChooserForm";
 
 // @ts-expect-error
 import { experimental_useFormState as useFormState } from "react-dom";
 import { onImageSelectedType } from "./[[...slug]]/page";
 import { RecipeData } from "@/interfaces/recipeData";
+import { useCallback, useState } from "react";
 
-const RecipeForm = ({
-  initialData,
-  setOnImageSelected,
-}: {
-  initialData?: RecipeData;
-  setOnImageSelected: (cb?: onImageSelectedType) => void;
-}) => {
+const RecipeForm = ({ initialData }: { initialData?: RecipeData }) => {
   const images: string[] = [];
   const [formState, formAction] = useFormState<CreateRecipeFormState>(
     createRecipeAction,
     null,
   );
+
+  // when a callback is defined, it will be used by the image chooser form to
+  // return the name of the image that was selected
+  const [onImageSelected, setOnImageSelected] = useState<
+    onImageSelectedType | undefined
+  >();
+
+  const closeImageChooser = useCallback(() => {
+    setOnImageSelected(undefined);
+  }, [setOnImageSelected]);
 
   if (formState?.status === "success") {
     return (
@@ -34,17 +40,28 @@ const RecipeForm = ({
   }
 
   return (
-    <form action={formAction}>
-      {/*<!-- Prevent implicit submission of the form -->*/}
-      <button
-        type="submit"
-        disabled
-        style={{ display: "none" }}
-        aria-hidden="true"
-      ></button>
-      <RecipeEditor setOnImageSelected={setOnImageSelected} />
-      <CreateRecipeSubmitButton formState={formState} />
-    </form>
+    <>
+      <form action={formAction}>
+        {/*<!-- Prevent implicit submission of the form -->*/}
+        <button
+          type="submit"
+          disabled
+          style={{ display: "none" }}
+          aria-hidden="true"
+        ></button>
+        <RecipeEditor
+          setOnImageSelected={setOnImageSelected}
+          initialData={initialData}
+        />
+        <CreateRecipeSubmitButton formState={formState} />
+      </form>
+      {onImageSelected && (
+        <ImageChooserForm
+          onImageSelected={onImageSelected}
+          closeImageChooser={closeImageChooser}
+        />
+      )}
+    </>
   );
 };
 

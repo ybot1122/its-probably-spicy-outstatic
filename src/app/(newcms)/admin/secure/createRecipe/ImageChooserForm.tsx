@@ -66,7 +66,7 @@ const ImageChooserForm = ({
         <div className="text-center">
           <h3 className="text-2xl font-bold">Choose or Upload Image</h3>
           <div className="mt-2 px-7 py-3">
-            <p className="text-lg">
+            <div className="text-lg">
               {selectedImage && (
                 <img
                   alt="not found"
@@ -106,7 +106,7 @@ const ImageChooserForm = ({
                   />
                 )}
               </form>
-            </p>
+            </div>
           </div>
           <div className="flex justify-center mt-4">
             {/* Navigates back to the base URL - closing the modal */}
