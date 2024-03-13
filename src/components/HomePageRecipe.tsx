@@ -25,11 +25,10 @@ const HomePageRecipe = ({
           />
         </Link>
       </div>
-      <h2 className="absolute bottom-20 left-10 bg-tan text-2xl px-2">
+      <h2 className="absolute bottom-20 left-10 bg-tan text-2xl px-2 font-bold">
         {" "}
         <Link href={`/recipes/${slug}`}>{title}</Link>
       </h2>
-      <p>description</p>
     </div>
   );
 };

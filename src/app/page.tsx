@@ -15,7 +15,7 @@ export default async function Index() {
       <div className="w-full mt-10">
         <section className="max-w-screen-lg mx-auto px-5">
           <div className="group flex relative w-full aspect-square md:aspect-video mx-auto justify-center">
-            <h1 className="absolute z-10 self-end rounded-lg text-xl md:text-3xl p-5 bg-transparentBlack text-center text-white uppercase mb-5 hover:bg-orange transition">
+            <h1 className="absolute z-10 self-end rounded-lg text-xl md:text-3xl p-5 bg-transparentBlack text-center text-white uppercase mb-5 hover:bg-orange transition font-bold">
               {" "}
               <Link href="/recipes/demo-for-daisy">Shiomi Skippers Burger</Link>
             </h1>
