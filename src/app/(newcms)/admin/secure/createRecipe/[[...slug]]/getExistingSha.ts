@@ -18,7 +18,7 @@ export async function getExistingSha(params: {
       {
         owner: "ybot1122",
         repo: "its-probably-spicy-outstatic",
-        path: `outstatic/content/recipes/${params.filename}.json`,
+        path: `content/recipes/${params.filename}.json`,
         message: "my commit message",
         headers: {
           "X-GitHub-Api-Version": "2022-11-28",

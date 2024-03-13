@@ -147,7 +147,7 @@ export async function createRecipeAction(
       {
         owner: "ybot1122",
         repo: "its-probably-spicy-outstatic",
-        path: `outstatic/content/recipes/${slug ? slug : filename}.json`,
+        path: `content/recipes/${slug ? slug : filename}.json`,
         message: "my commit message",
         content,
         sha,

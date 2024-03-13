@@ -3,7 +3,7 @@ export default async function Page() {
   const scopes = ["read:user", "user:email", "repo"];
 
   const url = new URL("https://github.com/login/oauth/authorize");
-  url.searchParams.append("client_id", process.env.OST_GITHUB_ID ?? "");
+  url.searchParams.append("client_id", process.env.GITHUB_ID ?? "");
   url.searchParams.append("scope", scopes.join(","));
 
   return (

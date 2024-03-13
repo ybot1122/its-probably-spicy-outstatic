@@ -11,7 +11,7 @@ const authorizeUser = async (): Promise<{
   authorizationStatus: "authorized" | "unauthorized";
   octokit?: any;
 }> => {
-  const TOKEN_SECRET = process.env.OST_TOKEN_SECRET;
+  const TOKEN_SECRET = process.env.TOKEN_SECRET;
 
   if (!TOKEN_SECRET) {
     console.error("App is not configured correctly. No TOKEN_SECRET found.");

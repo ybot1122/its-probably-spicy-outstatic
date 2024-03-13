@@ -1,7 +1,7 @@
 import { RecipeData } from "@/interfaces/recipeData";
 import fs from "fs";
 import { join } from "path";
-const recipesDirectory = join(process.cwd(), "outstatic/content/recipes");
+const recipesDirectory = join(process.cwd(), "content/recipes");
 
 export async function getAllRecipes() {
   const files = fs

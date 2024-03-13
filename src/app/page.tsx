@@ -1,13 +1,9 @@
 import Layout from "@/components/Layout";
-import { load } from "outstatic/server";
-import ContentGrid from "../components/ContentGrid";
-import markdownToHtml from "../lib/markdownToHtml";
 import { getAllRecipes } from "@/lib/getAllRecipes";
 import Link from "next/link";
 import Image from "next/image";
 import { FullHero } from "@/components/FullHero";
 import { kalam } from "@/app/fonts";
-import { IMAGE_PATH } from "@/lib/imagePath";
 import { RecipeCard } from "@/components/RecipeCard";
 
 export default async function Index() {

@@ -1,6 +1,6 @@
 import fs from "fs";
 import { join } from "path";
-const recipesDirectory = join(process.cwd(), "outstatic/content/recipes");
+const recipesDirectory = join(process.cwd(), "content/recipes");
 
 export function getRecipe(slug: string) {
   const fullPath = join(recipesDirectory, slug + ".json");

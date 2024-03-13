@@ -12,7 +12,7 @@ import { allowedUsers } from "@/lib/allowedUsers";
 export async function GET(request: Request) {
   const code = new URL(request.url).searchParams.get("code");
 
-  const TOKEN_SECRET = process.env.OST_TOKEN_SECRET;
+  const TOKEN_SECRET = process.env.TOKEN_SECRET;
 
   if (!TOKEN_SECRET) {
     return new Response(
@@ -26,9 +26,9 @@ export async function GET(request: Request) {
   let token;
   try {
     const auth = createOAuthUserAuth({
-      clientId: process.env.OST_GITHUB_ID ?? "",
-      clientSecret: process.env.OST_GITHUB_SECRET ?? "",
-      code: code,
+      clientId: process.env.GITHUB_ID ?? "",
+      clientSecret: process.env.GITHUB_SECRET ?? "",
+      code: code ?? "",
     });
 
     // Exchanges the code for the user access token authentication on first call

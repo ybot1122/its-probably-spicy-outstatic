@@ -1,7 +1,7 @@
 # Ignore artifacts:
 build
 coverage
-outstatic
+content
 public
 node_modules
 .next
