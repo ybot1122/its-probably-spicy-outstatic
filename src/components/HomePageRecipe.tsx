@@ -14,23 +14,22 @@ const HomePageRecipe = ({
   image: RecipeData["images"]["hero"];
 }) => {
   return (
-    <div className={`mb-5 bg-orange`}>
-      <div className="relative w-full aspect-square px-5 pt-5">
-        <div className="relative w-full aspect-square">
-          <Link href={`/recipes/${slug}`}>
-            <Image
-              src={IMAGE_PATH + image}
-              fill
-              alt={title}
-              className="object-cover"
-            />
-          </Link>
-        </div>
-        <h2 className="absolute bottom-20 left-10 bg-tan text-2xl px-2">
-          {" "}
-          <Link href={`/recipes/${slug}`}>{title}</Link>
-        </h2>
+    <div className="relative w-full aspect-square pt-5">
+      <div className="relative w-full aspect-square">
+        <Link href={`/recipes/${slug}`}>
+          <Image
+            src={IMAGE_PATH + image}
+            fill
+            alt={title}
+            className="object-cover"
+          />
+        </Link>
       </div>
+      <h2 className="absolute bottom-20 left-10 bg-tan text-2xl px-2">
+        {" "}
+        <Link href={`/recipes/${slug}`}>{title}</Link>
+      </h2>
+      <p>description</p>
     </div>
   );
 };

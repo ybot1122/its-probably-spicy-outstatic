@@ -44,16 +44,9 @@ export default async function Index() {
           </div>
 
           <div className="max-w-screen-lg mx-auto px-5 grid grid-cols-4 gap-4">
-            <div className="col-span-4 md:col-span-2">
-              <HomePageRecipe
-                title={allRecipes[0].title}
-                slug={allRecipes[0].slug}
-                image={allRecipes[0].image}
-              />
-            </div>
-            {allRecipes.slice(1, 4).map(({ title, image, slug }) => (
+            {allRecipes.slice(0, 4).map(({ title, image, slug }) => (
               <div key={title} className="col-span-4 md:col-span-2">
-                <RecipeCard title={title} slug={slug} image={image} />
+                <HomePageRecipe title={title} slug={slug} image={image} />
               </div>
             ))}
 
