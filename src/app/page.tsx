@@ -5,6 +5,7 @@ import Image from "next/image";
 import { FullHero } from "@/components/FullHero";
 import { kalam } from "@/app/fonts";
 import { RecipeCard } from "@/components/RecipeCard";
+import { HomePageRecipe } from "@/components/HomePageRecipe";
 
 export default async function Index() {
   const { allRecipes } = await getData();
@@ -13,12 +14,6 @@ export default async function Index() {
     <Layout>
       <div className="w-full mt-10">
         <section className="max-w-screen-lg mx-auto px-5">
-          <h1
-            className={`max-w-screen-sm mx-auto text-xl md:text-3xl ${kalam.className} text-center py-5`}
-          >
-            FEATURED RECIPE
-          </h1>
-
           <div className="group flex relative w-full aspect-square md:aspect-video mx-auto justify-center">
             <h1 className="absolute z-10 self-end rounded-lg text-xl md:text-3xl p-5 bg-transparentBlack text-center text-white uppercase mb-5 hover:bg-orange transition">
               {" "}
@@ -39,7 +34,7 @@ export default async function Index() {
             <h1
               className={` text-xl md:text-3xl ${kalam.className} text-left p-5`}
             >
-              MORE RECIPES
+              NEWEST RECIPES
             </h1>
 
             <span
@@ -49,7 +44,14 @@ export default async function Index() {
           </div>
 
           <div className="max-w-screen-lg mx-auto px-5 grid grid-cols-4 gap-4">
-            {allRecipes.slice(0, 4).map(({ title, image, slug }) => (
+            <div className="col-span-4 md:col-span-2">
+              <HomePageRecipe
+                title={allRecipes[0].title}
+                slug={allRecipes[0].slug}
+                image={allRecipes[0].image}
+              />
+            </div>
+            {allRecipes.slice(1, 4).map(({ title, image, slug }) => (
               <div key={title} className="col-span-4 md:col-span-2">
                 <RecipeCard title={title} slug={slug} image={image} />
               </div>
