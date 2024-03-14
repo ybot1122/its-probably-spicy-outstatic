@@ -58,7 +58,7 @@ export default async function Recipe(params: Params) {
           title={recipeName}
         />
         <section className="grid grid-cols-2 max-w-screen-xl mx-auto">
-          <div className="bg-white ml-5 mr-5 col-span-2 lg:col-span-1 text-center lg:text-left lg:ml-20 lg:mr-0">
+          <div className="bg-white ml-5 mr-5 col-span-2 md:col-span-1 text-center lg:text-left lg:ml-20 lg:mr-0">
             <div className={`mb-10 text-sm `}>
               <span className="inline-block border-r-2 border-orange pr-5">
                 Recipe by {`${author}`}
@@ -87,7 +87,7 @@ export default async function Recipe(params: Params) {
               </div>
             </div>
           </div>
-          <div className="col-span-2 ml-5 mr-5 mb-10 lg:ml-0 lg:mr-20 lg:col-span-1">
+          <div className="col-span-2 ml-5 mr-5 mb-10 lg:ml-0 lg:mr-20 md:col-span-1">
             <ImageGallery
               images={images.gallery.map((img) => ({
                 src: IMAGE_PATH + img,
@@ -113,7 +113,7 @@ export default async function Recipe(params: Params) {
                 ))}
               </ul>
             </div>
-            <div className="col-span-4 md:col-span-3 bg-white p-10 lg:pl-20 lg:pr-20">
+            <div className="col-span-4 md:col-span-3 md:bg-white md:p-10 lg:px-20">
               <h2 className="text-xl mb-5">Instructions</h2>
               <ol
                 className="list-decimal list-inside"

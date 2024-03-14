@@ -30,7 +30,7 @@ export default async function Index() {
 
         {/*image zoom https://w3bits.com/labs/css-image-hover-zoom/ */}
         <section>
-          <div className="flex max-w-screen-lg mx-auto items-center mt-20">
+          <div className="flex max-w-screen-lg mx-auto items-center mt-10">
             <h1
               className={` text-xl md:text-3xl ${kalam.className} text-left p-5`}
             >
@@ -44,11 +44,18 @@ export default async function Index() {
           </div>
 
           <div className="max-w-screen-lg mx-auto px-5 grid grid-cols-4 gap-4">
-            {allRecipes.slice(0, 4).map(({ title, image, slug }) => (
-              <div key={title} className="col-span-4 md:col-span-2">
-                <HomePageRecipe title={title} slug={slug} image={image} />
-              </div>
-            ))}
+            {allRecipes
+              .slice(0, 4)
+              .map(({ title, image, slug, publishedAt }) => (
+                <div key={title} className="col-span-4 sm:col-span-2">
+                  <HomePageRecipe
+                    title={title}
+                    slug={slug}
+                    image={image}
+                    publishedAt={publishedAt}
+                  />
+                </div>
+              ))}
 
             <div className="col-start-2 col-span-2 text-center">
               <Link
@@ -62,7 +69,7 @@ export default async function Index() {
         </section>
 
         {/*image zoom https://w3bits.com/labs/css-image-hover-zoom/ */}
-        <section className={`mt-20 max-w-screen-lg mx-auto`}>
+        <section className={`mt-10 max-w-screen-lg mx-auto`}>
           <FullHero
             src="/images/granola.jpg"
             alt="World's Best Granola"

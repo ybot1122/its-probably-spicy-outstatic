@@ -8,9 +8,18 @@ export async function getAllRecipes() {
     .readdirSync(recipesDirectory)
     .filter((filename) => filename.endsWith(".json"))
     .map((f) => {
-      const slug = f.slice(0, -5);
+      return {
+        name: f,
+        time: fs.statSync(join(recipesDirectory, f)).mtime.getTime(),
+      };
+    })
+    .sort((a, b) => {
+      return b.time - a.time;
+    })
+    .map((f) => {
+      const slug = f.name.slice(0, -5);
 
-      const data = fs.readFileSync(join(recipesDirectory, f), {
+      const data = fs.readFileSync(join(recipesDirectory, f.name), {
         encoding: "utf8",
         flag: "r",
       });
