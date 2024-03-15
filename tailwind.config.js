@@ -29,10 +29,30 @@ module.exports = {
     },
     animation: {
       slideIn: "300ms 1 alternate slidein",
+      carouselSlideInToLeft: "500ms 1 alternate carouselSlideInToLeft",
+      carouselSlideOutToLeft: "500ms 1 alternate carouselSlideOutToLeft",
+      carouselSlideInToRight: "500ms 1 alternate carouselSlideInToRight",
+      carouselSlideOutToRight: "500ms 1 alternate carouselSlideOutToRight",
     },
     keyframes: {
       slidein: {
         "0%": { transform: "translateX(50%)" },
+        "100%": { transform: "translateX(0px)" },
+      },
+      carouselSlideOutToLeft: {
+        "0%": { transform: "translateX(0px)" },
+        "100%": { transform: "translateX(-100%)" },
+      },
+      carouselSlideInToLeft: {
+        "0%": { transform: "translateX(100%)" },
+        "100%": { transform: "translateX(0px)" },
+      },
+      carouselSlideOutToRight: {
+        "0%": { transform: "translateX(0px)" },
+        "100%": { transform: "translateX(100%)" },
+      },
+      carouselSlideInToRight: {
+        "0%": { transform: "translateX(-100%)" },
         "100%": { transform: "translateX(0px)" },
       },
     },

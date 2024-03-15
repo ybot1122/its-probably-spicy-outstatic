@@ -6,6 +6,7 @@ import { FullHero } from "@/components/FullHero";
 import { kalam } from "@/app/fonts";
 import { RecipeCard } from "@/components/RecipeCard";
 import { HomePageRecipe } from "@/components/HomePageRecipe";
+import { HomePageRecipeCarousel } from "@/components/HomePageRecipeCarousel";
 
 export default async function Index() {
   const { allRecipes } = await getData();
@@ -14,18 +15,7 @@ export default async function Index() {
     <Layout>
       <div className="w-full mt-10">
         <section className="max-w-screen-lg mx-auto px-5">
-          <div className="group flex relative w-full aspect-square md:aspect-video mx-auto justify-center">
-            <h1 className="absolute z-10 self-end rounded-lg text-xl md:text-3xl p-5 bg-transparentBlack text-center text-white uppercase mb-5 hover:bg-orange transition font-bold">
-              {" "}
-              <Link href="/recipes/demo-for-daisy">Shiomi Skippers Burger</Link>
-            </h1>
-            <Image
-              src="/images/IMG_3328.jpg"
-              fill
-              alt="Head Chef Daisy"
-              className="rounded-lg object-cover shadow-3xl"
-            />{" "}
-          </div>
+          <HomePageRecipeCarousel />
         </section>
 
         {/*image zoom https://w3bits.com/labs/css-image-hover-zoom/ */}
@@ -57,7 +47,7 @@ export default async function Index() {
                 </div>
               ))}
 
-            <div className="col-start-2 col-span-2 text-center">
+            <div className="col-start-2 col-span-2 text-center mt-5">
               <Link
                 href="/allRecipes"
                 className="inline-block border-orange p-5 border-2 transition hover:bg-orange rounded-lg"
