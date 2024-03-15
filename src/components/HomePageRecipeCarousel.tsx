@@ -76,12 +76,12 @@ const HomePageRecipeCarousel = () => {
             onAnimationEnd={onAnimationEnd}
             key={title}
           >
-            <h1
+            <Link
+              href="/recipes/demo-for-daisy"
               className={`inline-block self-end mx-auto z-30 rounded-lg text-xl md:text-3xl p-5 bg-black text-center text-white uppercase mb-5 hover:bg-orange transition font-bold`}
             >
-              {" "}
-              <Link href="/recipes/demo-for-daisy">{title}</Link>
-            </h1>
+              <h1> {title}</h1>
+            </Link>
 
             <Image
               src={image}
