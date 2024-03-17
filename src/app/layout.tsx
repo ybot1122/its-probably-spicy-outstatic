@@ -8,6 +8,10 @@ export const metadata: Metadata = {
     template: "%s | It's Probably Spicy",
     default: "It's Probably Spicy",
   },
+  metadataBase: new URL(
+    `https://${process.env.VERCEL_URL}` ||
+      `http://localhost:${process.env.PORT || 3000}`,
+  ),
   description:
     "Head Chef Daisy presents her amazing recipes from all around the world. Just remember, It's Probably Spicy!",
   generator: "Next.js",
