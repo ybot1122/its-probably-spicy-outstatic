@@ -1,6 +1,11 @@
 import Layout from "@/components/Layout";
 import Image from "next/image";
 import { kalam } from "@/app/fonts";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact",
+};
 
 export default async function About() {
   return (

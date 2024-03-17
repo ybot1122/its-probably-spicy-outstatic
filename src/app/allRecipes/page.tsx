@@ -3,6 +3,11 @@ import Image from "next/image";
 import { kalam } from "@/app/fonts";
 import { RecipeCard } from "@/components/RecipeCard";
 import { getAllRecipes } from "@/lib/getAllRecipes";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Recipes",
+};
 
 const categories = [
   {

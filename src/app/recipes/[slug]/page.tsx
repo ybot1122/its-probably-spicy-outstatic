@@ -3,7 +3,6 @@ import { getAllRecipes } from "@/lib/getAllRecipes";
 import DateFormatter from "@/components/DateFormatter";
 import Image from "next/image";
 import { Metadata } from "next";
-import { absoluteUrl } from "@/lib/utils";
 import ImageGallery from "@/components/ImageGallery";
 import { getRecipe } from "@/lib/getRecipe";
 import { RecipeData } from "@/interfaces/recipeData";
@@ -25,13 +24,9 @@ export async function generateMetadata(params: Params): Promise<Metadata> {
   return {
     title: project.recipeName,
     description: project.description,
-    openGraph: {
-      title: project.recipeName,
-      description: project.description,
-      type: "article",
-      url: absoluteUrl(`/projects/test`),
-      images: [],
-    },
+    /* TODO
+    keywords: ['test']
+    */
   };
 }
 

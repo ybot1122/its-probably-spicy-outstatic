@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     type: "website",
     /*
     publishedTime: '2023-01-01T00:00:00.000Z',
-    authors: ['Seb', 'Josh'],
+    authors: ['Daisy'],
     */
   },
   robots: {
@@ -62,7 +62,18 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    google: "google",
+    yandex: "yandex",
+    yahoo: "yahoo",
+  },
 };
+
+// TODO: Google site verification
+// TODO: twitter https://nextjs.org/docs/app/api-reference/functions/generate-metadata#twitter
+// TODO: appleWebApp https://nextjs.org/docs/app/api-reference/functions/generate-metadata#applewebapp
+// TODO: alternates https://nextjs.org/docs/app/api-reference/functions/generate-metadata#alternates
+// TODO: appLinks https://nextjs.org/docs/app/api-reference/functions/generate-metadata#applinks
 
 export default function RootLayout({
   children,
