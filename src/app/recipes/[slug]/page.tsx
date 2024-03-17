@@ -15,15 +15,22 @@ export interface Params {
   };
 }
 export async function generateMetadata(params: Params): Promise<Metadata> {
-  const project = await getData(params.params.slug);
+  const recipeData = await getData(params.params.slug);
 
-  if (!project) {
+  if (!recipeData) {
     return {};
   }
 
   return {
-    title: project.recipeName,
-    description: project.description,
+    title: recipeData.recipeName,
+    description: recipeData.description,
+    openGraph: {
+      title: recipeData.recipeName,
+      publishedTime: recipeData.publishedAt,
+      authors: [recipeData.author],
+      type: "article",
+      description: recipeData.description,
+    },
     /* TODO
     keywords: ['test']
     */

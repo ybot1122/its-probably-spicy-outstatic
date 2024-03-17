@@ -28,8 +28,8 @@ export const metadata: Metadata = {
     "Nigerian Recipes",
     "Nigerian Food Recipes",
   ],
-  authors: [{ name: "Daisy" }],
-  creator: "Toby",
+  authors: [{ name: "Head Chef Daisy" }],
+  creator: "Head Chef Daisy",
   publisher: "It's Probably Spicy",
   formatDetection: {
     email: false,
@@ -37,7 +37,10 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "It's Probably Spicy",
+    title: {
+      template: "%s | It's Probably Spicy",
+      default: "It's Probably Spicy",
+    },
     description:
       "Head Chef Daisy presents her amazing recipes from all around the world. Just remember, It's Probably Spicy!",
     url: absoluteUrl("/"),
@@ -46,7 +49,7 @@ export const metadata: Metadata = {
     type: "website",
     /*
     publishedTime: '2023-01-01T00:00:00.000Z',
-    authors: ['Daisy'],
+    authors: ['Head Chef Daisy'],
     */
   },
   robots: {
