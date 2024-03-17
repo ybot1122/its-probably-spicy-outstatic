@@ -31,8 +31,8 @@ export async function generateMetadata(params: Params): Promise<Metadata> {
       type: "article",
       description: recipeData.description,
     },
-    /* TODO
-    keywords: ['test']
+    /* TODO p0-1
+    custom URL and Images of opengraph / twitter
     */
   };
 }

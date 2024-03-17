@@ -1,21 +1,17 @@
-import { absoluteUrl } from "@/lib/absoluteUrl";
+import { absoluteUrl, description, siteName, author } from "@/lib/meta";
 import { Metadata } from "next";
 import { mooli } from "./fonts";
 import "../styles/index.css";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | It's Probably Spicy",
-    default: "It's Probably Spicy",
+    template: `%s | ${siteName}`,
+    default: siteName,
   },
-  metadataBase: new URL(
-    `https://${process.env.VERCEL_URL}` ||
-      `http://localhost:${process.env.PORT || 3000}`,
-  ),
-  description:
-    "Head Chef Daisy presents her amazing recipes from all around the world. Just remember, It's Probably Spicy!",
+  metadataBase: new URL(absoluteUrl("/")),
+  description,
   generator: "Next.js",
-  applicationName: "It's Probably Spicy",
+  applicationName: siteName,
   referrer: "origin-when-cross-origin",
   keywords: [
     "Its Probably Spicy",
@@ -32,9 +28,9 @@ export const metadata: Metadata = {
     "Nigerian Recipes",
     "Nigerian Food Recipes",
   ],
-  authors: [{ name: "Head Chef Daisy" }],
-  creator: "Head Chef Daisy",
-  publisher: "It's Probably Spicy",
+  authors: [{ name: author }],
+  creator: author,
+  publisher: siteName,
   formatDetection: {
     email: false,
     address: false,
@@ -42,13 +38,12 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: {
-      template: "%s | It's Probably Spicy",
-      default: "It's Probably Spicy",
+      template: `%s | ${siteName}`,
+      default: siteName,
     },
-    description:
-      "Head Chef Daisy presents her amazing recipes from all around the world. Just remember, It's Probably Spicy!",
+    description,
     url: absoluteUrl("/"),
-    siteName: "It's Probably Spicy",
+    siteName,
     locale: "en_US",
     type: "website",
     /*
@@ -76,6 +71,7 @@ export const metadata: Metadata = {
   },
 };
 
+// p0-1
 // TODO: Google site verification
 // TODO: twitter https://nextjs.org/docs/app/api-reference/functions/generate-metadata#twitter
 // TODO: appleWebApp https://nextjs.org/docs/app/api-reference/functions/generate-metadata#applewebapp
