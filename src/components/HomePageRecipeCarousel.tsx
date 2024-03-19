@@ -88,6 +88,7 @@ const HomePageRecipeCarousel = () => {
               fill
               alt="Head Chef Daisy"
               className={`rounded-lg object-cover shadow-3xl`}
+              priority
             />
           </div>
         );

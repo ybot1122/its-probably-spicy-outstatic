@@ -60,7 +60,7 @@ const Header = () => {
 
         <div className="flex col-start-2 justify-end">
           <ul
-            className={`${!navOpen ? "hidden" : ""} absolute md:mr-5 md:static animate-slideIn md:flex w-1/2 md:w-auto z-30 bg-tan items-center justify-between md:space-x-4 text-2xl`}
+            className={`${!navOpen ? "hidden" : ""} absolute md:mr-5 md:static max-md:animate-slideIn md:flex w-1/2 md:w-auto z-40 bg-tan items-center justify-between md:space-x-4 text-2xl`}
           >
             {navItems.map(({ text, href }) => (
               <NavItem text={text} href={href} key={text} />
